@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `ideja` (
   `IdI` int(11) NOT NULL,
   `Naslov` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `DatumEvaluacije` datetime NOT NULL,
-  `Sadrzaj` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `Sadrzaj` varchar(5000) COLLATE utf8_unicode_ci NOT NULL,
   `Popularnost` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`IdI`),
   KEY `R_6` (`IdK`)
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `predvidjanje` (
   `Naslov` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `DatumNastanka` datetime NOT NULL,
   `DatumEvaluacije` datetime NOT NULL,
-  `Sadrzaj` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `Sadrzaj` varchar(5000) COLLATE utf8_unicode_ci NOT NULL,
   `Nominalna_Tezina` decimal(10,2) NOT NULL,
   `Tezina` decimal(10,2) NOT NULL,
   `Popularnost` int(11) NOT NULL DEFAULT '0',

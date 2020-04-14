@@ -23,7 +23,7 @@ CREATE TABLE Ideja
 	IdI                  INTEGER NOT NULL,
 	Naslov               VARCHAR(20) NOT NULL,
 	DatumEvaluacije      datetime NOT NULL,
-	Sadrzaj              VARCHAR(20) NOT NULL,
+	Sadrzaj              VARCHAR(5000) NOT NULL,
 	Popularnost          INTEGER NOT NULL DEFAULT 0
 );
 
@@ -82,7 +82,7 @@ CREATE TABLE Predvidjanje
 	Naslov               VARCHAR(20) NOT NULL,
 	DatumNastanka        datetime NOT NULL,
 	DatumEvaluacije      datetime NOT NULL,
-	Sadrzaj              VARCHAR(20) NOT NULL,
+	Sadrzaj              VARCHAR(5000) NOT NULL,
 	Nominalna_Tezina     DECIMAL(10,2) NOT NULL,
 	Tezina               DECIMAL(10,2) NOT NULL,
 	Popularnost          INTEGER NOT NULL DEFAULT 0,
