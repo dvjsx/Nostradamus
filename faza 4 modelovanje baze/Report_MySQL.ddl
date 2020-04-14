@@ -20,11 +20,11 @@ ADD CONSTRAINT XPKKorisnik_Predvidjanje_Ocena PRIMARY KEY (IdK,IdP);
 CREATE TABLE Ideja
 (
 	IdK                  INTEGER NOT NULL,
-	IdI                  INTEGER NOT NULL AUTO_INCREMENT,
+	IdI                  INTEGER NOT NULL,
 	Naslov               VARCHAR(20) NOT NULL,
-	DatumEvaluacije      TIMESTAMP NOT NULL,
+	DatumEvaluacije      datetime NOT NULL,
 	Sadrzaj              VARCHAR(20) NOT NULL,
-	Popularnost          DECIMAL(10,2) NOT NULL DEFAULT 0
+	Popularnost          INTEGER NOT NULL DEFAULT 0
 );
 
 ALTER TABLE Ideja
@@ -32,13 +32,13 @@ ADD CONSTRAINT XPKIdeja PRIMARY KEY (IdI);
 
 CREATE TABLE Korisnik
 (
-	IdK                  INTEGER NOT NULL AUTO_INCREMENT,
+	IdK                  INTEGER NOT NULL,
 	Username             VARCHAR(20) NOT NULL,
 	Password             VARCHAR(20) NOT NULL,
-	DatumReg             TIMESTAMP NOT NULL,
+	DatumReg             datetime NOT NULL,
 	Email                VARCHAR(20) NOT NULL,
 	Skor                 DECIMAL(10,2) NOT NULL,
-	Popularnost          DECIMAL(10,2) NOT NULL
+	Popularnost          INTEGER NOT NULL DEFAULT 0
 );
 
 ALTER TABLE Korisnik
@@ -78,14 +78,14 @@ ADD CONSTRAINT XPKOdgovor_Na PRIMARY KEY (IdP);
 CREATE TABLE Predvidjanje
 (
 	IdK                  INTEGER NOT NULL,
-	IdP                  INTEGER NOT NULL AUTO_INCREMENT,
+	IdP                  INTEGER NOT NULL,
 	Naslov               VARCHAR(20) NOT NULL,
-	DatumNastanka        TIMESTAMP NOT NULL,
-	DatumEvaluacije      TIMESTAMP NOT NULL,
+	DatumNastanka        datetime NOT NULL,
+	DatumEvaluacije      datetime NOT NULL,
 	Sadrzaj              VARCHAR(20) NOT NULL,
 	Nominalna_Tezina     DECIMAL(10,2) NOT NULL,
 	Tezina               DECIMAL(10,2) NOT NULL,
-	Popularnost          DECIMAL(10,2) NOT NULL DEFAULT 0,
+	Popularnost          INTEGER NOT NULL DEFAULT 0,
 	BrOcena              INTEGER NOT NULL DEFAULT 0
 );
 
