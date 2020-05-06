@@ -10,26 +10,27 @@ class PredvidjanjeModel extends Model
 {
     protected $table="predvidjanja";
     protected $primaryKey="IdP";
-    protected $returnObject;
-    protected $allowedFields=["IdP","Naslov","DatumNastanka","DatumEvaluacije","Sadrzaj","Nominalna_Tezina","Tezina","Popularnost","BrOcena","Status"];
+    protected $returnType     = 'object';
+    protected $allowedFields=["IdK","Naslov","DatumNastanka","DatumEvaluacije","Sadrzaj","Nominalna_Tezina","Tezina","Popularnost","BrOcena","Status"];
     
     /**
      * Ubacuje predvidjanje u bazu, provere na kontrolerskoj strani
-     * Preduslovi: Polja popunjena, naslov ili ne sadrzi znak '#' ili je '#' + naslov_ideje
+     * Preduslovi: Polja popunjena, naslov ili ne sadrzi znak '#' ili je '#' + naslov_ideje, ako je odgovor na ideju,
+     * mora da ima isti datum evaluacije
      * @param string $naslov 
      * @param Date $datum_evaluacije kada ce se videti da li je predvidjanje ispunjeno
      * @param string $sadrzaj 
      */
-    public function ubaci_novo_predvidjanje($naslov,$datum_evaluacije,$sadrzaj)
+    public function ubaci_novo_predvidjanje($idK,$naslov,$datum_evaluacije,$sadrzaj)
     {
         //proveriti ovo za datum, da li je kompaktibilno sa sqlom
-        $data=["Naslov"=>$naslov,"DatumNastanka"=> date("d/m/Y"),"DatumEvaluacije"=>$datum_evaluacije,
+        $data=["IdK"=>$idK,"Naslov"=>$naslov,"DatumNastanka"=> date("d/m/Y"),"DatumEvaluacije"=>$datum_evaluacije,
             "Sadrzaj"=>$sadrzaj,"Nominalna_Tezina"=>0,"Tezina"=>0,"Popularnost"=>0,"Br_Ocena"=>0,
             "Status"=>"CEKA"];
         $this->save($data);
     }
 
-        /**
+     /**
      * Dohvata sva predvidjanja iz baze
      * @return predvidjanje[]
      */
@@ -59,14 +60,14 @@ class PredvidjanjeModel extends Model
         return $this->orderBy("Popularnost","desc")->findAll();   
     }
     /**
-     * Dohvata sva predvidjanja iz baze i sortira po popularnosti
+     * Dohvata sva predvidjanja iz baze i sortira po datumu nastanka
      * @return predvidjanje[]
      * 
      */
     public function dohvati_najnovija_predvidjanja()
     {
         
-        return $this->orderBy("Popularnost","desc")->findAll();   
+        return $this->orderBy("DatumNastanka","desc")->findAll();   
     }
     /**
      * Dohvata sva predvidjanja datog korisnika
@@ -131,5 +132,6 @@ class PredvidjanjeModel extends Model
              $this->save($predvidjanje); 
         }
     }
+    
 }
 
