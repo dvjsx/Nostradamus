@@ -2,8 +2,6 @@
 <?php namespace App\Models;
 use CodeIgniter\Model;
 
-
-
 /**
  * *@author Dusan Vojinovic 2017/80 
  * Model za rad sa predvidjanjima u bazi
@@ -13,17 +11,25 @@ class PredvidjanjeModel extends Model
     protected $table="predvidjanja";
     protected $primaryKey="IdP";
     protected $returnObject;
-    protected $allowedFields=["IdP","Naslov","DatumNastanka","DatumEvaluacije","Sadrzaj","Nominalna_Tezina,Tezina,Popularnost,BrOcena"];
+    protected $allowedFields=["IdP","Naslov","DatumNastanka","DatumEvaluacije","Sadrzaj","Nominalna_Tezina","Tezina","Popularnost","BrOcena","Status"];
     
     /**
-     * Izravunavanje tezine iz nominalne tezine
-     * @var 
+     * Ubacuje predvidjanje u bazu, provere na kontrolerskoj strani
+     * Preduslovi: Polja popunjena, naslov ili ne sadrzi znak '#' ili je '#' + naslov_ideje
+     * @param string $naslov 
+     * @param Date $datum_evaluacije kada ce se videti da li je predvidjanje ispunjeno
+     * @param string $sadrzaj 
      */
-    private function izracunaj_tezinu($nominalna_tezina,$datum_nastanka)
+    public function ubaci_novo_predvidjanje($naslov,$datum_evaluacije,$sadrzaj)
     {
-        
+        //proveriti ovo za datum, da li je kompaktibilno sa sqlom
+        $data=["Naslov"=>$naslov,"DatumNastanka"=> date("d/m/Y"),"DatumEvaluacije"=>$datum_evaluacije,
+            "Sadrzaj"=>$sadrzaj,"Nominalna_Tezina"=>0,"Tezina"=>0,"Popularnost"=>0,"Br_Ocena"=>0,
+            "Status"=>"CEKA"];
+        $this->save($data);
     }
-    /**
+
+        /**
      * Dohvata sva predvidjanja iz baze
      * @return predvidjanje[]
      */
@@ -39,19 +45,7 @@ class PredvidjanjeModel extends Model
      */
     public function dohvati_najteza_predvidjanja()
     {
-        $predvidjanja=$this->findAll();
-        //otvoreno pitanje: ima li nesto u codeigniter modelu tipa order_by, kako se koristi i sta je bolje
-        usort($vesti,function($v1,$v2)
-	{
-		$raz=$v1->Tezina-$v2->Tezina;
-		if ($raz<0)
-			$raz=-1;
-		if ($raz==0)
-			$raz=1;
-                //zelimo opadajuce da sortiramo
-		return -1*$raz;
-	});
-        return $predvidjanja;  
+        return $this->orderBy("Tezina","desc")->findAll();
     }
     
     
@@ -59,20 +53,10 @@ class PredvidjanjeModel extends Model
      * Dohvata sva predvidjanja iz baze i sortira po popularnosti
      * @return predvidjanje[]
      */
-    public function dohvati_najteza_predvidjanja()
+    public function dohvati_najpopularnija_predvidjanja()
     {
-        $predvidjanja=$this->findAll();
-        //otvoreno pitanje: ima li nesto u codeigniter modelu tipa order_by, kako se koristi i sta je bolje
-        usort($vesti,function($v1,$v2)
-	{
-		$raz=$v1->Popularnost-$v2->Popularnost;
-		if ($raz<0)
-			$raz=-1;
-		if ($raz==0)
-			$raz=1;
-		return $raz;
-	});
-        return $predvidjanja;   
+        
+        return $this->orderBy("Popularnost","desc")->findAll();   
     }
     /**
      * Dohvata sva predvidjanja iz baze i sortira po popularnosti
@@ -81,22 +65,71 @@ class PredvidjanjeModel extends Model
      */
     public function dohvati_najnovija_predvidjanja()
     {
-        $predvidjanja=$this->findAll();
-        //otvoreno pitanje: ima li nesto u codeigniter modelu tipa order_by, kako se koristi i sta je bolje
-        usort($vesti,function($v1,$v2)
-	{
-		//TODO: sort prema datumima
-	});
-        return $predvidjanja;   
+        
+        return $this->orderBy("Popularnost","desc")->findAll();   
     }
     /**
      * Dohvata sva predvidjanja datog korisnika
-     * @param type $id_korisnika
+     * @param unique_id $id_korisnika
      * @return predvidjanja[]
      */
     public function dohvati_predvidjanja_korisnika($id_korisnika)
     {
         return $this->where("IdK",$id_korisnika);
+    }
+    /**
+     * Povecava popularnost predvidjanja, treba pozvati i metodu voli za VoliModel
+     * @param unique_id $idP identifikator predvidjanja koje je voljeno
+     * @return Void 
+     */
+    public function voli($idP)
+    {
+        $predvidjanje= $this->find($idP);
+        $predvidjanje->Popularnost=$predvidjanje->Popularnost+1;
+        $this->save($predvidjanje);
+    }
+    /**
+     * Izravunavanje tezine iz nominalne tezine
+     * @var 
+     */
+    private function izracunaj_tezinu($nominalna_tezina,$datum_nastanka,$datum_evaluacije)
+    {
+        $dani=(strtotime($datum_evaluacije)- strtotime($datum_nastanka))/DAY;
+        return sqrt($dani*1.0)*$nominalna_tezina;
+    }
+    /**
+     * Poziva se kad korisnik da svoje misljenje o tezini predvidjanja, izracunava ukupnu tezinu na osnovu misljenja svih korisnika i koliko je rano
+     * predvidjanje napravljeno      
+     * @param unique_id $idP Identifkator ocenjenog predvidjanja
+     * @param double $ocena Ocena nominalne tezine 
+     * @return Void 
+     */
+    public function daje_ocenu($idP,$ocena)
+    {
+        $predvidjanje= $this->find($idP);
+        $nom=$predvidjanje->NominalnaTezina;
+        $predvidjanje->NominalnaTezina=($nom*$predvidjanje->BrOcena+$ocena)/($predvidjanje->BrOcena+1);
+        $predvidjanje->BrOcena++;
+        $predvidjanje->Tezina= $this->izracunaj_tezinu($predvidjanje->NominalnaTezina, $predvidjanje->DatumNastanka, $predvidjanje->DatumEvaluacije);
+        $this->save($predvidjanje);
+        
+    }
+    
+    /**
+     * Postavlja status predvidjanja
+     * Poziva je korisnik nakon datuma evaluacije, ili admin koji zeli da promeni. 
+     * Provera ima li dati korisnik pravo na poziv funkcije je na strani kontrolera.
+     * Autorovo povecavanje skora, u slucaju ispunjenja takodje na strani kontrolera
+     * @param string $status status predvidjanja, moze biti ISPUNJENO,NEISPUNJENO, CEKA
+     */
+    public function postavi_status($idP,$status)
+    {
+        $status= strtoupper(trim($status));
+        if (in_array($status, ["ISPUNJENO","NEISPUNJENO"]))//za svaki slucaj
+        {
+             $predvidjanje= $this->find($idP);
+             $this->save($predvidjanje); 
+        }
     }
 }
 
