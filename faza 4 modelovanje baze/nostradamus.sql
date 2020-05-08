@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS `daje_ocenu` (
   `IdK` int(11) NOT NULL,
   `IdP` int(11) NOT NULL,
   `Ocena` decimal(10,2) DEFAULT NULL,
+  `VestackiId` int(11) NOT NULL,
   PRIMARY KEY (`IdK`,`IdP`),
   KEY `R_20` (`IdP`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -158,6 +159,7 @@ DROP TABLE IF EXISTS `voli`;
 CREATE TABLE IF NOT EXISTS `voli` (
   `IdK` int(11) NOT NULL,
   `IdP` int(11) NOT NULL,
+  `VestackiId` int(11) NOT NULL,
   PRIMARY KEY (`IdK`,`IdP`),
   KEY `R_17` (`IdP`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
