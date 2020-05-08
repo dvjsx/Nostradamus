@@ -142,6 +142,7 @@ CREATE TABLE IF NOT EXISTS `predvidjanje` (
   `Nominalna_Tezina` decimal(10,2) NOT NULL,
   `Tezina` decimal(10,2) NOT NULL,
   `Popularnost` int(11) NOT NULL DEFAULT '0',
+  `Status` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `BrOcena` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`IdP`),
   KEY `R_5` (`IdK`)
