@@ -70,7 +70,7 @@ class PredvidjanjeModel extends Model
         return $this->orderBy("DatumNastanka","desc")->findAll();   
     }
     /**
-     * Dohvata sva predvidjanja datog korisnika
+     * Dohvata sva predvidjanja datog korisnika preko id-a (veza izmedju $username i $idK implementirati u modelima za korisnike)
      * @param unique_id $id_korisnika
      * @return predvidjanja[]
      */
@@ -81,12 +81,14 @@ class PredvidjanjeModel extends Model
     /**
      * Povecava popularnost predvidjanja, treba pozvati i metodu voli za VoliModel
      * @param unique_id $idP identifikator predvidjanja koje je voljeno
+     * @param bool $pozitivno da li je korisnik oznacio da mu se predvidjanje svidja (true) ili ne svidja (false)
      * @return Void 
      */
-    public function voli($idP)
+    public function voli($idP,$pozitivno)
     {
+        $inkrement= ($pozitivno) ? 1:-1;
         $predvidjanje= $this->find($idP);
-        $predvidjanje->Popularnost=$predvidjanje->Popularnost+1;
+        $predvidjanje->Popularnost=$predvidjanje->Popularnost+$inkrement;
         $this->save($predvidjanje);
     }
     /**
@@ -100,7 +102,7 @@ class PredvidjanjeModel extends Model
     }
     /**
      * Poziva se kad korisnik da svoje misljenje o tezini predvidjanja, izracunava ukupnu tezinu na osnovu misljenja svih korisnika i koliko je rano
-     * predvidjanje napravljeno      
+     * predvidjanje napravljeno. Proveriti da li je korisnik vec dao ocenu
      * @param unique_id $idP Identifkator ocenjenog predvidjanja
      * @param double $ocena Ocena nominalne tezine 
      * @return Void 

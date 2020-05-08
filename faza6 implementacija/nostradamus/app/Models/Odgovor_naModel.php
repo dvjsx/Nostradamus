@@ -2,6 +2,11 @@
 use CodeIgniter\Model;
 use App\Models\PredvidjanjeModel;
 
+/**
+ * @author Dusan Vojinovic 2017/80
+ *  Model za rad sa tabelom odgovor_na koja prati koja su predvidjanja odgovor na koju ideju
+ */
+
 class Odgovor_naModel extends Model
 {
     protected $table="odgovor_na";
