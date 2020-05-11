@@ -21,7 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `nostradamus`
 --
-
+CREATE DATABASE IF NOT EXISTS `nostradamus` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `nostradamus`;
 -- --------------------------------------------------------
 
 --
@@ -76,11 +77,11 @@ CREATE TABLE IF NOT EXISTS `ideja` (
 
 DROP TABLE IF EXISTS `korisnik`;
 CREATE TABLE IF NOT EXISTS `korisnik` (
-  `IdK` int(11) NOT NULL,
+  `IdK` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `Password` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `DatumReg` datetime NOT NULL,
-  `Email` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `Email` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `Skor` decimal(10,2) NOT NULL,
   `Popularnost` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`IdK`),
