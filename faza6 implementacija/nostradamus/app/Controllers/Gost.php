@@ -9,14 +9,23 @@ use App\Models\ModeratorModel;
 class Gost extends BaseController
 {
     protected function prikaz($page,$data){
-        
+        $data['controller']='Gost';
+        if(!($page=='login'||$page=='registracija'))
+            echo view('sablon/header_gost');
+        else
+            echo view('sablon/header_login');
+        echo view("stranice/$page",$data);
+        echo view('sablon/footer');         
     }
     public function index()
     {
-        echo view('login');
+	$this->prikaz('pregled_predvidjanja', ['predvidjanja=>[]']);
     }
     public function registracija(){
-        echo view('registracija');
+        $this->prikaz('registracija',[]);
+    }
+    public function login() {
+        $this->prikaz('login', []);
     }
     public function loginSubmit(){
 //dohvatim podatke
