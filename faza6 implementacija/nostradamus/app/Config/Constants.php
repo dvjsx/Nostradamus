@@ -39,7 +39,7 @@ defined('WEEK')   || define('WEEK', 604800);
 defined('MONTH')  || define('MONTH', 2592000);
 defined('YEAR')   || define('YEAR', 31536000);
 defined('DECADE') || define('DECADE', 315360000);
-defined('VERNOST') || define('VERNOST', 259200);//3 dana za sad
+
 /*
 |--------------------------------------------------------------------------
 | Exit Status Codes
