@@ -1,4 +1,3 @@
-<hr>
-<center>Copyright 2020</center>
+<center>Tarabici 2020</center>
 </body>
 </html>

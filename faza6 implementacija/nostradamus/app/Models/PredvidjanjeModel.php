@@ -1,4 +1,3 @@
-
 <?php namespace App\Models;
 use CodeIgniter\Model;
 
@@ -8,10 +7,11 @@ use CodeIgniter\Model;
  */
 class PredvidjanjeModel extends Model
 {
-    protected $table="predvidjanja";
-    protected $primaryKey="IdP";
+    protected $table='predvidjanje';
+    protected $primaryKey='IdP';
     protected $returnType     = 'object';
-    protected $allowedFields=["IdK","Naslov","DatumNastanka","DatumEvaluacije","Sadrzaj","Nominalna_Tezina","Tezina","Popularnost","BrOcena","Status"];
+    protected $allowedFields=['IdK','Naslov','DatumNastanka','DatumEvaluacije','Sadrzaj',
+        'Nominalna_Tezina','Tezina','Popularnost','BrOcena','Status'];
     
     /**
      * Ubacuje predvidjanje u bazu, provere na kontrolerskoj strani

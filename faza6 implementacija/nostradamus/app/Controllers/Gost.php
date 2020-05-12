@@ -5,21 +5,25 @@ use App\Models\KorisnikModel;
 use CodeIgniter\I18n\Time;
 use App\Models\AdministratorModel;
 use App\Models\ModeratorModel;
+use App\Models\PredvidjanjeModel;
+use App\Models\IdejaModel;
 
 class Gost extends BaseController
 {
     protected function prikaz($page,$data){
         $data['controller']='Gost';
-        if(!($page=='login'||$page=='registracija'))
-            echo view('sablon/header_gost');
-        else
+        if(($page=='login'||$page=='registracija'))
             echo view('sablon/header_login');
+        else
+            echo view('sablon/header_gost');
         echo view("stranice/$page",$data);
         echo view('sablon/footer');         
     }
     public function index()
     {
-	$this->prikaz('pregled_predvidjanja', ['predvidjanja=>[]']);
+        $predvidjanjeModel=new PredvidjanjeModel();
+        $predvidjanja=$predvidjanjeModel->findAll();
+	$this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
     }
     public function registracija(){
         $this->prikaz('registracija',[]);
@@ -33,8 +37,8 @@ class Gost extends BaseController
         $lozinka = $this->request->getVar('pass');
 //provera podataka (sifra i korime)
      
-        if($korIme==null || $lozinka==null){
-            return view('login');
+        if($korIme==null || $lozinka==null){            
+            $this->prikaz('login', $korIme);
         }
         $korModel = new KorisnikModel();
    
@@ -43,7 +47,7 @@ class Gost extends BaseController
              return view('login',['errors'=>['user'=>"Korisničko ime ne postoji"]]);
         }
         if($korisnik->Password != $lozinka){
-            return view('login',['errors'=>['pass'=>"Pogresno sete uneli šifru"]]);
+            return view('login',['errors'=>['pass'=>"Pogresno ste uneli šifru"]]);
         }
  //ako su ok
      
@@ -84,6 +88,26 @@ class Gost extends BaseController
         $this->session->set('kor_tip', 'kor');
         return redirect()->to(site_url("Korisnik/index"));
   }
+  public function pregled_ideja() {
+      $idejaModel=new IdejaModel();
+      $ideje=$idejaModel->findAll();      
+      $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);
+  }
+  public function pregled_predvidjanja() {
+      $predvidjanjeModel=new PredvidjanjeModel();
+      $predvidjanja=$predvidjanjeModel->findAll();      
+      $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
+  }
+  public function pretragaPredvidjanja(){
+      $predvidjanjeModel=new PredvidjanjeModel();
+      $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_korisnika("");
+      $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
+  }
+  public function pretragaIdeja(){
+      $idejaModel=new IdejaModel();
+      $ideje=$idejaModel->dohvati_ideje_korisnika("");
+      $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);
+  }  
 
 
 }

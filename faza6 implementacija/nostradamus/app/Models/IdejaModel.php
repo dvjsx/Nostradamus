@@ -7,10 +7,10 @@ use CodeIgniter\Model;
  */
 class IdejaModel extends Model
 {
-    protected $table="ideja";
-    protected $primaryKey="IdI";
+    protected $table='ideja';
+    protected $primaryKey='IdI';
     protected $returnType     = 'object';
-    protected $allowedFields=["IdK","Naslov","DatumEvaluacije","Sadrzaj","Popularnost"];
+    protected $allowedFields=['IdK','Naslov','DatumEvaluacije','Sadrzaj','Popularnost'];
      
     /**
      * Ubacuje novu ideju.

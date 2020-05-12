@@ -1,11 +1,10 @@
 <html>
     <head>
-        <title>ETF Vesti</title>
+        <title>Nostradamus</title>
     </head>
+    <link rel="stylesheet" href="<?php echo base_url();?>/css.css">    
     <body>
-        <?= anchor("Korisnik/index", "Predvidjanja") ?>
-        <?= anchor("Korisnik/mojeVesti", "Ideje") ?> 
-        <?= anchor("Korisnik/dodajVest", "Dodaj predvidjanje") ?> 
+        <?= anchor("Korisnik/index", "Nostradamus") ?>
         <div style="float: right">
             Autor: <?php  echo $autor->ime." ".$autor->prezime." "; ?>
             <?= anchor("Korisnik/logout", "Izloguj se") ?> 
