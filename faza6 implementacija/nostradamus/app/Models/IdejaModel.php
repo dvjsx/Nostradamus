@@ -99,6 +99,7 @@ class IdejaModel extends Model
                
            }
         });
+        return $ideje;
         
     }
     /**

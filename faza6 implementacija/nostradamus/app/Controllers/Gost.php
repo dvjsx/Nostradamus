@@ -119,7 +119,7 @@ class Gost extends BaseController
       $ideje=$idejaModel->findAll();      
       $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);
   }
-  public function sortIdejaNovo() {
+  public function sortIdejaAktuelno() {
       $idejaModel=new IdejaModel();
       $ideje=$idejaModel->dohvati_najaktuelnije_ideje();      
       $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);     
