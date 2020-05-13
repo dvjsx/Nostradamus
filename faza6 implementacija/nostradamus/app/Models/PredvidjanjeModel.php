@@ -10,7 +10,7 @@ class PredvidjanjeModel extends Model
     protected $table='predvidjanje';
     protected $primaryKey='IdP';
     protected $returnType     = 'object';
-    protected $allowedFields=['IdK','Naslov','DatumNastanka','DatumEvaluacije','Sadrzaj',
+    protected $allowedFields=['IdK','Username','Naslov','DatumNastanka','DatumEvaluacije','Sadrzaj',
         'Nominalna_Tezina','Tezina','Popularnost','BrOcena','Status'];
     
     /**
@@ -78,6 +78,17 @@ class PredvidjanjeModel extends Model
     {
         return $this->where("IdK",$id_korisnika);
     }
+    /**
+     * Lista predvidjanja za korisnika po korisnickom imenu, korisno za pretragu po autoru
+     * @param string $username 
+     * @return predvidjanja[]
+     */
+    public function dohvati_predvidjanja_po_korisnickom_imenu($username)
+    {
+        //moza "%".$username."%" za deo imena, ali to nismo predvidjali u specifikaciji
+        return $this->like("Username",$username);
+    }
+
     /**
      * Povecava popularnost predvidjanja, treba pozvati i metodu voli za VoliModel
      * @param unique_id $idP identifikator predvidjanja koje je voljeno

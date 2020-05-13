@@ -10,7 +10,7 @@ class IdejaModel extends Model
     protected $table='ideja';
     protected $primaryKey='IdI';
     protected $returnType     = 'object';
-    protected $allowedFields=['IdK','Naslov','DatumEvaluacije','Sadrzaj','Popularnost'];
+    protected $allowedFields=['IdK','Username','Naslov','DatumEvaluacije','Sadrzaj','Popularnost'];
      
     /**
      * Ubacuje novu ideju.
@@ -110,6 +110,17 @@ class IdejaModel extends Model
     public function dohvati_ideje_korisnika($id_korisnika)
     {
         return $this->where("IdK",$id_korisnika);
+    }
+    
+    /**
+     * Lista predvidjanja za korisnika po korisnickom imenu, korisno za pretragu po autoru
+     * @param string $username
+     * @return ideja[]
+     */
+    public function dohvati_predvidjanja_po_korisnickom_imenu($username)
+    {
+        //moza "%".$username."%" za deo imena, ali to nismo predvidjali u specifikaciji
+        return $this->like("Username",$username);
     }
     /**
      * Inkrementira popularnost ideje. Okida se (o tome kontroler vodi racuna) kad se napravi predvidjanje sa #NaslovIdeje
