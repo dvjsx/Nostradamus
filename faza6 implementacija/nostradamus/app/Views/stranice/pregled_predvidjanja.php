@@ -1,5 +1,5 @@
 <div class="navbar">
-    <table border="0">
+    <table border="1" width="100%">
         <td width="10%">
   <div class="dropdown">
     <button class="dropbtn">Predvidjanja
@@ -9,18 +9,23 @@
     </div>
   </div>
         </td>
-        <td width="40%">
+        <td width="40%" class="bottom">
+            <ul>
+                <li><a href="<?php echo base_url('Gost/sortPredvidjanjeNovo'); ?>" class="li">NOVO</a></li>
+                <li><a href="<?php echo base_url('Gost/sortPredvidjanjePopularno'); ?>" class="li">POPULARNO</a></li>
+                <li><a href="<?php echo base_url('Gost/sortPredvidjanjeNajteze'); ?>" class="li">NAJTEZE</a></li>
+            </ul>
         </td>
-        <td width="10%">
+        <td width="40%">
     <form name="pretraga_autora" method="get"
           action="<?= site_url("$controller/pretragaPredvidjanja") ?>" ><br>
-        <input type="text" name="pretraga" placeholder="Pretraga autora">
-        </td>
-        <td width="5%">
-            <input name="Trazi" type="submit" value="Trazi">
+        <div class="search-box">                       
+            <input type="image" class="search-btn" name="submit" src="<?php echo base_url(); ?>/slike/search-icon.png">
+            <input type="text" class="search-txt" name="pretraga" placeholder="Pretraga autora">
+        </div>
         </td>
             </form>
-        <td width="35%">            
+        <td>            
         </td>
     </table>
 </div>

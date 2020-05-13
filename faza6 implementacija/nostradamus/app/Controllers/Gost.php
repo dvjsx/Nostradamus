@@ -88,26 +88,52 @@ class Gost extends BaseController
         $this->session->set('kor_tip', 'kor');
         return redirect()->to(site_url("Korisnik/index"));
   }
-  public function pregled_ideja() {
-      $idejaModel=new IdejaModel();
-      $ideje=$idejaModel->findAll();      
-      $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);
-  }
   public function pregled_predvidjanja() {
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->findAll();      
       $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
   }
+  public function sortPredvidjanjeNovo() {
+      $predvidjanjeModel=new PredvidjanjeModel();
+      $predvidjanja=$predvidjanjeModel->dohvati_najnovija_predvidjanja();      
+      $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);     
+  }
+  public function sortPredvidjanjePopularno() {
+      $predvidjanjeModel=new PredvidjanjeModel();
+      $predvidjanja=$predvidjanjeModel->dohvati_najpopularnija_predvidjanja();      
+      $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);     
+  }
+    public function sortPredvidjanjeNajteze() {
+      $predvidjanjeModel=new PredvidjanjeModel();
+      $predvidjanja=$predvidjanjeModel->dohvati_najteza_predvidjanja();     
+      $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);     
+  }
   public function pretragaPredvidjanja(){
       $predvidjanjeModel=new PredvidjanjeModel();
-      $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_korisnika("");
+      $korisnik= pretragaPredvidjanja($this->request->getVar('pretraga'));
+      $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_korisnika($korisnik);
       $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
   }
+  public function pregled_ideja() {
+      $idejaModel=new IdejaModel();
+      $ideje=$idejaModel->findAll();      
+      $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);
+  }
+  public function sortIdejaNovo() {
+      $idejaModel=new IdejaModel();
+      $ideje=$idejaModel->dohvati_najaktuelnije_ideje();      
+      $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);     
+  }
+  public function sortIdejaPopularno() {
+      $idejaModel=new IdejaModel();
+      $ideje=$idejaModel->dohvati_najpopularnije_ideje();      
+      $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);         
+  } 
   public function pretragaIdeja(){
       $idejaModel=new IdejaModel();
       $ideje=$idejaModel->dohvati_ideje_korisnika("");
       $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);
-  }  
+  } 
 
 
 }
