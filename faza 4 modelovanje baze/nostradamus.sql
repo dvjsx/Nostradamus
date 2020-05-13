@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS `daje_ocenu` (
 DROP TABLE IF EXISTS `ideja`;
 CREATE TABLE IF NOT EXISTS `ideja` (
   `IdK` int(11) NOT NULL,
+  `Username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `IdI` int(11) NOT NULL,
   `Naslov` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `DatumEvaluacije` datetime NOT NULL,
@@ -136,6 +137,7 @@ CREATE TABLE IF NOT EXISTS `odgovor_na` (
 DROP TABLE IF EXISTS `predvidjanje`;
 CREATE TABLE IF NOT EXISTS `predvidjanje` (
   `IdK` int(11) NOT NULL,
+  `Username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `IdP` int(11) NOT NULL,
   `Naslov` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `DatumNastanka` datetime NOT NULL,
