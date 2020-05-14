@@ -120,7 +120,7 @@ class IdejaModel extends Model
     public function dohvati_predvidjanja_po_korisnickom_imenu($username)
     {
         //moza "%".$username."%" za deo imena, ali to nismo predvidjali u specifikaciji
-        return $this->like("Username",$username);
+        return $this->like("Username",$username)->findAll();
     }
     /**
      * Inkrementira popularnost ideje. Okida se (o tome kontroler vodi racuna) kad se napravi predvidjanje sa #NaslovIdeje
