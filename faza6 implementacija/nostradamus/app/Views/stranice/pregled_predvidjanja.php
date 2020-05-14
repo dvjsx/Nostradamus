@@ -33,6 +33,8 @@
 
     <?php
     foreach ($predvidjanja as $predvidjanje) {
+        if($predvidjanje->Popularnost>0) $plus="+";
+            else $plus="";
         echo '<table border="0" class="content">';
         echo '<tr><th class="naslov" colspan="3">';
         echo "{$predvidjanje->Naslov}</th>";
@@ -44,7 +46,7 @@
         echo "<td width='25%'>&nbsp;&nbsp;"
             . "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
             . "<a href=''><img src='".base_url()."/slike/hate.png' height='22'></a> "
-            . "<span class='ikonice'>{$predvidjanje->Popularnost}</span></td>";        
+            . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>";        
         echo "<td width='15%'><img src='".base_url()."/slike/weight.png' height='22'> ";        
         echo "<span class='ikonice'>{$predvidjanje->Tezina}</span></td>";
         echo '<td></td><td class="autor">';

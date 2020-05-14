@@ -32,6 +32,8 @@
 
     <?php
     foreach ($ideje as $ideja) {
+        if($ideja->Popularnost>0) $plus="+";
+            else $plus="";        
         echo '<table border="0" class="content">';
         echo '<tr><th class="naslov" colspan="3">';
         echo "{$ideja->Naslov}</th>";
@@ -43,7 +45,7 @@
         echo "<td width='25%'>&nbsp;&nbsp;"
             . "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
             . "<a href=''><img src='".base_url()."/slike/hate.png' height='22'></a> "
-            . "<span class='ikonice'>{$ideja->Popularnost}</span></td>"; 
+            . "<span class='ikonice'>{$plus}{$ideja->Popularnost}</span></td>"; 
         echo "<td width='15%'>&nbsp;</td>";
         echo '<td></td><td class="autor">';
         echo "{$ideja->Username}</td></tr>";  

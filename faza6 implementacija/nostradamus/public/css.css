@@ -10,7 +10,8 @@ div.header{
   border-style:solid;
 }
 div.page{
-    height: 70%;
+    height: auto;
+    padding-bottom: 15px;
     background-color: 	#5598cf;
     width: 80%;
     margin-left: 10%;
@@ -210,6 +211,7 @@ ul{
 }
 
 li {
+  vertical-align: bottom;
   color: black;
   border: 1px solid black;
   border-bottom: 3px solid black;
