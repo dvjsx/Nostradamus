@@ -28,9 +28,6 @@ class Gost extends BaseController
     public function registracija(){
         $this->prikaz('registracija',[]);
     }
-    public function login() {
-        $this->prikaz('login', []);
-    }
     public function loginSubmit(){
 //dohvatim podatke
         $korIme= $this->request->getVar('user');
