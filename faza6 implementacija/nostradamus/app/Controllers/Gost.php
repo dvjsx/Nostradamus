@@ -28,11 +28,11 @@ class Gost extends BaseController
     }
   *
   */
-    public function index($param=null)
+    public function index()
     {
         $predvidjanjeModel=new PredvidjanjeModel();
         $predvidjanja=$predvidjanjeModel->findAll();
-	$this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja,$param]);
+	$this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
     }
     public function registracija(){
         $this->prikaz('registracija',[]);
@@ -45,22 +45,26 @@ class Gost extends BaseController
         $korIme= $this->request->getVar('user');
         $lozinka = $this->request->getVar('pass');
 //provera podataka (sifra i korime)
-     
+        
         if($korIme==null || $lozinka==null){ 
             return redirect()->to("/");
             
         }
         $korModel = new KorisnikModel();
-   
         $korisnik=$korModel->dohvati_korisnika($korIme);
+        $error=null;
         if($korisnik==null){
-            echo null;
-             return $this->index(['errors'=>['user'=>"Korisničko ime ne postoji"]]);
+            $error="Korisničko ime ne postoji";
         }
-        if($korisnik->Password != $lozinka){
-            return view('login',['errors'=>['pass'=>"Pogresno ste uneli šifru"]]);
+        else if($korisnik->Password != $lozinka){
+            $error="Pogresna sifra";
         }
- //ako su ok
+        if(!empty($error)){
+            $predvidjanjeModel=new PredvidjanjeModel();
+            $predvidjanja=$predvidjanjeModel->findAll();
+            return $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja,'error'=>$error]);
+        } 
+//ako su ok
      
  //nadjem tip korisnika      
         $admModel = new AdministratorModel();
@@ -71,7 +75,9 @@ class Gost extends BaseController
 //sacuvam podatke u sesiju         
         $this->session->set('korisnik', $korisnik);
         $this->session->set('kor_tip', $kor_tip);
-        return redirect()->to(site_url("Korisnik/index"));
+        if($kor_tip=='kor') return redirect()->to(site_url("Korisnik/index"));
+        else if($kor_tip=='mod') return redirect()->to(site_url("Korisnik/index"));
+        else return redirect()->to(site_url("Administrator/index"));
         
     }
     public function regSubmit() {
@@ -86,7 +92,7 @@ class Gost extends BaseController
         $validation =\Config\Services::validation();
         $validation->setRuleGroup('registracija');
         if (!$validation->run(['korIme'=>$korIme,'mail'=> $email,'lozinka'=> $lozinka,'reLozinka'=>$reLozinka],'registracija')) {
-           return view('registracija',['errors'=>$validation->getErrors()]);   
+           return $this->prikaz('registracija',['errors'=>$validation->getErrors()]);   
         }
 //ako je sve ok
         $vreme = new Time('now');
