@@ -33,12 +33,12 @@ th.naslov{
     padding-top:5px;
     padding-left:5px;
     text-align: left;
-    width:50%;
 }
 td.datum{
     padding-top:5px;
     padding-right:5px;
     text-align: right;
+    width: 20%;
 }
 td.sadrzaj{
     padding:5px;
@@ -61,7 +61,7 @@ a{
     color: black;
 }
 table {
-  border-collapse: collapse;
+    border-collapse: collapse;
 }
 html {
   font-family: sans-serif;
@@ -227,4 +227,7 @@ a.li{
 a.li:hover {
     background: transparent;
     font-weight: bold;
+}
+span.ikonice{
+    vertical-align: top;
 }
