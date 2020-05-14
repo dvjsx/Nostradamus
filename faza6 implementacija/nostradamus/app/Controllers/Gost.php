@@ -10,7 +10,14 @@ use App\Models\IdejaModel;
 
 class Gost extends BaseController
 {
-    protected function prikaz($page,$data){
+   protected function prikaz($page,$data){
+        $data['controller']='Gost';
+        echo view('sablon/header_gost',$data);
+        echo view("stranice/$page",$data);
+        echo view('sablon/footer');  
+    }
+    
+ /**     protected function prikaz($page,$data){
         $data['controller']='Gost';
         if(($page=='login'||$page=='registracija'))
             echo view('sablon/header_login');
@@ -19,11 +26,13 @@ class Gost extends BaseController
         echo view("stranice/$page",$data);
         echo view('sablon/footer');         
     }
-    public function index()
+  *
+  */
+    public function index($param=null)
     {
         $predvidjanjeModel=new PredvidjanjeModel();
         $predvidjanja=$predvidjanjeModel->findAll();
-	$this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
+	$this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja,$param]);
     }
     public function registracija(){
         $this->prikaz('registracija',[]);
@@ -37,14 +46,16 @@ class Gost extends BaseController
         $lozinka = $this->request->getVar('pass');
 //provera podataka (sifra i korime)
      
-        if($korIme==null || $lozinka==null){            
-            $this->prikaz('login', $korIme);
+        if($korIme==null || $lozinka==null){ 
+            return redirect()->to("/");
+            
         }
         $korModel = new KorisnikModel();
    
         $korisnik=$korModel->dohvati_korisnika($korIme);
         if($korisnik==null){
-             return view('login',['errors'=>['user'=>"Korisničko ime ne postoji"]]);
+            echo null;
+             return $this->index(['errors'=>['user'=>"Korisničko ime ne postoji"]]);
         }
         if($korisnik->Password != $lozinka){
             return view('login',['errors'=>['pass'=>"Pogresno ste uneli šifru"]]);

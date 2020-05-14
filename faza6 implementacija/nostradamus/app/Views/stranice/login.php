@@ -6,7 +6,7 @@
     </head>
     
     <body>
-        <form method="post" action="<?= site_url("Gost/loginSubmit") ?>">
+        <form method="post" action="<?= base_url("Gost/loginSubmit") ?>">
             <table>
                 <tr>
                     <td>Korisničko ime:</td>
