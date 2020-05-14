@@ -33,17 +33,20 @@
     <?php
     foreach ($ideje as $ideja) {
         echo '<table border="0" class="content">';
-        echo '<tr><th class="naslov">';
+        echo '<tr><th class="naslov" colspan="3">';
         echo "{$ideja->Naslov}</th>";
-        echo '<td class="datum" colspan="2">';
+        echo '<td class="datum">';
         echo "{$ideja->DatumEvaluacije}</td></tr>";
-        echo '<tr><td colspan="3" class="sadrzaj">';
+        echo '<tr><td colspan="4" class="sadrzaj">';
         echo "{$ideja->Sadrzaj}</td></tr>";
         echo '<tr class="last">';
-        echo "<td>&nbsp;</td>"
-        . "<td>{$ideja->Popularnost}</td>";
-        echo '<td class="autor">';
-        echo "{$ideja->IdK}</td></tr>";  
+        echo "<td width='25%'>&nbsp;&nbsp;"
+            . "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
+            . "<a href=''><img src='".base_url()."/slike/hate.png' height='22'></a> "
+            . "<span class='ikonice'>{$ideja->Popularnost}</span></td>"; 
+        echo "<td width='15%'>&nbsp;</td>";
+        echo '<td></td><td class="autor">';
+        echo "{$ideja->Username}</td></tr>";  
         echo  "</table>";
     }
     ?>

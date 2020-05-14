@@ -34,17 +34,21 @@
     <?php
     foreach ($predvidjanja as $predvidjanje) {
         echo '<table border="0" class="content">';
-        echo '<tr><th class="naslov">';
+        echo '<tr><th class="naslov" colspan="3">';
         echo "{$predvidjanje->Naslov}</th>";
-        echo '<td class="datum" colspan="2">';
+        echo '<td class="datum">';
         echo "{$predvidjanje->DatumNastanka}</td></tr>";
-        echo '<tr><td colspan="3" class="sadrzaj">';
+        echo '<tr><td colspan="4" class="sadrzaj">';
         echo "{$predvidjanje->Sadrzaj}</td></tr>";
         echo '<tr class="last">';
-        echo "<td>{$predvidjanje->Tezina}</td>"
-        . "<td>{$predvidjanje->Popularnost}</td>";
-        echo '<td class="autor">';
-        echo "{$predvidjanje->IdK}</td></tr>";  
+        echo "<td width='25%'>&nbsp;&nbsp;"
+            . "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
+            . "<a href=''><img src='".base_url()."/slike/hate.png' height='22'></a> "
+            . "<span class='ikonice'>{$predvidjanje->Popularnost}</span></td>";        
+        echo "<td width='15%'><img src='".base_url()."/slike/weight.png' height='22'> ";        
+        echo "<span class='ikonice'>{$predvidjanje->Tezina}</span></td>";
+        echo '<td></td><td class="autor">';
+        echo "{$predvidjanje->Username}</td></tr>";  
         echo  "</table>";
     }
     ?>
