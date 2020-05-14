@@ -54,6 +54,9 @@ td.autor{
     text-align: right;
     padding-right:5px;
 }
+td.bottom{    
+  vertical-align: bottom;
+}
 a{
     color: black;
 }
@@ -117,10 +120,12 @@ body {
   font-size: 16px;
   border-style: inset;
   border-color:black;
+  border-left:3px solid black;
+  border-bottom: 3px solid black;
   outline-style: none;
-  color: white;
+  color: black;
   padding: 14px 16px;
-  background-color: inherit;
+  background-color: #5598cf;
   font-family: inherit; /* Important for vertical align on mobile phones */
   margin-left: 5px; /* Important for vertical align on mobile phones */
 }
@@ -134,7 +139,8 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: #5598cf;
+  border:1px solid black;
   min-width: 130px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -158,4 +164,67 @@ body {
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+/*ovo sada je za search bar*/
+.search-box{    
+    background: #cccccc;
+    height: 30px;
+    width:180px;
+    border-radius: 40px;
+    padding-left: 10px;
+    padding-top:10px;
+    padding-right: 5px;
+    border: 1px solid black;
+}
+.search-btn{
+    color:#e84118;
+    float: right;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #cccccc;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 0px;
+    padding-bottom:0;
+}
+.search-txt{
+    border:none;
+    background: none;
+    outline:none;
+    float: left;
+    padding-top:0;
+    color:black;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 130px;
+    height: 20px;
+}
+
+/*rounded menu tabs*/
+ul{
+
+}
+
+li {
+  color: black;
+  border: 1px solid black;
+  border-bottom: 3px solid black;
+  border-left: 3px solid black;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px; 
+  background:#cccccc;
+  padding: 15px;
+  display: inline-block;
+}
+a.li{
+    color:black;
+    padding: 0;
+}
+a.li:hover {
+    background: transparent;
+    font-weight: bold;
 }

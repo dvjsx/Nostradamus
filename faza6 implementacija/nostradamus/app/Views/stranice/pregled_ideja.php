@@ -1,5 +1,5 @@
 <div class="navbar">
-    <table border="1" width="100%">
+    <table border="0" width="100%">
         <td width="10%">
   <div class="dropdown">
     <button class="dropbtn">Ideje
