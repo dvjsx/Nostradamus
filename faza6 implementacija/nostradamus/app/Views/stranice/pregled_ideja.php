@@ -5,14 +5,14 @@
     <button class="dropbtn">Ideje
     </button>
     <div class="dropdown-content">
-        <a href="<?= base_url("Gost/pregled_predvidjanja") ?>">Predvidjanja</a>
+        <a href="<?= base_url("$controller/pregled_predvidjanja") ?>">Predvidjanja</a>
     </div>
   </div>
         </td>
         <td width="40%" class="bottom">
             <ul>
-                <li><a href="<?php echo base_url('Gost/sortIdejaAktuelno'); ?>" class="li">AKTUELNO</a></li>
-                <li><a href="<?php echo base_url('Gost/sortIdejaPopularno'); ?>" class="li">POPULARNO</a></li>                
+                <li><a href="<?php echo base_url("$controller/sortIdejaAktuelno"); ?>" class="li">AKTUELNO</a></li>
+                <li><a href="<?php echo base_url("$controller/sortIdejaPopularno"); ?>" class="li">POPULARNO</a></li>                
             </ul>
         </td>
         <td width="40%">

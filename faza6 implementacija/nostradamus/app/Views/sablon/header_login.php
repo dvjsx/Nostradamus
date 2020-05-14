@@ -9,7 +9,7 @@
         <table style="width:100%;" border="0px">
             <tr>
                 <td rowspan="3" width="60%">
-                    <a href="<?php echo base_url(); ?>"><?php echo img('crystal_ball.png'); ?>
+                    <a href="<?php echo base_url();  ?>"><?php echo img('crystal_ball.png'); ?>
                     </a></td>
             </tr>
     
