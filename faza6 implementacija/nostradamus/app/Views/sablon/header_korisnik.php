@@ -9,7 +9,7 @@
         <table style="width:100%;" border="0px">
             <tr>
                 <td rowspan="3" width="60%">
-                    <a href="<?php "Korisnik/index" ?>"><?php echo img('crystal_ball.png'); ?>
+                    <a href="<?php echo 'index'; ?>"><?php echo img('crystal_ball.png'); ?>
                     </a></td>
                 <td width="10%">Dobro dosli</td>
                 

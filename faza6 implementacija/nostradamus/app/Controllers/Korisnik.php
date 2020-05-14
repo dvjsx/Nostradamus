@@ -65,8 +65,8 @@ class Korisnik extends BaseController
   }
   public function pretragaPredvidjanja(){
       $predvidjanjeModel=new PredvidjanjeModel();
-      $korisnik= pretragaPredvidjanja($this->request->getVar('pretraga'));
-      $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_korisnika($korisnik);
+      $korisnik= $this->request->getVar("pretraga");
+      $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($korisnik);
       $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
   }
   public function pregled_ideja() {
@@ -86,7 +86,8 @@ class Korisnik extends BaseController
   } 
   public function pretragaIdeja(){
       $idejaModel=new IdejaModel();
-      $ideje=$idejaModel->dohvati_ideje_korisnika("");
+      $korisnik= $this->request->getVar("pretraga");
+      $ideje=$idejaModel->dohvati_predvidjanja_po_korisnickom_imenu($korisnik);
       $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);
   } 
 
