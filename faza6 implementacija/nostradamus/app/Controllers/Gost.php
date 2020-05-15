@@ -58,17 +58,17 @@ class Gost extends BaseController
  //nadjem tip korisnika      
         $admModel = new AdministratorModel();
         $modModel = new ModeratorModel();
-        $kor_tip='kor';
+        $kor_tip='korO';
         if($admModel->dohvati_korisnika($korisnik->IdK)!=null) $kor_tip='admin';
         else if($modModel->dohvati_korisnika($korisnik->IdK)!=null) $kor_tip='mod';
-        $veran=false;
-        $veranModel=new Obican_ili_VeranModel();
-        $veranKor=$veranModel->dohvati($korisnik->IdK);
-        if($veranKor->Veran==true) $veran=true;
+        if($kor_tip=='korO'){
+            $veranModel=new Obican_ili_VeranModel();
+            $veranKor=$veranModel->dohvati($korisnik->IdK);
+            if($veranKor->Veran==true) $kor_tip='korV';
+        }
 //sacuvam podatke u sesiju         
         $this->session->set('korisnik', $korisnik);
         $this->session->set('kor_tip', $kor_tip);
-         $this->session->set('veran', $veranKor);
         return redirect()->to(site_url("Korisnik/index"));
         
     }
