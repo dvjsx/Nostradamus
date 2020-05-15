@@ -91,7 +91,9 @@ class Gost extends BaseController
         $korModel = new KorisnikModel();
 //sacuvam korisnika
         $korModel->dodaj_korisnika($korIme, $email, $lozinka, $vreme);
+        $obican_ili_veran=new Obican_ili_VeranModel();
         $korisnik=$korModel->dohvati_korisnika($korIme);
+        $obican_ili_veran->dodaj($korisnik->IdK);
 //zapocenm sesiju
         $this->session->set('korisnik', $korisnik);
         $this->session->set('kor_tip', 'kor');
@@ -118,6 +120,8 @@ class Gost extends BaseController
       $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);     
   }
   public function pretragaPredvidjanja(){
+      
+      
       $predvidjanjeModel=new PredvidjanjeModel();
       $korisnik= $this->request->getVar("pretraga");
       $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($korisnik);
