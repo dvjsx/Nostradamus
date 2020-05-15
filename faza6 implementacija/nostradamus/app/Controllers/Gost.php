@@ -63,8 +63,8 @@ class Gost extends BaseController
         else if($modModel->dohvati_korisnika($korisnik->IdK)!=null) $kor_tip='mod';
         $veran=false;
         $veranModel=new Obican_ili_VeranModel();
-        $veranKor=$veranModel->veran($korisnik->IdK);
-        if($veranKor!=null) $veran=true;
+        $veranKor=$veranModel->dohvati($korisnik->IdK);
+        if($veranKor->Veran==true) $veran=true;
 //sacuvam podatke u sesiju         
         $this->session->set('korisnik', $korisnik);
         $this->session->set('kor_tip', $kor_tip);

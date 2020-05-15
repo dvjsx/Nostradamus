@@ -9,10 +9,10 @@ class Obican_ili_VeranModel extends Model
 
     protected $returnType     = 'object';
     protected $allowedFields = ['IdK','Veran'];
-    public function dodaj($id){
-         return $this->insert(['IdK'=>$id, 'Veran'=>true]);
+    public function dodaj($id,$veran=false){
+         return $this->insert(['IdK'=>$id, 'Veran'=>$veran]);
     }
-    public function veran($id){
+    public function dohvati($id){
         return $this->find($id);
     }
 }
