@@ -9,7 +9,7 @@ class AdministratorModel extends Model
 
     protected $returnType     = 'object';
     
-    
+    protected $allowedFields = ['IdA'];
     public function dohvati_korisnika($id){
          return $this->where('IdA', $id)->first();
     }

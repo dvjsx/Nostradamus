@@ -8,7 +8,8 @@ class ModeratorModel extends Model
     protected $primaryKey = 'IdM';
 
     protected $returnType     = 'object';
-   
+    
+    protected $allowedFields = ['IdM'];
      public function dohvati_korisnika($id){
          return $this->where('IdM', $id)->first();
     }

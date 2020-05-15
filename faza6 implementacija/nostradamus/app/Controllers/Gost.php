@@ -7,15 +7,16 @@ use App\Models\AdministratorModel;
 use App\Models\ModeratorModel;
 use App\Models\PredvidjanjeModel;
 use App\Models\IdejaModel;
+use App\Models\Obican_ili_VeranModel;
 
 class Gost extends BaseController
 {
     protected function prikaz($page,$data){
         $data['controller']='Gost';
-        if(($page=='login'||$page=='registracija'))
+        if($page=='registracija')
             echo view('sablon/header_login');
         else
-            echo view('sablon/header_gost');
+            echo view('sablon/header_gost',$data);
         echo view("stranice/$page",$data);
         echo view('sablon/footer');         
     }
@@ -35,18 +36,24 @@ class Gost extends BaseController
 //provera podataka (sifra i korime)
      
         if($korIme==null || $lozinka==null){            
-            $this->prikaz('login', $korIme);
+            return redirect()->to('/');
         }
         $korModel = new KorisnikModel();
    
         $korisnik=$korModel->dohvati_korisnika($korIme);
+        $error=null;
         if($korisnik==null){
-             return view('login',['errors'=>['user'=>"Korisničko ime ne postoji"]]);
+             $error="Korisničko ime ne postoji";
         }
-        if($korisnik->Password != $lozinka){
-            return view('login',['errors'=>['pass'=>"Pogresno ste uneli šifru"]]);
+        else if($korisnik->Password != $lozinka){
+            $error="Pogrešna lozinka";
         }
- //ako su ok
+        if($error!=null){
+            $predvidjanjeModel=new PredvidjanjeModel();
+            $predvidjanja=$predvidjanjeModel->findAll();
+            return $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja,'error'=>$error]);
+        } 
+//ako su ok
      
  //nadjem tip korisnika      
         $admModel = new AdministratorModel();
@@ -54,9 +61,14 @@ class Gost extends BaseController
         $kor_tip='kor';
         if($admModel->dohvati_korisnika($korisnik->IdK)!=null) $kor_tip='admin';
         else if($modModel->dohvati_korisnika($korisnik->IdK)!=null) $kor_tip='mod';
+        $veran=false;
+        $veranModel=new Obican_ili_VeranModel();
+        $veranKor=$veranModel->veran($korisnik->IdK);
+        if($veranKor!=null) $veran=true;
 //sacuvam podatke u sesiju         
         $this->session->set('korisnik', $korisnik);
         $this->session->set('kor_tip', $kor_tip);
+         $this->session->set('veran', $veranKor);
         return redirect()->to(site_url("Korisnik/index"));
         
     }
@@ -72,7 +84,7 @@ class Gost extends BaseController
         $validation =\Config\Services::validation();
         $validation->setRuleGroup('registracija');
         if (!$validation->run(['korIme'=>$korIme,'mail'=> $email,'lozinka'=> $lozinka,'reLozinka'=>$reLozinka],'registracija')) {
-           return view('registracija',['errors'=>$validation->getErrors()]);   
+           return $this->prikaz('registracija',['errors'=>$validation->getErrors()]);   
         }
 //ako je sve ok
         $vreme = new Time('now');
