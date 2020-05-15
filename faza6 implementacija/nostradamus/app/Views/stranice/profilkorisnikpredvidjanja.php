@@ -65,7 +65,7 @@
                     <div class="box2"><center><h2>500</h2></center></div>
                 </td>
             </tr>
-        </table>>
+        </table>
             <form>
                 <table >
                     <tr >

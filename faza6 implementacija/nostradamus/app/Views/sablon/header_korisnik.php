@@ -16,7 +16,7 @@
                 
             </tr>
             <tr>
-                <td width="10%"> <?= anchor("Korisnik/pregledprofila", "$korisnik->Username") ?></td>
+                <td width="10%"> <?= anchor("Korisnik/pregledprofilapredvidjanja", "$korisnik->Username") ?></td>
                 <td width="10%"> <?= anchor("Korisnik/logout", "Izloguj se") ?> </td>
             </tr>
             <tr>
