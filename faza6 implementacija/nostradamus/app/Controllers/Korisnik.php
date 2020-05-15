@@ -24,16 +24,23 @@ class Korisnik extends BaseController
         $predvidjanja=$predvidjanjeModel->findAll();
 	$this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
     }
-    /** Pregled profila,u planu je i poboljsanje dizajna
-     * potrebno je sacuvati i niz predvidjanja i ideja koje pripadaju korisniku(trenutno to ne radi)
+    /** Pregled profila,odvojeno za predvidjanja i ideje u planu je i poboljsanje dizajna
+     * 
      * 
      *  **/
-   public function pregledprofila() {
+   public function pregledprofilapredvidjanja() {
       $data['korisnik']=$this->session->get('korisnik');
       $predvidjanjeModel=new PredvidjanjeModel();
-      $predvidjanja[]=$predvidjanjeModel->dohvati_predvidjanja_korisnika($data['korisnik']->IdK);
+      $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($data['korisnik']->Username);
       $data['predvidjanja']=$predvidjanja;
-      $this->prikaz('profil', $data);
+      $this->prikaz('profilkorisnikpredvidjanja', $data);
+   }
+      public function pregledprofilaideje() {
+      $data['korisnik']=$this->session->get('korisnik');
+      $idejaModel=new IdejaModel();
+      $ideje=$idejaModel->dohvati_predvidjanja_po_korisnickom_imenu($data['korisnik']->Username);
+      $data['ideje']=$ideje;
+      $this->prikaz('profilkorisnikideje', $data);
    }
   public function uputstvo() {
       return redirect()->to(site_url('stranice/uputstvo.php'));
@@ -42,8 +49,7 @@ class Korisnik extends BaseController
         $this->session->destroy();
         return redirect()->to(site_url('/'));
     }
-   
-  public function pregled_predvidjanja() {
+ public function pregled_predvidjanja() {
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->findAll();      
       $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
