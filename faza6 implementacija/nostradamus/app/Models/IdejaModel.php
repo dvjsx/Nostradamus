@@ -20,9 +20,9 @@ class IdejaModel extends Model
      * @param date $datum
      * @param string $sadrzaj
      */
-    public function ubaci_novu_ideju($Id_autor,$naslov,$datum,$sadrzaj)
+    public function ubaci_novu_ideju($Id_autor,$username,$naslov,$datum,$sadrzaj)
     {
-        $data=["IdK"=>$Id_autor,"Naslov"=>$naslov,"DatumEvaluacije"=>$datum,"Sadrzaj"=>$sadrzaj,"Popularnost"=>0];
+        $data=["IdK"=>$Id_autor,"Username"=>$username,"Naslov"=>$naslov,"DatumEvaluacije"=>$datum,"Sadrzaj"=>$sadrzaj,"Popularnost"=>0];
         $this->save($data);
     }
     /**

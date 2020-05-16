@@ -1,5 +1,6 @@
 <?php namespace App\Models;
 use CodeIgniter\Model;
+use CodeIgniter\I18n\Time;
 
 /**
  * *@author Dusan Vojinovic 2017/80 
@@ -21,13 +22,16 @@ class PredvidjanjeModel extends Model
      * @param Date $datum_evaluacije kada ce se videti da li je predvidjanje ispunjeno
      * @param string $sadrzaj 
      */
-    public function ubaci_novo_predvidjanje($idK,$naslov,$datum_evaluacije,$sadrzaj)
-    {
-        //proveriti ovo za datum, da li je kompaktibilno sa sqlom
-        $data=["IdK"=>$idK,"Naslov"=>$naslov,"DatumNastanka"=> date("d/m/Y"),"DatumEvaluacije"=>$datum_evaluacije,
+    public function ubaci_novo_predvidjanje($idK,$username,$naslov,$datum_evaluacije,$sadrzaj)
+    {  
+        $danas= new Time("now");
+        $data=["IdK"=>$idK,"Username"=>$username,"Naslov"=>$naslov,"DatumNastanka"=> $danas,"DatumEvaluacije"=>$datum_evaluacije,
             "Sadrzaj"=>$sadrzaj,"Nominalna_Tezina"=>0,"Tezina"=>0,"Popularnost"=>0,"Br_Ocena"=>0,
             "Status"=>"CEKA"];
-        $this->save($data);
+        $this->insert(["IdK"=>$idK,"Username"=>$username,"Naslov"=>$naslov,"DatumNastanka"=> $danas,"DatumEvaluacije"=>$datum_evaluacije,
+            "Sadrzaj"=>$sadrzaj,"Nominalna_Tezina"=>0,"Tezina"=>0,"Popularnost"=>0,"Br_Ocena"=>0,
+            "Status"=>"CEKA"]);
+        return;
     }
 
      /**

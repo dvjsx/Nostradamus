@@ -115,5 +115,15 @@ class Korisnik extends BaseController
       $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($korisnik);
       $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);
   } 
-
+  public function dajPredvidjanje()
+  {
+      $korisnik= $this->session->get('korisnik');
+      
+      $predvidjanjeModel=new PredvidjanjeModel();
+      //$predvidjanjeModel->ubaci_novo_predvidjanje($idK, $username, $naslov, $datum_evaluacije, $sadrzaj);
+      $predvidjanjeModel->ubaci_novo_predvidjanje($korisnik->IdK,$korisnik->Username, $this->request->getVar('naslovPredvidjanja'), 
+              $this->request->getVar("datumPredvidjanja"), $this->request->getVar("sadrzajPredvidjanja"));
+      $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($korisnik->Username);
+      $this->prikaz("profilkorisnikpredvidjanja", ['user'=>$korisnik,'predvidjanja'=>$predvidjanja]);
+  }
 }

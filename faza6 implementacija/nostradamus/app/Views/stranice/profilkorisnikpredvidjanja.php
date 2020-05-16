@@ -66,7 +66,7 @@
                 </td>
             </tr>
         </table>
-            <form>
+            <form id='dodavanje_predvidjanja_forma' method='post' action='<?= site_url("{$controller}/dajPredvidjanje") ?>'>
                 <table >
                     <tr >
                         <td class="box3"><center><h1>Dodaj novo</h1></center></td>
@@ -84,7 +84,7 @@
                     <center><h1>Datum:</h1></center>
                         </td>
                         <td width="50px">
-                            <input type="date"  >
+                            <input type="date"  name='datumPredvidjanja' value="<?= set_value('datumPredvidjanja')?>">
                         </td>
                     </tr>
                      <tr class="box6">
@@ -92,12 +92,12 @@
                     <center><h1>Naslov:</h1></center>
                         </td>
                         <td width="50px">
-                            <input type="text" size="30" placeholder="Unesi naslov ovde......" >
+                            <input type="text" size="30"  name='naslovPredvidjanja' value="<?= set_value('naslovPredvidjanja')?>" placeholder="Unesi naslov ovde......" >
                         </td>
                     </tr>
                     <tr>
                         <td class="box7">
-                            <textarea rows="10" cols="66" placeholder="Upisite tekst svoje ideje/predvidjanja ovde............"></textarea>
+                            <textarea rows="10" cols="66" name='sadrzajPredvidjanja' value="<?= set_value('sadrzajPredvidjanja')?>" placeholder="Upisite tekst svoje ideje/predvidjanja ovde............"></textarea>
                         </td>
                     </tr>
                     
@@ -106,9 +106,9 @@
                 </table>
                
                    
-               
+               <button class="dugme" type="submit">Prihvati dodavanje</button>
             </form>
-             <button class="dugme" type="submit">Prihvati dodavanje</button>
+            
         </table>
 </div>
 </div> 
