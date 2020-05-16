@@ -85,4 +85,44 @@ class Validation
             ]
         ],
     ];
+    public $dodavanje_predvidjanja=[
+        "datum"=>[
+            "rules"=>"required",
+            "errors"=>[
+                "required"=>"Morate uneti datum evaluacije predvidjanja"
+            ]
+        ],
+        "sadrzaj"=>[
+            "rules"=>"required",
+            "errors"=>[
+                "required"=>"Morate uneti sadrzaj predvidjanja"
+            ]
+        ],
+        "naslov"=>[
+            "rules"=>"required",//ne mora biti unique
+            "errors"=>[
+                "required"=>"Morate uneti naslov predvidjanja",
+            ]
+        ]
+    ];
+    public $dodavanje_ideja=[
+        "datum"=>[
+            "rules"=>"required",
+            "errors"=>[
+                "required"=>"Morate uneti datum evaluacije predvidjanja"
+            ]
+        ],
+        "sadrzaj"=>[
+            "rules"=>"required",
+            "errors"=>[
+                "required"=>"Morate uneti sadrzaj predvidjanja"
+            ]
+        ],
+        "naslov"=>[
+            "rules"=>"required|is_unique[ideja.Naslov]",
+            "errors"=>[
+                "required"=>"Morate uneti naslov predvidjanja",
+            ]
+        ]
+    ];
 }

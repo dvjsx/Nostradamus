@@ -120,7 +120,41 @@ class Korisnik extends BaseController
       $korisnik= $this->session->get('korisnik');
       
       $predvidjanjeModel=new PredvidjanjeModel();
-      //$predvidjanjeModel->ubaci_novo_predvidjanje($idK, $username, $naslov, $datum_evaluacije, $sadrzaj);
+      
+      //provera
+      $errors=[];
+      $naslov=$this->request->getVar('naslovPredvidjanja');
+      $datum=$this->request->getVar("datumPredvidjanja");
+      if ($naslov!="" && $naslov[0]=="#")
+      {
+          $odgovor= substr($naslov, 1);
+          $idejaModel=new IdejaModel();
+          if ($idejaModel->where("Naslov",$odgovor)->find()==null)//znaci da nije odgovor ni na jednu ideju, a pocinje sa #
+          {
+              
+              $errors["naslov"]="Ako Vase tvrdjenje nije odgovor na ideju, nemojte stavljati # kao pocetni karakter";
+              //return;
+              //odavde prikazati gresku i zavrsiti
+          }
+      }
+      if ($datum<date("Y-m-d H:i:s"))
+      {
+          $errors["datum"]="Morate uneti datum u buducnosti";
+      }
+      $validation =\Config\Services::validation();
+      $validation->setRuleGroup('dodavanje_predvidjanja');
+      if (!$validation->run(["datum"=>$this->request->getVar("datumPredvidjanja"),"sadrzaj"=>$this->request->getVar("sadrzajPredvidjanja"),"naslov"=>$naslov],'dodavanje_predvidjanja')) {
+          $errors=$validation->getErrors(); 
+          //return;
+       }
+      
+      if (!empty($errors))
+      {
+          //ovde zavrsiti, print_r je za testiranje
+          print_r($errors);
+          return;
+      }
+      //ako je sve ok
       $predvidjanjeModel->ubaci_novo_predvidjanje($korisnik->IdK,$korisnik->Username, $this->request->getVar('naslovPredvidjanja'), 
               $this->request->getVar("datumPredvidjanja"), $this->request->getVar("sadrzajPredvidjanja"));
       $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($korisnik->Username);
