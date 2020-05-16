@@ -50,7 +50,8 @@
         echo "<td width='15%'><img src='".base_url()."/slike/weight.png' height='22'> ";        
         echo "<span class='ikonice'>{$predvidjanje->Tezina}</span></td>";
         echo '<td></td><td class="autor">';
-        echo "{$predvidjanje->Username}</td></tr>";  
+        echo "<a href='". site_url()."/$controller/pregledtudjegpredv/$predvidjanje->Username'>{$predvidjanje->Username} </a></td></tr>";
+         
         echo  "</table>";
     }
     ?>

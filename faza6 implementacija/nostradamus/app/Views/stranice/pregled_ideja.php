@@ -48,7 +48,7 @@
             . "<span class='ikonice'>{$plus}{$ideja->Popularnost}</span></td>"; 
         echo "<td width='15%'>&nbsp;</td>";
         echo '<td></td><td class="autor">';
-        echo "{$ideja->Username}</td></tr>";  
+        echo "<a href='". site_url()."/$controller/pregledtudjegideja/$ideja->Username'>{$ideja->Username} </a></td></tr>";  
         echo  "</table>";
     }
     ?>

@@ -9,14 +9,14 @@
         <table style="width:100%;" border="0px">
             <tr>
                 <td rowspan="3" width="60%">
-                    <a href="<?php echo 'index'; ?>">
+                    <a href="<?php echo base_url()."/Korisnik"; ?>">
                         <?php echo "<img src='".base_url()."/slike/crystal_ball.png'>"; ?>
                     </a></td>
                 <td width="10%">Dobro dosli</td>
                 
             </tr>
             <tr>
-                <td width="10%"> <?= anchor("Korisnik/pregledprofilapredvidjanja", "$korisnik->Username") ?></td>
+                <td width="10%">  <?= anchor("Korisnik/pregledprofilapredvidjanja", "$korisnik->Username") ?></td>
                 <td width="10%"> <?= anchor("Korisnik/logout", "Izloguj se") ?> </td>
             </tr>
             <tr>

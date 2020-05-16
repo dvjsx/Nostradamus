@@ -6,12 +6,12 @@
     <button class="dropbtn">Predvidjanja
     </button>
     <div class="dropdown-content">
-        <a href="<?= base_url("Korisnik/pregledprofilaideje") ?>">Ideje</a>
+        <a href="<?= base_url("$controller/pregledprofilaideje") ?>">Ideje</a>
     </div>
   </div>  </td>   </div>
     <div class="col-md-6">
         <td >
-         <div class="podesavanje"> <h1><?php echo $korisnik->Username ?></h1> </div>
+         <div class="podesavanje"> <h1><?php echo $user->Username ?></h1> </div>
         </td> </div>
    
 
@@ -45,7 +45,7 @@
         echo "<td width='15%'><img src='".base_url()."/slike/weight.png' height='22'> ";        
         echo "<span class='ikonice'>{$predvidjanje->Tezina}</span></td>";
         echo '<td></td><td class="autor">';
-        echo "{$predvidjanje->Username}</td></tr>";  
+        echo "{$predvidjanje->Username}</td></tr>";    
         echo  "</table>";
     }
     ?>

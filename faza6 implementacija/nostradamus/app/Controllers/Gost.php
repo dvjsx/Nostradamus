@@ -145,9 +145,27 @@ class Gost extends BaseController
   public function pretragaIdeja(){
       $idejaModel=new IdejaModel();
       $korisnik= $this->request->getVar("pretraga");
-      $ideje=$idejaModel->dohvati_predvidjanja_po_korisnickom_imenu($korisnik);
+      $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($korisnik);
       $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);
   } 
 
-
+/** pregled tudjeg profila,gost moze pogledati profile drugih ljudi   **/
+   public function pregledtudjegpredv() {
+      $username=$this->request->uri->getSegment(3);
+      $korisnikModel=new KorisnikModel();
+      $data['user']=$korisnikModel->dohvati_korisnika($username);
+      $predvidjanjeModel=new PredvidjanjeModel();
+      $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($data['user']->Username);
+      $data['predvidjanja']=$predvidjanja;
+      $this->prikaz('profilkorisnikpredvidjanja', $data);
+   }
+   public function pregledtudjegideja() {
+      $username=$this->request->uri->getSegment(3);
+      $korisnikModel=new KorisnikModel();
+      $data['user']=$korisnikModel->dohvati_korisnika($username);
+      $idejaModel=new IdejaModel();
+      $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($data['user']->Username);
+      $data['ideje']=$ideje;
+      $this->prikaz('profilkorisnikideje', $data); 
+   }
 }

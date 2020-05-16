@@ -24,24 +24,43 @@ class Korisnik extends BaseController
         $predvidjanja=$predvidjanjeModel->findAll();
 	$this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
     }
-    /** Pregled profila,odvojeno za predvidjanja i ideje u planu je i poboljsanje dizajna
-     * 
-     * 
-     *  **/
+    /**  pregled sopstvenog profila odredjenog korisnika,imamo dve metode,jednu za pregled predvidjanja a drugu za pregled ideja **/
    public function pregledprofilapredvidjanja() {
-      $data['korisnik']=$this->session->get('korisnik');
+      $data['user']=$this->session->get('korisnik');
       $predvidjanjeModel=new PredvidjanjeModel();
-      $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($data['korisnik']->Username);
+      $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($data['user']->Username);
       $data['predvidjanja']=$predvidjanja;
       $this->prikaz('profilkorisnikpredvidjanja', $data);
    }
-      public function pregledprofilaideje() {
-      $data['korisnik']=$this->session->get('korisnik');
+   public function pregledprofilaideje() {
+      $data['user']=$this->session->get('korisnik');
       $idejaModel=new IdejaModel();
-      $ideje=$idejaModel->dohvati_predvidjanja_po_korisnickom_imenu($data['korisnik']->Username);
+      $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($data['user']->Username);
       $data['ideje']=$ideje;
       $this->prikaz('profilkorisnikideje', $data);
    }
+   
+   /** pregled tudjeg profila,ukoliko se korisnik nalazi na pocetnoj stranici i zeli da pogleda profil drugog korisnika,
+    *  takodje 2 metode jedna za ideje,druga za predvidjanja   **/
+   public function pregledtudjegpredv() {
+      $username=$this->request->uri->getSegment(3);
+      $korisnikModel=new KorisnikModel();
+      $data['user']=$korisnikModel->dohvati_korisnika($username);
+      $predvidjanjeModel=new PredvidjanjeModel();
+      $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($data['user']->Username);
+      $data['predvidjanja']=$predvidjanja;
+      $this->prikaz('profilkorisnikpredvidjanja', $data);
+   }
+   public function pregledtudjegideja() {
+      $username=$this->request->uri->getSegment(3);
+      $korisnikModel=new KorisnikModel();
+      $data['user']=$korisnikModel->dohvati_korisnika($username);
+      $idejaModel=new IdejaModel();
+      $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($data['user']->Username);
+      $data['ideje']=$ideje;
+      $this->prikaz('profilkorisnikideje', $data); 
+   }
+      
   public function uputstvo() {
       return redirect()->to(site_url('stranice/uputstvo.php'));
   }
@@ -93,7 +112,7 @@ class Korisnik extends BaseController
   public function pretragaIdeja(){
       $idejaModel=new IdejaModel();
       $korisnik= $this->request->getVar("pretraga");
-      $ideje=$idejaModel->dohvati_predvidjanja_po_korisnickom_imenu($korisnik);
+      $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($korisnik);
       $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);
   } 
 

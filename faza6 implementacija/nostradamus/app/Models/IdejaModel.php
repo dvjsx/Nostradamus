@@ -117,7 +117,7 @@ class IdejaModel extends Model
      * @param string $username
      * @return ideja[]
      */
-    public function dohvati_predvidjanja_po_korisnickom_imenu($username)
+    public function dohvati_ideje_po_korisnickom_imenu($username)
     {
         //moza "%".$username."%" za deo imena, ali to nismo predvidjali u specifikaciji
         return $this->like("Username",$username)->findAll();

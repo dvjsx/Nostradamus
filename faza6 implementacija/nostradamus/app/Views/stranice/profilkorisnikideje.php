@@ -11,7 +11,7 @@
   </div>  </td>   </div>
     <div class="col-md-6">
         <td >
-         <div id="podesavanje"> <h1><?php echo $korisnik->Username ?></h1> </div>
+         <div class="podesavanje"> <h1><?php echo $user->Username ?></h1> </div>
         </td> </div>
    
 
