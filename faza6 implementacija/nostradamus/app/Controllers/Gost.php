@@ -58,18 +58,20 @@ class Gost extends BaseController
  //nadjem tip korisnika      
         $admModel = new AdministratorModel();
         $modModel = new ModeratorModel();
-        $kor_tip='korO';
-        if($admModel->dohvati_korisnika($korisnik->IdK)!=null) $kor_tip='admin';
-        else if($modModel->dohvati_korisnika($korisnik->IdK)!=null) $kor_tip='mod';
-        if($kor_tip=='korO'){
+        $kor_tip='korisnice';
+        if($admModel->dohvati_korisnika($korisnik->IdK)!=null) $kor_tip='administratoru';
+        else if($modModel->dohvati_korisnika($korisnik->IdK)!=null) $kor_tip='moderatoru';
+        if($kor_tip=='korisnice'){
             $veranModel=new Obican_ili_VeranModel();
             $veranKor=$veranModel->dohvati($korisnik->IdK);
-            if($veranKor->Veran==true) $kor_tip='korV';
+            if($veranKor->Veran==true) $kor_tip='Verni korisnice';
         }
 //sacuvam podatke u sesiju         
         $this->session->set('korisnik', $korisnik);
         $this->session->set('kor_tip', $kor_tip);
-        return redirect()->to(site_url("Korisnik/index"));
+        if($kor_tip=='administratoru') { return redirect()->to(site_url("Administrator/index"));}
+        else if ($kor_tip=='moderatoru') { return redirect()->to(site_url("Moderator/index"));}
+            else return redirect()->to(site_url("Korisnik/index"));
         
     }
     public function regSubmit() {
@@ -96,7 +98,7 @@ class Gost extends BaseController
         $obican_ili_veran->dodaj($korisnik->IdK);
 //zapocenm sesiju
         $this->session->set('korisnik', $korisnik);
-        $this->session->set('kor_tip', 'kor');
+        $this->session->set('kor_tip', 'korisnice');
         return redirect()->to(site_url("Korisnik/index"));
   }
   public function pregled_predvidjanja() {

@@ -9,14 +9,15 @@
         <table style="width:100%;" border="0px">
             <tr>
                 <td rowspan="3" width="60%">
-                    <a href="<?php echo base_url()."/Korisnik"; ?>">
+                    <a href="<?php echo base_url()."/$controller"; ?>">
                         <?php echo "<img src='".base_url()."/slike/crystal_ball.png'>"; ?>
                     </a></td>
-                <td width="10%">Dobro dosli</td>
+                <td >Dobro dosli <?php echo $kor_tip ?></td>
                 
             </tr>
             <tr>
-                <td width="10%">  <?= anchor("Korisnik/pregledprofilapredvidjanja", "$korisnik->Username") ?></td>
+                
+                <td width="10%">  <?= anchor("$controller/pregledprofilapredvidjanja", "$korisnik->Username") ?></td>
                 <td width="10%"> <?= anchor("Korisnik/logout", "Izloguj se") ?> </td>
             </tr>
             <tr>

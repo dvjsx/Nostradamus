@@ -346,3 +346,16 @@ font-size: 15pt;
     top:1120px;
     background-color: #ffcc66;
 }
+#flag {
+    position:absolute;
+    top:920px;
+    left:1300px;
+    border: 1px solid black
+}
+#promote {
+    position:absolute;
+    top:630px;
+    left:1300px;
+    border: 1px solid black;
+    background-color: white;
+}
