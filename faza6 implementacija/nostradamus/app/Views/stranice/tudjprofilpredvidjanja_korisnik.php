@@ -1,4 +1,3 @@
-
 <div class="row">
 <div class="navbar">
     <table border="0" width="100%">
@@ -7,7 +6,7 @@
     <button class="dropbtn">Predvidjanja
     </button>
     <div class="dropdown-content">
-        <a href='<?php echo base_url()."/Administrator/pregledtudjegideja/$user->Username"  ?>' >Ideje</a> 
+          <a href='<?php echo base_url()."/$controller/pregledtudjegideja/$user->Username"  ?>' >Ideje</a>
     </div>
   </div>  </td>   </div>
     <div class="col-md-6">
@@ -66,19 +65,6 @@
                     <div class="box2"><center><h2>500</h2></center></div>
                 </td>
             </tr>
-            <div class="wrapbox">
-                <tr>
-                    <td id="promote"><a href="<?= site_url("Korisnik/uputstvo") ?>">
-                        <image src="/slike/promote.png" height="250px" width="250px"></a></td>
-                </tr>
-            <tr>
-         
-                <td id="flag"><a href="<?= site_url("Korisnik/uputstvo") ?>">
-                        <image src="/slike/redflag.png" height="250px" width="250px"></a></td>
-            </tr>
-            </div>
         </table>
            
-</div>
-</div> 
 </div> </div>

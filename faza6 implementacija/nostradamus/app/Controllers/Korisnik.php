@@ -44,22 +44,26 @@ class Korisnik extends BaseController
    /** pregled tudjeg profila,ukoliko se korisnik nalazi na pocetnoj stranici i zeli da pogleda profil drugog korisnika,
     *  takodje 2 metode jedna za ideje,druga za predvidjanja   **/
    public function pregledtudjegpredv() {
+      $trenprikaz='tudjprofilpredvidjanja_korisnik';      
       $username=$this->request->uri->getSegment(3);
       $korisnikModel=new KorisnikModel();
       $data['user']=$korisnikModel->dohvati_korisnika($username);
+      if(($data['user']->Username)==($this->session->get('korisnik')->Username)) {$data['user']=$this->session->get('korisnik');  $trenprikaz='profilkorisnikpredvidjanja'; }
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($data['user']->Username);
       $data['predvidjanja']=$predvidjanja;
-      $this->prikaz('profilkorisnikpredvidjanja', $data);
+      $this->prikaz($trenprikaz, $data);
    }
    public function pregledtudjegideja() {
+      $trenprikaz='tudjprofilideje_korisnik';
       $username=$this->request->uri->getSegment(3);
       $korisnikModel=new KorisnikModel();
       $data['user']=$korisnikModel->dohvati_korisnika($username);
+      if(($data['user']->Username)==($this->session->get('korisnik')->Username)) {$data['user']=$this->session->get('korisnik');  $trenprikaz='profilkorisnikideja'; }
       $idejaModel=new IdejaModel();
       $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($data['user']->Username);
       $data['ideje']=$ideje;
-      $this->prikaz('profilkorisnikideje', $data); 
+      $this->prikaz($trenprikaz, $data); 
    }
       
   public function uputstvo() {

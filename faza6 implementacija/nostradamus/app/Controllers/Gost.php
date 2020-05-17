@@ -159,7 +159,7 @@ class Gost extends BaseController
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($data['user']->Username);
       $data['predvidjanja']=$predvidjanja;
-      $this->prikaz('profilkorisnikpredvidjanja', $data);
+      $this->prikaz('tudjprofilpredvidjanja_korisnik', $data);
    }
    public function pregledtudjegideja() {
       $username=$this->request->uri->getSegment(3);
@@ -168,6 +168,6 @@ class Gost extends BaseController
       $idejaModel=new IdejaModel();
       $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($data['user']->Username);
       $data['ideje']=$ideje;
-      $this->prikaz('profilkorisnikideje', $data); 
+      $this->prikaz('tudjprofilideje_korisnik', $data); 
    }
 }

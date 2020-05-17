@@ -6,7 +6,7 @@
     <button class="dropbtn">Ideje
     </button>
     <div class="dropdown-content">
-         <a href='<?php  base_url()."/Administrator/pregledtudjegideja/$user->Username"  ?>"' >Predvidjanja</a>
+         <a href='<?php echo base_url()."/Administrator/pregledtudjegpredv/$user->Username"  ?>' >Predvidjanja</a>
     </div>
   </div>  </td>   </div>
     <div class="col-md-6">

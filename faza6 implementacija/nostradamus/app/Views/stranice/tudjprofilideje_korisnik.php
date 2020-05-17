@@ -1,13 +1,12 @@
-
 <div class="row">
 <div class="navbar">
     <table border="0" width="100%">
       <div class="col-md-2">  <td width="920px">
   <div class="dropdown">
-    <button class="dropbtn">Predvidjanja
+    <button class="dropbtn">Ideje
     </button>
     <div class="dropdown-content">
-        <a href='<?php echo base_url()."/Administrator/pregledtudjegideja/$user->Username"  ?>' >Ideje</a> 
+        <a href='<?php echo base_url()."/$controller/pregledtudjegpredv/$user->Username"  ?>' >Predvidjanja</a>
     </div>
   </div>  </td>   </div>
     <div class="col-md-6">
@@ -25,33 +24,30 @@
 <div id="wrapper">
     <div class="col-md-6">
     <div id="page1">
-      <?php
-      
-
-    foreach ($predvidjanja as $predvidjanje) {
-        if($predvidjanje->Popularnost>0) $plus="+";
-            else $plus="";
+    <?php
+    foreach ($ideje as $ideja) {
+        if($ideja->Popularnost>0) $plus="+";
+            else $plus="";        
         echo '<table border="0" class="content">';
         echo '<tr><th class="naslov" colspan="3">';
-        echo "{$predvidjanje->Naslov}</th>";
+        echo "{$ideja->Naslov}</th>";
         echo '<td class="datum">';
-        echo "{$predvidjanje->DatumNastanka}</td></tr>";
+        echo "{$ideja->DatumEvaluacije}</td></tr>";
         echo '<tr><td colspan="4" class="sadrzaj">';
-        echo "{$predvidjanje->Sadrzaj}</td></tr>";
+        echo "{$ideja->Sadrzaj}</td></tr>";
         echo '<tr class="last">';
         echo "<td width='25%'>&nbsp;&nbsp;"
             . "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
             . "<a href=''><img src='".base_url()."/slike/hate.png' height='22'></a> "
-            . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>";        
-        echo "<td width='15%'><img src='".base_url()."/slike/weight.png' height='22'> ";        
-        echo "<span class='ikonice'>{$predvidjanje->Tezina}</span></td>";
+            . "<span class='ikonice'>{$plus}{$ideja->Popularnost}</span></td>"; 
+        echo "<td width='15%'>&nbsp;</td>";
         echo '<td></td><td class="autor">';
-        echo "{$predvidjanje->Username}</td></tr>";    
+        echo "{$ideja->Username}</td></tr>";  
         echo  "</table>";
     }
     ?>
- </div>  </div>
-    <div class="col-md-6">
+     </div>  </div>
+      <div class="col-md-6">
         <div id="page2">
         <table width="100%">
             <tr>
@@ -66,19 +62,6 @@
                     <div class="box2"><center><h2>500</h2></center></div>
                 </td>
             </tr>
-            <div class="wrapbox">
-                <tr>
-                    <td id="promote"><a href="<?= site_url("Korisnik/uputstvo") ?>">
-                        <image src="/slike/promote.png" height="250px" width="250px"></a></td>
-                </tr>
-            <tr>
-         
-                <td id="flag"><a href="<?= site_url("Korisnik/uputstvo") ?>">
-                        <image src="/slike/redflag.png" height="250px" width="250px"></a></td>
-            </tr>
-            </div>
         </table>
-           
-</div>
-</div> 
+            
 </div> </div>
