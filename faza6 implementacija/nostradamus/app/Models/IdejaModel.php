@@ -10,7 +10,7 @@ class IdejaModel extends Model
     protected $table='ideja';
     protected $primaryKey='IdI';
     protected $returnType     = 'object';
-    protected $allowedFields=['IdK','Username','Naslov','DatumEvaluacije','Sadrzaj','Popularnost'];
+    protected $allowedFields=['IdK','IdI','Username','Naslov','DatumEvaluacije','Sadrzaj','Popularnost'];
      
     /**
      * Ubacuje novu ideju.
@@ -55,7 +55,7 @@ class IdejaModel extends Model
             //proveriti je l' ovo tranzitivno, idejno jeste, samo da li sam napravio gresku
            $dat1= strtotime($i1->DatumEvaluacije); 
            $dat2= strtotime($i2->DatumEvaluacije); 
-           $danas= strtotime(date("d/m/Y"));
+           $danas= strtotime(date("Y-m-d H:i:s"));
            if ($dat1==$dat2)
            {
                return 0;

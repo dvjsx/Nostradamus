@@ -149,6 +149,23 @@ class PredvidjanjeModel extends Model
              $this->save($predvidjanje); 
         }
     }
+    /**
+     * Vraca Id poslednjeg unetog predvidjanja
+     * @return int idP 
+     */
+    public function poslednje_predvidjanje() 
+    {
+        $predvidjanja=$this->findAll();
+        $maxId=-1;
+        foreach ($predvidjanja as $predvidjanje)
+        {
+            if ($predvidjanje->IdP>$maxId)
+            {
+                $maxId=$predvidjanje->IdP;            
+            }
+        }
+        return $maxId;
+    }
     
 }
 

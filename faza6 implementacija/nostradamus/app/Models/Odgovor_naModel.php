@@ -17,13 +17,13 @@ class Odgovor_naModel extends Model
     
     /**
      * Isti preduslovi kao za ideju
-     * @param type $idP
-     * @param type $idI
+     * @param int $idP
+     * @param int $idI
      */
     public function sacuvaj_odgovor($idP,$idI)
     {
-        $data=["IdP"=>$idP,"IdI"=>$idP];
-        $this->save($data);
+        $data=["IdP"=>$idP,"IdI"=>$idI];
+        $this->insert($data);
     }
     /**
      * 

@@ -7,6 +7,7 @@ use App\Models\AdministratorModel;
 use App\Models\ModeratorModel;
 use App\Models\PredvidjanjeModel;
 use App\Models\IdejaModel;
+use \App\Models\Odgovor_naModel;
 
 class Korisnik extends BaseController
 {
@@ -125,16 +126,16 @@ class Korisnik extends BaseController
       $korisnik= $this->session->get('korisnik');
       
       $predvidjanjeModel=new PredvidjanjeModel();
-      
       //provera
-      $errors=[];
+      $errors=[];$ideja=null;
       $naslov=$this->request->getVar('naslovPredvidjanja');
       $datum=$this->request->getVar("datumPredvidjanja");
       if ($naslov!="" && $naslov[0]=="#")
       {
           $odgovor= substr($naslov, 1);
           $idejaModel=new IdejaModel();
-          if ($idejaModel->where("Naslov",$odgovor)->find()==null)//znaci da nije odgovor ni na jednu ideju, a pocinje sa #
+          $ideja=$idejaModel->where("Naslov",$odgovor)->first();
+          if ($ideja==null)//znaci da nije odgovor ni na jednu ideju, a pocinje sa #
           {
               
               $errors["naslov"]="Ako Vase tvrdjenje nije odgovor na ideju, nemojte stavljati # kao pocetni karakter";
@@ -159,10 +160,28 @@ class Korisnik extends BaseController
           print_r($errors);
           return;
       }
+      //ako je odgovor na ideju
+      if ($ideja!=null)//Povecava se popularnost ideje, povecava se popularnost korisnika,pamti se odgovor na ideju
+      {
+          $datum=$ideja->DatumEvaluacije;//ako je promasio, smatracemo da je slucajno i da je sigurno hteo dobar datum
+          //povecanje popularnosti ideje
+          $idejaModel->povecaj_popularnost($ideja->IdI);
+          //cuvanje odgovora
+          $odgovor_na=new Odgovor_naModel();
+          $idP=$predvidjanjeModel->poslednje_predvidjanje();
+          $odgovor_na->sacuvaj_odgovor($idP, $ideja->IdI);
+          //povecavanje popularnosti korisnika
+          $korisnikModel=new KorisnikModel();
+          $autor_ideje=$korisnikModel->where("IdK",$ideja->IdK)->first();
+          $autor_ideje->Popularnost++;
+          $korisnikModel->save($autor_ideje);
+      }
       //ako je sve ok
       $predvidjanjeModel->ubaci_novo_predvidjanje($korisnik->IdK,$korisnik->Username, $this->request->getVar('naslovPredvidjanja'), 
-              $this->request->getVar("datumPredvidjanja"), $this->request->getVar("sadrzajPredvidjanja"));
+              $datum, $this->request->getVar("sadrzajPredvidjanja"));
       $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($korisnik->Username);
+      
+      
       $this->prikaz("profilkorisnikpredvidjanja", ['user'=>$korisnik,'predvidjanja'=>$predvidjanja]);
   }
 }
