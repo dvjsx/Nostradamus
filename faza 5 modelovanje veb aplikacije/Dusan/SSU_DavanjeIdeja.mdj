@@ -8766,7 +8766,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFyJ6sZLq7GWX0="
 							},
-							"name": "Role14"
+							"name": "Role14",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -8774,7 +8775,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFyJ6sZLq7GWX0="
 							},
-							"name": "Role15"
+							"name": "Role15",
+							"type": ""
 						}
 					]
 				},

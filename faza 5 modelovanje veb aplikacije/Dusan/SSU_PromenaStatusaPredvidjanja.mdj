@@ -162,7 +162,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Postavljanje statusa predvidjanja"
+					"name": "Promena statusa predvidjanja"
 				},
 				{
 					"_type": "UMLUseCaseDiagram",
@@ -215,7 +215,7 @@
 											"top": 43.5,
 											"width": 204,
 											"height": 13,
-											"text": "Postavljanje statusa predvidjanja"
+											"text": "Promena statusa predvidjanja"
 										},
 										{
 											"_type": "LabelView",
@@ -248,7 +248,7 @@
 									"font": "Arial;13;0",
 									"left": 333,
 									"top": 36.5,
-									"width": 215.18798828125,
+									"width": 214,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFyLftfDGAv5Pw="
@@ -4586,9 +4586,9 @@
 														"$ref": "AAAAAAFyLhs8i2v4+fA="
 													},
 													"font": "Arial;13;0",
-													"left": 75.97900390625,
+													"left": 71.58642578125,
 													"top": 10,
-													"width": 115.9052734375,
+													"width": 102.791015625,
 													"height": 13,
 													"text": "SequenceDiagram1"
 												},
@@ -4601,7 +4601,7 @@
 													"font": "Arial;13;1",
 													"left": 10,
 													"top": 10,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -5231,8 +5231,7 @@
 															"left": 1005,
 															"top": 47,
 															"width": 160.24267578125,
-															"height": 13,
-															"text": ": KorisnikModel"
+															"height": 13
 														},
 														{
 															"_type": "LabelView",
@@ -5241,7 +5240,7 @@
 																"$ref": "AAAAAAFyLiEH2GzlCx0="
 															},
 															"visible": false,
-															"font": "Arial;13;0",
+															"font": "Arial;11.700000000000001;0",
 															"left": -284,
 															"width": 106.20263671875,
 															"height": 13,
@@ -6219,7 +6218,7 @@
 													},
 													"visible": false,
 													"font": "Arial;13;0",
-													"left": 64.72998046875,
+													"left": 63.99365234375,
 													"top": 253,
 													"width": 1,
 													"height": 13
@@ -6233,7 +6232,7 @@
 													"font": "Arial;13;1",
 													"left": 45,
 													"top": 253,
-													"width": 14.72998046875,
+													"width": 13.99365234375,
 													"height": 13,
 													"text": "alt"
 												},
@@ -6266,7 +6265,7 @@
 																	"font": "Arial;13;0",
 																	"left": 60,
 																	"top": 286,
-																	"width": 192.93701171875,
+																	"width": 179.75927734375,
 																	"height": 13,
 																	"text": "[IdA datum evaluacije je istekako]"
 																}
@@ -6299,7 +6298,7 @@
 																	"font": "Arial;13;0",
 																	"left": 60,
 																	"top": 512,
-																	"width": 177.048828125,
+																	"width": 162.423828125,
 																	"height": 13,
 																	"text": "[nije istekao datumeevaluacije]"
 																}
@@ -7370,7 +7369,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFyLhs8h2v1Kiw="
 							},
-							"name": "Role5"
+							"name": "Role5",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -7389,10 +7389,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFyLhs8h2v1Kiw="
 							},
-							"name": "Role7",
-							"type": {
-								"$ref": "AAAAAAFyLgxWlGhhpCE="
-							}
+							"name": "Role7"
 						},
 						{
 							"_type": "UMLAttribute",
