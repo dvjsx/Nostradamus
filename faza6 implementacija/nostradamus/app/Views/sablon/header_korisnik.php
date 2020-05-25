@@ -12,13 +12,14 @@
                     <a href="<?php echo base_url()."/$controller"; ?>">
                         <?php echo "<img src='".base_url()."/slike/crystal_ball.png'>"; ?>
                     </a></td>
-                <td >Dobro dosli <?php echo $kor_tip ?></td>
-                
+                <td class="podesavanje" width="4%" >Dobro dosli </td>
+                <td class="podesavanje" ><?php echo $kor_tip ?></td>
             </tr>
             <tr>
-                
-                <td width="10%">  <?= anchor("$controller/pregledprofilapredvidjanja", "$korisnik->Username") ?></td>
-                <td width="10%"> <?= anchor("Korisnik/logout", "Izloguj se") ?> </td>
+                <td with="1%" class="podesavanje">Profil:</td>            
+                <td width="5%" height="4%">  <a href='<?php echo base_url()."/$controller/pregledprofilapredvidjanja" ?>' class="linkstyle"><?php echo $korisnik->Username ?></a> </td>
+                <td width="10%"> <a href='<?php echo base_url()."/$controller/logout" ?>' class="linkstyle">Izloguj se</a> </td>
+                        
             </tr>
             <tr>
                 <td colspan="3">

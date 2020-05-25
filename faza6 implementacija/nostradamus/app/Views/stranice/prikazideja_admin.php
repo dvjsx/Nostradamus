@@ -6,7 +6,7 @@
     <button class="dropbtn">Ideje
     </button>
     <div class="dropdown-content">
-         <a href='<?php echo base_url()."/Administrator/pregledtudjegpredv/$user->Username"  ?>' >Predvidjanja</a>
+         <a href='<?php echo base_url()."/$controller/pregledtudjegpredv/$user->Username"  ?>' >Predvidjanja</a>
     </div>
   </div>  </td>   </div>
     <div class="col-md-6">
@@ -63,15 +63,26 @@
                 </td>
             </tr>
             <div class="wrapbox">
-                <tr>
-                    <td id="promote"><a href="<?= site_url("Korisnik/uputstvo") ?>">
+                   <?php 
+                if($kor_tip=='administratoru') {
+                echo '<tr>
+                    <td id="promote"><a href="">
                         <image src="/slike/promote.png" height="250px" width="250px"></a></td>
-                </tr>
-            <tr>
+                </tr>';  } ?>
+                 <?php
+                 if($kor_tip=='administratoru') {
+        echo    '<tr>
          
-                <td id="flag"><a href="<?= site_url("Korisnik/uputstvo") ?>">
+                <td id="flag"><a href="">
                         <image src="/slike/redflag.png" height="250px" width="250px"></a></td>
-            </tr>
+                 </tr>'; } ?>
+ <?php 
+  if($kor_tip=='moderatoru') {
+               echo    '<tr>
+          
+                <td id="flagmoderator"><a href="">
+                        <image src="/slike/redflag.png" height="250px" width="250px"></a></td>
+                 </tr>'; } ?> 
             </div>
         </table>
            

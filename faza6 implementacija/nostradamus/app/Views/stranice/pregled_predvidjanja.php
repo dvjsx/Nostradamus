@@ -44,9 +44,10 @@
         echo "{$predvidjanje->Sadrzaj}</td></tr>";
         echo '<tr class="last">';
         echo "<td width='25%'>&nbsp;&nbsp;"
+            . "<a href=''><img src='".base_url()."/slike/pencil.png' height='22'></a> "
             . "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
-            . "<a href=''><img src='".base_url()."/slike/hate.png' height='22'></a> "
-            . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>";        
+            . "<a href=''><img src='".base_url()."/slike/hate.png' height='22'></a> "           
+            . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>"        ;
         echo "<td width='15%'><img src='".base_url()."/slike/weight.png' height='22'> ";        
         echo "<span class='ikonice'>{$predvidjanje->Tezina}</span></td>";
         echo '<td></td><td class="autor">';
