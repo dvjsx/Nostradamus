@@ -122,6 +122,44 @@ class Korisnik extends BaseController
       $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($korisnik);
       $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);
   } 
+  //mislim da je najlakse za implementaciju da se uklone cekboxovi i da korisnik moze da daje ideju
+  //sa prikaza ideja, a predvidjanja sa prikaza predvidjanja
+  public function dajIdeju()
+  {
+      $korisnik= $this->session->get('korisnik');
+      $kor_tip= $this->sesssion->get('kor_tip');
+      $idejaModel=new IdejaModel();
+      $errors=[];
+      $naslov=$this->request->getVar('naslovPredvidjanja');
+      $datum=$this->request->getVar("datumPredvidjanja");
+      if ($datum<date("Y-m-d H:i:s"))
+      {
+          $errors["datum"]="Morate uneti datum u buducnosti";
+      }
+      if ($kor_tip=="korisnice")
+      {
+          $errors["korisnik"]="Morate da budete verni korisnik (bar 3 dana na sajtu) da biste davali ideje"; 
+      }
+      $validation =\Config\Services::validation();
+      $validation->setRuleGroup('dodavanje_predvidjanja');
+      if (!$validation->run(["datum"=>$this->request->getVar("datumPredvidjanja"),"sadrzaj"=>$this->request->getVar("sadrzajPredvidjanja"),"naslov"=>$naslov],'dodavanje_predvidjanja')) {
+          $errors=$validation->getErrors(); 
+          //return;
+       }
+      if (!empty($errors))
+      {
+          //ovde zavrsiti, print_r je za testiranje
+          print_r($errors);
+          return;
+      }
+      //ako je sve ok
+      $idejaModel->ubaci_novu_ideju($korisnik->IdK,$korisnik->Username, $this->request->getVar('naslovPredvidjanja'), 
+              $datum, $this->request->getVar("sadrzajPredvidjanja"));
+      $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($korisnik->Username);
+      $this->prikaz("profilkorisnikideje", ['user'=>$korisnik,'predvidjanja'=>$predvidjanja]);
+  }
+
+  //testirano
   public function dajPredvidjanje()
   {
       $korisnik= $this->session->get('korisnik');
