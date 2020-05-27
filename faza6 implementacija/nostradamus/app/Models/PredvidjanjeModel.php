@@ -140,12 +140,12 @@ class PredvidjanjeModel extends Model
      * Autorovo povecavanje skora, u slucaju ispunjenja takodje na strani kontrolera
      * @param string $status status predvidjanja, moze biti ISPUNJENO,NEISPUNJENO, CEKA
      */
-    public function postavi_status($idP,$status)
+    public function postavi_status($predvidjanje,$status)
     {
         $status= strtoupper(trim($status));
         if (in_array($status, ["ISPUNJENO","NEISPUNJENO"]))//za svaki slucaj
         {
-             $predvidjanje= $this->find($idP);
+             $predvidjanje->Status=$status;
              $this->save($predvidjanje); 
         }
     }

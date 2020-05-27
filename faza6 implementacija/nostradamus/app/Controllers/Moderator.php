@@ -268,7 +268,7 @@ class Moderator extends BaseController
       $predvidjanje= $this->session->get("predvidjanje"); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
       $ocena=$this->request->getVar("ocena");//pretpostavljam da ce tako biti najlakse dohvatiti, slovbodno promeniti
       $oceniModel=new DajeOcenuModel();
-      if ($oceniModel->vec_dao_ocenu($korisnik->IdK, $predvidjanje->IdP))
+      if ($oceniModel->vec_dao_ocenu($korisnik->IdK, $predvidjanje->IdP) || date("Y-m-d H:i:s")>$predvidjanje->DatumEvaluacije)
       {
           //moze mozda neka poruka o gresci, a iskreno i ne mora
           return;
@@ -281,5 +281,57 @@ class Moderator extends BaseController
           $posl_id=$oceniModel->poslednji_vestackiId();
           $oceniModel->daje_ocenu($korisnik->IdK, $predvidjanje->IdP, $ocena, $posl_id+1);
       }
+  }
+  /**
+   * Netestirano, izmeniti ako se menja u korisnik kontroleru
+   * @return type
+   */
+  public function dajStatusSvomPredvidjanju()
+  {
+      $korisnik=$this->session->get("korisnik");
+      $predvidjanje= $this->session->get("predvidjanje");//ista stvar sa dohvatanjem ovoga
+      $predvidjanjeModel=new PredvidjanjeModel();
+      $danas=date("Y-m-d H:i:s");
+      //moze da se podeli u tri ifa, radi lepseg ispisa, ali ovde mislim da su svi slucajevi
+      if ($danas<$predvidjanje->DatumEvaluacije || $predvidjanje->Status!="CEKA" || $korisnik->IdK!=$predvidjanje->IdK)//ne sme jos da mu daje status
+      {
+          //TODO:nekako ispisati gresku
+          return;
+      }
+      $status=$this->request->getVar("status");//isto proveriti u dizajnu, moze i neko drukcije dohvatanje samo da je status tu
+      $predvidjanjeModel->postavi_status($predvidjanje, $status);
+      if ($status=="ISPUNJENO")
+      {
+          $korisnikModel=new KorisnikModel();
+          $korisnikModel->uvecaj_skor($korisnik, $predvidjanje->Tezina);
+      }
+      //$this->prikaz...
+  }
+  //ovo svakako ne stavljati u korisnika
+  public function izmeniStatusTudjegPredvidjanja()
+  {
+      $korisnik=$this->session->get("korisnik");
+      $predvidjanje= $this->session->get("predvidjanje");//ista stvar sa dohvatanjem ovoga
+      $predvidjanjeModel=new PredvidjanjeModel();
+      $danas=date("Y-m-d H:i:s");
+      //moze da se podeli u tri ifa, radi lepseg ispisa, ali ovde mislim da su svi slucajevi
+      if ($danas<$predvidjanje->DatumEvaluacije)//ne sme jos da mu daje status
+      {
+          //TODO:nekako ispisati gresku
+          return;
+      }
+      $status=$this->request->getVar("status");//isto proveriti u dizajnu, moze i neko drukcije dohvatanje samo da je status tu
+      $predvidjanjeModel->postavi_status($predvidjanje, $status);
+      if ($status=="ISPUNJENO")
+      {
+          $korisnikModel=new KorisnikModel();
+          $korisnikModel->uvecaj_skor($korisnik, $predvidjanje->Tezina);
+      }
+      else//zapravo moze automatski i da se ponisti, a nek sankcionise jos ako hoce
+      {
+          $korisnikModel=new KorisnikModel();
+          $korisnikModel->sankcionisi($korisnik, $predvidjanje->Tezina);
+      }
+      //$this->prikaz...
   }
 }
