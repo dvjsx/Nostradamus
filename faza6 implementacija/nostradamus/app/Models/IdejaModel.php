@@ -125,12 +125,22 @@ class IdejaModel extends Model
     /**
      * Inkrementira popularnost ideje. Okida se (o tome kontroler vodi racuna) kad se napravi predvidjanje sa #NaslovIdeje
      * @param unique_id $idI Identifikator ideje na koju je odgovoreno
+     * @return void 
      */
     public function povecaj_popularnost($idI)
     {
         $ideja= $this->find($idI);
         $ideja->Popularnost++;
         $this->save($ideja);
+    }
+    /**
+     * 
+     * @param int $idI
+     * @return void
+     */
+    public function obrisi_ideju($idI)
+    {
+        $this->delete($idI);
     }
 }
 

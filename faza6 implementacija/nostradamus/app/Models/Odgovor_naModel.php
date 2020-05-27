@@ -41,5 +41,21 @@ class Odgovor_naModel extends Model
         }
         return $predvidjanja;
     }
+    /**
+     * Ukoliko je obrisano predvidjanje koje je odgovor na neku ideju
+     * @param int $idP
+     */
+    public function obrisi_predvidjanje($idP)
+    {
+        $this->delete($idP);
+    }
+    /**
+     * Ukoliko je cela ideja obrisana
+     * @param int $IdI
+     */
+    public function obrisi_ideju($IdI)
+    {
+        $this->where("IdI",$IdI)->delete();
+    }
 }
 

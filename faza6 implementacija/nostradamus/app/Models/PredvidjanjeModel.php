@@ -166,6 +166,13 @@ class PredvidjanjeModel extends Model
         }
         return $maxId;
     }
-    
+    /**
+     * 
+     * @param int $idP
+     */
+    public function obrisi_predvidjanje($idP)
+    {
+        $this->delete($idP);
+    }
 }
 

@@ -7,6 +7,7 @@ use App\Models\AdministratorModel;
 use App\Models\ModeratorModel;
 use App\Models\PredvidjanjeModel;
 use App\Models\IdejaModel;
+use App\Models\Odgovor_naModel;
 
 class Administrator extends BaseController
 {
@@ -344,6 +345,33 @@ class Administrator extends BaseController
       $kazna=$this->session->get("kazna");//ili na bilo koji drugi nacin dohvatanje
       $korisnikModel=new KorisnikModel();
       $korisnikModel->sankcionisi($sankcionisani, $kazna);
+  }
+  //mozda treba da se ubaci i moderatoru, sad sam zaboravio, proveriti to
+  public function obrisati_predvidjanje()
+  {
+      $korisnik=$this->session->get("korisnik");
+      $predvidjanje= $this->session->get("predvidjanje");//ista stvar sa dohvatanjem ovoga
+      $predvidjanjeModel=new PredvidjanjeModel();
+      $predvidjanjeModel->obrisi_predvidjanje($predvidjanje->IdP);
+      $odgovor_na_model=new Odgovor_naModel();
+      $odgovor_na_model->obrisi_predvidjanje($idP);
+      //$this->prikaz...
+  }
+  //isto nisam siguran je l' i moderator to sme da radi
+  public function obrisati_ideju()
+  {
+      $korisnik=$this->session->get("korisnik");
+      $ideja= $this->session->get("ideja");//ista stvar sa dohvatanjem ovoga
+      $idejaModel=new IdejaModel();
+      $odgovor_na_model=new Odgovor_naModel();
+      $predvidjanja=$odgovor_na_model->vrati_sva_predvidjanja_na_datu_ideju($ideja->IdI);
+      $odgovor_na_model->obrisi_ideju($IdI);
+      $predvidjanjeModel=new PredvidjanjeModel();
+      foreach ($predvidjanja as $predvidjanje)
+      {
+          $predvidjanjeModel->obrisi_predvidjanje($predvidjanje->IdP);
+      }
+      $idejaModel->obrisi_ideju($ideja->IdI);
   }
   
 }
