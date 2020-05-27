@@ -214,7 +214,52 @@ class Moderator extends BaseController
       $this->prikaz("profilkorisnikpredvidjanja", ['user'=>$korisnik,'predvidjanja'=>$predvidjanja]);
   }
   public function uputstvo()
-   {
-       $this->prikaz("uputstvo", []);
-   }
+  {
+     $this->prikaz("uputstvo", []);
+  }
+  /**
+   * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
+   */
+  public function voliPredvidjanje()
+  {
+      $korisnik= $this->session->get("korisnik");
+      $predvidjanje= $this->session->get("predvidjanje"); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
+      $voliModel=new VoliModel();
+      if ($voliModel->vec_voli($korisnik->IdK, $predvidjanje->IdP))
+      {
+          //moze mozda neka poruka o gresci, a iskreno i ne mora
+          return;
+      }
+      else
+      {
+          $predvidjanjeModel=new PredvidjanjeModel();
+          $predvidjanjeModel->voli($predvidjanje->IdP, true);
+          $posl_id=$voliModel->poslednji_vestackiId();
+          $voliModel->voli($korisnik->IdK, $predvidjanje->IdP, $posl_id+1);
+      }
+  }
+  
+  /**
+   * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
+   */
+  public function oceniPredvidjanje()
+  {
+      $korisnik= $this->session->get("korisnik");
+      $predvidjanje= $this->session->get("predvidjanje"); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
+      $ocena=$this->request->getVar("ocena");//pretpostavljam da ce tako biti najlakse dohvatiti, slovbodno promeniti
+      $oceniModel=new DajeOcenuModel();
+      if ($oceniModel->vec_dao_ocenu($korisnik->IdK, $predvidjanje->IdP))
+      {
+          //moze mozda neka poruka o gresci, a iskreno i ne mora
+          return;
+      }
+      else
+      {
+          
+          $predvidjanjeModel=new PredvidjanjeModel();
+          $predvidjanjeModel->daje_ocenu($predvidjanje->IdP, $ocena);
+          $posl_id=$oceniModel->poslednji_vestackiId();
+          $oceniModel->daje_ocenu($korisnik->IdK, $predvidjanje->IdP, $ocena, $posl_id+1);
+      }
+  }
 }

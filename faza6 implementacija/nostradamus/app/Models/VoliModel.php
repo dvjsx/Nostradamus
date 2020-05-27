@@ -31,12 +31,29 @@ class VoliModel extends Model
      * @param int $idP
      * @return void
      */
-    public function voli($idK,$idP)
+    public function voli($idK,$idP,$vestackiId)
     {
-        $data=["idK"=>$idK,"idP"=>$idP];
+        $data=["idK"=>$idK,"idP"=>$idP,"VestackiId"=>$vestackiId];
         $this->save($data);
     }
     
+    /**
+     * Vraca poslednji vestacki id posto to nije auto increment polje
+     * @return int vestackiId 
+     */
+    public function poslednji_vestackiId() 
+    {
+        $voljenja=$this->findAll();
+        $maxId=-1;
+        foreach ($voljenja as $voli)
+        {
+            if ($voli->VestackiId>$maxId)
+            {
+                $maxId=$voli->VestackiId;           
+            }
+        }
+        return $maxId;
+    }
     
 }
 

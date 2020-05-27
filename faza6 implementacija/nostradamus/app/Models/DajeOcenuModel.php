@@ -31,10 +31,28 @@ class DajeOcenuModel extends Model
      * @param int $idP
      * @return void
      */
-    public function daje_ocenu($idK,$idP,$ocena)
+    public function daje_ocenu($idK,$idP,$ocena,$vestackiId)
     {
-        $data=["idK"=>$idK,"idP"=>$idP,"ocena"=>$ocena];
+        $data=["idK"=>$idK,"idP"=>$idP,"ocena"=>$ocena,"VestackiId"=>$vestackiId];
         $this->save($data);
+    }
+    
+    /**
+     * Vraca poslednji vestacki id posto to nije auto increment polje
+     * @return int vestackiId 
+     */
+    public function poslednji_vestackiId() 
+    {
+        $ocene=$this->findAll();
+        $maxId=-1;
+        foreach ($ocene as $ocena)
+        {
+            if ($ocena->VestackiId>$maxId)
+            {
+                $maxId=$ocena->VestackiId;           
+            }
+        }
+        return $maxId;
     }
     
     
