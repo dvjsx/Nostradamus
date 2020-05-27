@@ -149,7 +149,7 @@ class Administrator extends BaseController
       $idejaModel->ubaci_novu_ideju($korisnik->IdK,$korisnik->Username, $this->request->getVar('naslovPredvidjanja'), 
               $datum, $this->request->getVar("sadrzajPredvidjanja"));
       $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($korisnik->Username);
-      $this->prikaz("profilkorisnikideje", ['user'=>$korisnik,'predvidjanja'=>$predvidjanja]);
+      $this->prikaz("profilkorisnikideje", ['user'=>$korisnik,'ideje'=>$ideje]);
   }
   public function dajPredvidjanje()
   {
@@ -354,7 +354,7 @@ class Administrator extends BaseController
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanjeModel->obrisi_predvidjanje($predvidjanje->IdP);
       $odgovor_na_model=new Odgovor_naModel();
-      $odgovor_na_model->obrisi_predvidjanje($idP);
+      $odgovor_na_model->obrisi_predvidjanje($predvidjanje->IdP);
       //$this->prikaz...
   }
   //isto nisam siguran je l' i moderator to sme da radi
@@ -365,13 +365,23 @@ class Administrator extends BaseController
       $idejaModel=new IdejaModel();
       $odgovor_na_model=new Odgovor_naModel();
       $predvidjanja=$odgovor_na_model->vrati_sva_predvidjanja_na_datu_ideju($ideja->IdI);
-      $odgovor_na_model->obrisi_ideju($IdI);
+      $odgovor_na_model->obrisi_ideju($ideja->IdI);
       $predvidjanjeModel=new PredvidjanjeModel();
       foreach ($predvidjanja as $predvidjanje)
       {
           $predvidjanjeModel->obrisi_predvidjanje($predvidjanje->IdP);
       }
       $idejaModel->obrisi_ideju($ideja->IdI);
+  }
+  //ovo valjda samo admin sme
+  public function promovisati()
+  {
+      $promovisani=$this->session->get("promovisani");//ili kako god da je vec dohvatanje
+      $korisnikModel=new KorisnikModel();
+      $stara_uloga=$korisnikModel->pronadjiUlogu($promovisani);
+      $nova_uloga=$this->session->get("nova_uloga");//ili iz requesta ili neceg treceg
+      $korisnikModel->promovisi($promovisani, $stara_uloga, $nova_uloga);
+      //$this->prikaz...
   }
   
 }

@@ -158,7 +158,7 @@ class Korisnik extends BaseController
       $idejaModel->ubaci_novu_ideju($korisnik->IdK,$korisnik->Username, $this->request->getVar('naslovPredvidjanja'), 
               $datum, $this->request->getVar("sadrzajPredvidjanja"));
       $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($korisnik->Username);
-      $this->prikaz("profilkorisnikideje", ['user'=>$korisnik,'predvidjanja'=>$predvidjanja]);
+      $this->prikaz("profilkorisnikideje", ['user'=>$korisnik,'ideje'=>$ideje]);
   }
 
   //testirano

@@ -94,4 +94,29 @@ class KorisnikModel extends Model
             $moderator_model->dodaj($idK);
         }
     }
+    /**
+     * Vraca kog je tipa dati korisnik
+     * @param Korisnik $korisnik
+     * @return string tip korisnika
+     */
+    public function pronadjiUlogu($korisnik)
+    {
+        $administratorModel=new AdministratorModel();
+        $moderatorModel=new ModeratorModel();
+        if ($administratorModel->find($korisnik->IdK)!=null)
+        {
+            return "ADMIN";
+        }
+        if ($moderatorModel->find($korisnik->IdK)!=null)
+        {
+            return "MODERATOR";
+        }
+        $obican_ili_veran_model=new Obican_ili_VeranModel();
+        $obican_ili_veran=$obican_ili_veran_model->where("IdK",$korisnik->IdK)->first();
+        if ($obican_ili_veran->Veran)
+        {
+            return "VERAN";
+        }
+        return "OBICAN";
+    }
 }
