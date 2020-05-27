@@ -334,4 +334,16 @@ class Administrator extends BaseController
       }
       //$this->prikaz...
   }
+  /**
+   * Netestirano, videti sta sa dohvatanjem
+   */
+  public function sankcionisi_korisnika()
+  {
+      $admin= $this->session->get("korisnik");
+      $sankcionisani= $this->session->get("sankcionisani");//ili na bilo koji drugi nacin dohvatanje
+      $kazna=$this->session->get("kazna");//ili na bilo koji drugi nacin dohvatanje
+      $korisnikModel=new KorisnikModel();
+      $korisnikModel->sankcionisi($sankcionisani, $kazna);
+  }
+  
 }
