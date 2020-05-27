@@ -133,8 +133,8 @@ class Administrator extends BaseController
           $errors["korisnik"]="Morate da budete verni korisnik (bar 3 dana na sajtu) da biste davali ideje"; 
       }
       $validation =\Config\Services::validation();
-      $validation->setRuleGroup('dodavanje_predvidjanja');
-      if (!$validation->run(["datum"=>$this->request->getVar("datumPredvidjanja"),"sadrzaj"=>$this->request->getVar("sadrzajPredvidjanja"),"naslov"=>$naslov],'dodavanje_predvidjanja')) {
+      $validation->setRuleGroup('dodavanje_ideja');
+      if (!$validation->run(["datum"=>$this->request->getVar("datumPredvidjanja"),"sadrzaj"=>$this->request->getVar("sadrzajPredvidjanja"),"naslov"=>$naslov],'dodavanje_ideja')) {
           $errors=$validation->getErrors(); 
           //return;
        }
