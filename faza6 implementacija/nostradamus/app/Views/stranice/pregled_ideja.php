@@ -25,7 +25,7 @@
         </td>
             </form>
          <td id="uputstvo" >
-         <a href="<?= site_url("Korisnik/uputstvo") ?>" ><image src="/slike/uputstvoproba.png" height="40px" width="40px" ></a> </td>
+         <a href="<?= site_url("$controller/uputstvo") ?>" ><image src="/slike/uputstvoproba.png" height="40px" width="40px" ></a> </td>
     </table>
 </div>
 <div class="page">

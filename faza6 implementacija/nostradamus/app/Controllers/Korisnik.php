@@ -67,9 +67,10 @@ class Korisnik extends BaseController
       $this->prikaz($trenprikaz, $data); 
    }
       
-  public function uputstvo() {
-      return redirect()->to(site_url('stranice/uputstvo.php'));
-  }
+  public function uputstvo()
+   {
+       $this->prikaz("uputstvo", []);
+   }
   public function logout(){
         $this->session->destroy();
         return redirect()->to(site_url('/'));

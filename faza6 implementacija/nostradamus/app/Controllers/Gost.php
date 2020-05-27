@@ -176,4 +176,9 @@ class Gost extends BaseController
       $data['ideje']=$ideje;
       $this->prikaz('tudjprofilideje_korisnik', $data); 
    }
+   public function uputstvo()
+   {
+       $this->prikaz("uputstvo", []);
+   }
+  
 }

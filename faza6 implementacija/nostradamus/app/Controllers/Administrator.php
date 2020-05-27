@@ -160,7 +160,10 @@ class Administrator extends BaseController
       $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($korisnik->Username);
       $this->prikaz("profilkorisnikpredvidjanja", ['user'=>$korisnik,'predvidjanja'=>$predvidjanja]);
   }  
-    
+  public function uputstvo()
+   {
+       $this->prikaz("uputstvo", []);
+   }  
     
 
 }
