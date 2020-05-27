@@ -13,4 +13,7 @@ class ModeratorModel extends Model
      public function dohvati_korisnika($id){
          return $this->where('IdM', $id)->first();
     }
+    public function dodaj($id){
+         return $this->insert(['IdM'=>$id]);
+    }
 }

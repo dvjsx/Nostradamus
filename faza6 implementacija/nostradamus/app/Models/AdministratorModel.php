@@ -13,4 +13,7 @@ class AdministratorModel extends Model
     public function dohvati_korisnika($id){
          return $this->where('IdA', $id)->first();
     }
+    public function dodaj($id){
+         return $this->insert(['IdA'=>$id]);
+    }
 }
