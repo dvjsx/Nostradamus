@@ -246,7 +246,27 @@ class Korisnik extends BaseController
           $voliModel->voli($korisnik->IdK, $predvidjanje->IdP, $posl_id+1);
       }
   }
-  
+  /**
+   * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
+   */
+  public function neVoliPredvidjanje()
+  {
+      $korisnik= $this->session->get("korisnik");
+      $predvidjanje= $this->session->get("predvidjanje"); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
+      $voliModel=new VoliModel();
+      if ($voliModel->vec_voli($korisnik->IdK, $predvidjanje->IdP))
+      {
+          //moze mozda neka poruka o gresci, a iskreno i ne mora
+          return;
+      }
+      else
+      {
+          $predvidjanjeModel=new PredvidjanjeModel();
+          $predvidjanjeModel->voli($predvidjanje->IdP, false);
+          $posl_id=$voliModel->poslednji_vestackiId();
+          $voliModel->voli($korisnik->IdK, $predvidjanje->IdP, $posl_id+1);
+      }
+  }
   /**
    * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
    */
