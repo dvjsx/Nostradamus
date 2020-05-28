@@ -21,7 +21,7 @@ class DajeOcenuModel extends Model
      */
     public function vec_dao_ocenu($idK,$idP)
     {
-        $element= $this->where("IdP",$idP)->where("idK",$idK)->find();
+        $element= $this->where("IdP",$idP)->where("IdK",$idK)->find();
         return $element!=null;
     }
     
@@ -33,8 +33,8 @@ class DajeOcenuModel extends Model
      */
     public function daje_ocenu($idK,$idP,$ocena,$vestackiId)
     {
-        $data=["idK"=>$idK,"idP"=>$idP,"ocena"=>$ocena,"VestackiId"=>$vestackiId];
-        $this->save($data);
+        $data=["IdK"=>$idK,"IdP"=>$idP,"ocena"=>$ocena,"VestackiId"=>$vestackiId];
+        $this->insert($data);
     }
     
     /**

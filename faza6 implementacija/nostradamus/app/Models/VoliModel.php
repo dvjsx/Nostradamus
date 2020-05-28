@@ -21,7 +21,7 @@ class VoliModel extends Model
      */
     public function vec_voli($idK,$idP)
     {
-        $element= $this->where("IdP",$idP)->where("idK",$idK)->find();
+        $element= $this->where("IdP",$idP)->where("IdK",$idK)->find();
         return $element!=null;
     }
     
@@ -33,8 +33,8 @@ class VoliModel extends Model
      */
     public function voli($idK,$idP,$vestackiId)
     {
-        $data=["idK"=>$idK,"idP"=>$idP,"VestackiId"=>$vestackiId];
-        $this->save($data);
+        $data=["IdK"=>$idK,"IdP"=>$idP,"VestackiId"=>$vestackiId];
+        $this->insert($data);
     }
     
     /**
