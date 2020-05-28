@@ -6,29 +6,17 @@
     <body>
         <div class="header">
         <form name="loginform" action="<?php site_url("Gost/loginSubmit") ?>" method="post">
-        <table style="width:100%;" border="0px">
+        <table style="width:100%;" border="0">
             <tr>
-                <td rowspan="3" width="60%">
+                <td rowspan="0" width="60%">
                     <a href="<?php echo base_url()."/$controller"; ?>">
                         <?php echo "<img src='".base_url()."/slike/crystal_ball.png'>"; ?>
                     </a></td>
-                <td class="podesavanje" width="4%" >Dobro dosli </td>
-                <td class="podesavanje" ><?php echo $kor_tip ?></td>
-            </tr>
-            <tr>
-                <td with="1%" class="podesavanje">Profil:</td>            
-                <td width="5%" height="4%">  <a href='<?php echo base_url()."/$controller/pregledprofilapredvidjanja" ?>' class="linkstyle"><?php echo $korisnik->Username ?></a> </td>
-                <td width="10%"> <a href='<?php echo base_url()."/$controller/logout" ?>' class="linkstyle">Izloguj se</a> </td>
-                        
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <div style="float:right">                        
-           
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                   
-                </td>
-            </tr>    
+                    <td class="podesavanje" width="" ><span class="cursive">Dobro dosli, <?php echo $korisnik->Username ?></span></td>
+                <td width="5%" rowspan="0">                    
+                    <a href='<?php echo base_url()."/$controller/pregledprofilapredvidjanja" ?>'><image src="/slike/avatar.png" height="70px"></a> </td>              
+                <td width="10%"> &nbsp&nbsp;<a href='<?php echo base_url()."/$controller/logout" ?>' class="linkstyle">Izloguj se</a> </td>                
+            </tr> 
         </table> 
         </form>
     </div>
