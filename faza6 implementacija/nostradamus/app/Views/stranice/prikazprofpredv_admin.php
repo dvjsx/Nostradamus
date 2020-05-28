@@ -18,7 +18,7 @@
 
     <div class="col-md-4" > 
         <td id="uputstvo" >
-         <a href="<?= site_url("$controller/uputstvo") ?>" ><image src="/slike/uputstvoproba.png" height="40px" width="40px" ></a> </td>
+         <a href="<?= site_url("$controller/uputstvo") ?>" ><image src="/slike/notepad.png" height="40px" width="40px" ></a> </td>
   </div>
   </table> </div> </div>
 <div class="row">
