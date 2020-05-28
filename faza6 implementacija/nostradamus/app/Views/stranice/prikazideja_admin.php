@@ -36,8 +36,9 @@
         echo '<tr><td colspan="4" class="sadrzaj">';
         echo "{$ideja->Sadrzaj}</td></tr>";
         echo '<tr class="last">';
-        echo "<td width='25%'>&nbsp;&nbsp;"
-            . "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
+        echo "<td width='25%'>&nbsp;&nbsp;";
+            if($kor_ime=="administratoru") {   echo    "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22'></a> "; }
+       echo   "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
             . "<a href=''><img src='".base_url()."/slike/hate.png' height='22'></a> "
             . "<span class='ikonice'>{$plus}{$ideja->Popularnost}</span></td>"; 
         echo "<td width='15%'>&nbsp;</td>";
@@ -62,30 +63,83 @@
                     <div class="box2"><center><h2>500</h2></center></div>
                 </td>
             </tr>
-            <div class="wrapbox">
-                   <?php 
-                if($kor_tip=='administratoru') {
-                echo '<tr>
-                    <td id="promote"><a href="">
+                    <div class="wrapbox">
+               <?php 
+                if($kor_tip=='administratoru') { ?>
+                <tr>
+                    <td id="promote"><a href="#openModal" >
                         <image src="/slike/promote.png" height="250px" width="250px"></a></td>
-                </tr>';  } ?>
+                        <div id="openModal" class="modalDialog">
+	<div>
+		<a href="#close" title="Close" class="close">X</a>
+		<h2>U sta zelite da promovisete datog korisnika?</h2>
+                <button type="button" class="button2">Administrator</button>
+                <button type="button" class="button3">Moderator</button>
+	</div>
+</div>
+                </tr> <?php } ?>
                  <?php
-                 if($kor_tip=='administratoru') {
-        echo    '<tr>
+                 if($kor_tip=='administratoru') { ?>
+        <tr>
          
-                <td id="flag"><a href="">
-                        <image src="/slike/redflag.png" height="250px" width="250px"></a></td>
-                 </tr>'; } ?>
- <?php 
-  if($kor_tip=='moderatoru') {
-               echo    '<tr>
+                <td id="flag"><a href="#openModalsankc">
+                        <image src="/slike/redflag.png" height="250px" width="250px"></a></td> </tr> </table>
+            
+        <div id="openModalsankc" class="modalDialog">
           
-                <td id="flagmoderator"><a href="">
-                        <image src="/slike/redflag.png" height="250px" width="250px"></a></td>
-                 </tr>'; } ?> 
+	<div>
+		<a href="#close" title="Close" class="close">X</a>
+                <h2>Molim vas izaberite za koliko zelite da smanjite skor korisnika </h2> 
+              
+        
+                            <form>
+                              <input type="number" min="0">
+                        
+                             <button type="submit" class="button3">POTVRDI</button> </td>
+                         </form>
+                          
+             
+	</div>
+               
+</div>
+               <?php } ?>
+ <?php 
+  if($kor_tip=='moderatoru') { ?>
+            <table>
+               <tr>
+          
+                <td id="flagmoderator"><a href="#openModalsankcMod">
+                        <image src="/slike/redflag.png" height="250px" width="250px"></a></td> </tr> </table>
+      
+         <div id="openModalsankcMod" class="modalDialog">
+          
+	<div>
+		<a href="#close" title="Close" class="close">X</a>
+                <h2>Molim vas izaberite za koliko zelite da smanjite skor korisnika </h2> 
+              
+        
+                            <form>
+                              <input type="number" min="0">
+                        
+                             <button type="submit" class="button3">POTVRDI</button> </td>
+                         </form>
+                          
+             
+	</div>
+               
+</div>
+               <?php } ?>
             </div>
-        </table>
+        
            
 </div>
 </div> 
-</div> </div>
+</div>
+    <div id="olovka" class="modalDialog">
+    <?php if($kor_ime=='administratoru') { ?>
+    <div>
+		<a href="#close" title="Close" class="close">X</a>
+		<h2>Zelite li da obrisete ovu ideju?</h2>
+                <button type="button" class="button2">DA,POTVRDJUJEM BRISANJE IDEJE</button>
+                
+    </div> <?php } ?> </div>

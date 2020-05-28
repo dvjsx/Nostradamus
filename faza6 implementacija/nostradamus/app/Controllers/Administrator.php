@@ -22,9 +22,11 @@ class Administrator extends BaseController
     
      public function index()
     {
-        $predvidjanjeModel=new PredvidjanjeModel();
-        $predvidjanja=$predvidjanjeModel->findAll();
-	$this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
+      $data['kor_ime']=$this->session->get('kor_tip');
+      $predvidjanjeModel=new PredvidjanjeModel();
+      $predvidjanja=$predvidjanjeModel->findAll();    
+      $data['predvidjanja']=$predvidjanja;
+      $this->prikaz('pregled_predvidjanja', $data);
     }
     /**  pregled sopstvenog profila ,imamo dve metode,jednu za pregled predvidjanja a drugu za pregled ideja **/
    public function pregledprofilapredvidjanja() {
@@ -44,6 +46,7 @@ class Administrator extends BaseController
    
     /**  pregled profila odredjenog korisnika,imamo dve metode,jednu za pregled predvidjanja a drugu za pregled ideja **/
      public function pregledtudjegpredv() {
+      $data['kor_ime']=$this->session->get('kor_tip');
       $trenprikaz='prikazprofpredv_admin';      
       $username=$this->request->uri->getSegment(3);
       $korisnikModel=new KorisnikModel();
@@ -69,53 +72,71 @@ class Administrator extends BaseController
         $this->session->destroy();
         return redirect()->to(site_url('/'));
     }
- public function pregled_predvidjanja() {
+  public function pregled_predvidjanja() {
+      $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
-      $predvidjanja=$predvidjanjeModel->findAll();      
-      $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
+      $predvidjanja=$predvidjanjeModel->findAll();    
+      $data['predvidjanja']=$predvidjanja;
+      $this->prikaz('pregled_predvidjanja', $data);
   }
   public function sortPredvidjanjeNovo() {
+      $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->dohvati_najnovija_predvidjanja();      
-      $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);     
+      $data['predvidjanja']=$predvidjanja;
+      $this->prikaz('pregled_predvidjanja', $data);     
   }
   public function sortPredvidjanjePopularno() {
+      $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->dohvati_najpopularnija_predvidjanja();      
-      $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);     
+    $data['predvidjanja']=$predvidjanja;
+      $this->prikaz('pregled_predvidjanja', $data);        
   }
     public function sortPredvidjanjeNajteze() {
+        $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->dohvati_najteza_predvidjanja();     
-      $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);     
+      $data['predvidjanja']=$predvidjanja;
+      $this->prikaz('pregled_predvidjanja', $data);          
   }
   public function pretragaPredvidjanja(){
+       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
       $korisnik= $this->request->getVar("pretraga");
       $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($korisnik);
-      $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
+      $data['predvidjanja']=$predvidjanja;
+      $this->prikaz('pregled_predvidjanja', $data);     
   }
-  public function pregled_ideja() {
+   public function pregled_ideja() {
+       $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
-      $ideje=$idejaModel->findAll();      
-      $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);
+      $ideje=$idejaModel->findAll(); 
+      $data['ideje']=$ideje;
+      $this->prikaz('pregled_ideja', $data);
   }
   public function sortIdejaAktuelno() {
+       $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
       $ideje=$idejaModel->dohvati_najaktuelnije_ideje();      
-      $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);     
+      $data['ideje']=$ideje;
+      $this->prikaz('pregled_ideja', $data);     
   }
   public function sortIdejaPopularno() {
+       $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
       $ideje=$idejaModel->dohvati_najpopularnije_ideje();      
-      $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);         
+       $data['ideje']=$ideje;
+      $this->prikaz('pregled_ideja', $data);
   } 
   public function pretragaIdeja(){
+      $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
       $korisnik= $this->request->getVar("pretraga");
       $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($korisnik);
-      $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);
-  }   
+      $data['ideje']=$ideje;
+      $this->prikaz('pregled_ideja', $data);
+  } 
   //netestirano, promeniti ako je promenjeno u Korisnik
   public function dajIdeju()
   {

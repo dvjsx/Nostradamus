@@ -42,8 +42,9 @@
         echo '<tr><td colspan="4" class="sadrzaj">';
         echo "{$ideja->Sadrzaj}</td></tr>";
         echo '<tr class="last">';
-        echo "<td width='25%'>&nbsp;&nbsp;"
-            . "<a href=''><img src='".base_url()."/slike/pencil.png' height='22'></a> "
+        echo "<td width='25%'>&nbsp;&nbsp;";
+           if($kor_ime=="administratoru") {   echo    "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22'></a> "; }
+       echo   "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
             . "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
             . "<a href=''><img src='".base_url()."/slike/hate.png' height='22'></a> "
             . "<span class='ikonice'>{$plus}{$ideja->Popularnost}</span></td>" ;
@@ -55,3 +56,11 @@
     }
     ?>
 </div>
+<div id="olovka" class="modalDialog">
+    <?php if($kor_ime=='administratoru') { ?>
+    <div>
+		<a href="#close" title="Close" class="close">X</a>
+		<h2>Zelite li da obrisete ovu ideju?</h2>
+                <button type="button" class="button2">DA,POTVRDJUJEM BRISANJE IDEJE</button>
+                
+    </div> <?php } ?> </div>

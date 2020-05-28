@@ -39,6 +39,7 @@
         echo "{$predvidjanje->Sadrzaj}</td></tr>";
         echo '<tr class="last">';
         echo "<td width='25%'>&nbsp;&nbsp;"
+            . "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22'></a> "
             . "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
             . "<a href=''><img src='".base_url()."/slike/hate.png' height='22'></a> "
             . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>";        
@@ -113,3 +114,14 @@
 </div>
 </div> 
 </div> </div>
+<div id="olovka" class="modalDialog">
+     <div>
+		<a href="#close" title="Close" class="close">X</a>
+		<h2>Postavite status vaseg predvidjanja</h2>
+                <form>
+                    <input type="radio" name="dane" value="DA">ISPUNJENO
+                    <input type="radio" name="dane" value="NE">NEISPUNJENO 
+                    <button type="submit" class="button2">POTVRDA</button>
+                </form>
+	</div>
+</div>

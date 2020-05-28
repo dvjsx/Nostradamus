@@ -23,10 +23,11 @@ class Korisnik extends BaseController
         echo view('sablon/footer');         
     }
     public function index()
-    {
-        $predvidjanjeModel=new PredvidjanjeModel();
-        $predvidjanja=$predvidjanjeModel->findAll();
-	$this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
+    {$data['kor_ime']=$this->session->get('kor_tip');
+      $predvidjanjeModel=new PredvidjanjeModel();
+      $predvidjanja=$predvidjanjeModel->findAll();    
+      $data['predvidjanja']=$predvidjanja;
+      $this->prikaz('pregled_predvidjanja', $data);
     }
     /**  pregled sopstvenog profila odredjenog korisnika,imamo dve metode,jednu za pregled predvidjanja a drugu za pregled ideja **/
    public function pregledprofilapredvidjanja() {
@@ -78,51 +79,69 @@ class Korisnik extends BaseController
         return redirect()->to(site_url('/'));
     }
  public function pregled_predvidjanja() {
+      $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
-      $predvidjanja=$predvidjanjeModel->findAll();      
-      $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
+      $predvidjanja=$predvidjanjeModel->findAll();    
+      $data['predvidjanja']=$predvidjanja;
+      $this->prikaz('pregled_predvidjanja', $data);
   }
   public function sortPredvidjanjeNovo() {
+      $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->dohvati_najnovija_predvidjanja();      
-      $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);     
+      $data['predvidjanja']=$predvidjanja;
+      $this->prikaz('pregled_predvidjanja', $data);     
   }
   public function sortPredvidjanjePopularno() {
+      $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->dohvati_najpopularnija_predvidjanja();      
-      $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);     
+    $data['predvidjanja']=$predvidjanja;
+      $this->prikaz('pregled_predvidjanja', $data);        
   }
     public function sortPredvidjanjeNajteze() {
+        $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->dohvati_najteza_predvidjanja();     
-      $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);     
+      $data['predvidjanja']=$predvidjanja;
+      $this->prikaz('pregled_predvidjanja', $data);          
   }
   public function pretragaPredvidjanja(){
+       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
       $korisnik= $this->request->getVar("pretraga");
       $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($korisnik);
-      $this->prikaz('pregled_predvidjanja', ['predvidjanja'=>$predvidjanja]);
+      $data['predvidjanja']=$predvidjanja;
+      $this->prikaz('pregled_predvidjanja', $data);     
   }
   public function pregled_ideja() {
+       $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
-      $ideje=$idejaModel->findAll();      
-      $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);
+      $ideje=$idejaModel->findAll(); 
+      $data['ideje']=$ideje;
+      $this->prikaz('pregled_ideja', $data);
   }
   public function sortIdejaAktuelno() {
+       $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
       $ideje=$idejaModel->dohvati_najaktuelnije_ideje();      
-      $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);     
+      $data['ideje']=$ideje;
+      $this->prikaz('pregled_ideja', $data);     
   }
   public function sortIdejaPopularno() {
+       $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
       $ideje=$idejaModel->dohvati_najpopularnije_ideje();      
-      $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);         
+       $data['ideje']=$ideje;
+      $this->prikaz('pregled_ideja', $data);
   } 
   public function pretragaIdeja(){
+      $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
       $korisnik= $this->request->getVar("pretraga");
       $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($korisnik);
-      $this->prikaz('pregled_ideja', ['ideje'=>$ideje]);
+      $data['ideje']=$ideje;
+      $this->prikaz('pregled_ideja', $data);
   } 
   //mislim da je najlakse za implementaciju da se uklone cekboxovi i da korisnik moze da daje ideju
   //sa prikaza ideja, a predvidjanja sa prikaza predvidjanja

@@ -43,9 +43,9 @@
         echo '<tr><td colspan="4" class="sadrzaj">';
         echo "{$predvidjanje->Sadrzaj}</td></tr>";
         echo '<tr class="last">';
-        echo "<td width='25%'>&nbsp;&nbsp;"
-            . "<a href=''><img src='".base_url()."/slike/pencil.png' height='22'></a> "
-            . "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
+        echo "<td width='25%'>&nbsp;&nbsp;";
+       if($kor_ime=="administratoru" || $kor_ime=="moderatoru") {   echo    "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22'></a> "; }
+       echo   "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
             . "<a href=''><img src='".base_url()."/slike/hate.png' height='22'></a> "           
             . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>"        ;
         echo "<td width='15%'><img src='".base_url()."/slike/weight.png' height='22'> ";        
@@ -56,4 +56,26 @@
         echo  "</table>";
     }
     ?>
+</div>
+<div id="olovka" class="modalDialog">
+    <?php if($kor_ime=='administratoru') { ?>
+    <div>
+		<a href="#close" title="Close" class="close">X</a>
+		<h2>Zelite li da obrisete ovo predvidjanje?</h2>
+                <button type="button" class="button2">DA,POTVRDJUJEM BRISANJE PREDVIDJANJA</button>
+                
+	</div>
+    <?php } ?>
+        <?php if($kor_ime=='moderatoru') { ?>
+    <div>
+		<a href="#close" title="Close" class="close">X</a>
+		<h2>Zelite da izmenite status predvidjanja?</h2>
+                <form>
+                    <input type="radio" name="dane" value="DA">ISPUNJENO
+                    <input type="radio" name="dane" value="NE">NEISPUNJENO 
+                    <button type="submit" class="button2">POTVRDA</button>
+                </form>
+	</div>
+    <?php } ?>
+    
 </div>
