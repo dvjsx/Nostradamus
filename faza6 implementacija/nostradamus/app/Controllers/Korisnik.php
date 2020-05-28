@@ -27,6 +27,7 @@ class Korisnik extends BaseController
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->findAll();    
       $data['predvidjanja']=$predvidjanja;
+      $_SESSION['predvidjanje']='index';      
       $this->prikaz('pregled_predvidjanja', $data);
     }
     /**  pregled sopstvenog profila odredjenog korisnika,imamo dve metode,jednu za pregled predvidjanja a drugu za pregled ideja **/
@@ -90,24 +91,27 @@ class Korisnik extends BaseController
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->dohvati_najnovija_predvidjanja();      
       $data['predvidjanja']=$predvidjanja;
+      $_SESSION['predvidjanje']='novo';
       $this->prikaz('pregled_predvidjanja', $data);     
   }
   public function sortPredvidjanjePopularno() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->dohvati_najpopularnija_predvidjanja();      
-    $data['predvidjanja']=$predvidjanja;
+      $data['predvidjanja']=$predvidjanja;
+      $_SESSION['predvidjanje']='popularno';
       $this->prikaz('pregled_predvidjanja', $data);        
   }
     public function sortPredvidjanjeNajteze() {
-        $data['kor_ime']=$this->session->get('kor_tip');
+      $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->dohvati_najteza_predvidjanja();     
       $data['predvidjanja']=$predvidjanja;
+      $_SESSION['predvidjanje']='tezina';
       $this->prikaz('pregled_predvidjanja', $data);          
   }
   public function pretragaPredvidjanja(){
-       $data['kor_ime']=$this->session->get('kor_tip');
+      $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
       $korisnik= $this->request->getVar("pretraga");
       $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($korisnik);
@@ -115,24 +119,24 @@ class Korisnik extends BaseController
       $this->prikaz('pregled_predvidjanja', $data);     
   }
   public function pregled_ideja() {
-       $data['kor_ime']=$this->session->get('kor_tip');
+      $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
       $ideje=$idejaModel->findAll(); 
       $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);
   }
   public function sortIdejaAktuelno() {
-       $data['kor_ime']=$this->session->get('kor_tip');
+      $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
       $ideje=$idejaModel->dohvati_najaktuelnije_ideje();      
       $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);     
   }
   public function sortIdejaPopularno() {
-       $data['kor_ime']=$this->session->get('kor_tip');
+      $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
       $ideje=$idejaModel->dohvati_najpopularnije_ideje();      
-       $data['ideje']=$ideje;
+      $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);
   } 
   public function pretragaIdeja(){
@@ -249,21 +253,27 @@ class Korisnik extends BaseController
    */
   public function voliPredvidjanje()
   {
+      $data['korisnik']=$this->session->get('korisnik');
       $korisnik= $this->session->get("korisnik");
       $predvidjanjeId= $this->request->uri->getSegment(3);
       $predvidjanjeModel=new PredvidjanjeModel();      
       $predvidjanje= $predvidjanjeModel->dohvati_predvidjanja_id($predvidjanjeId);
       $voliModel=new VoliModel();
-      if ($voliModel->vec_voli($korisnik->IdK, $predvidjanje->IdP))
-      {
-          //moze mozda neka poruka o gresci, a iskreno i ne mora
-          return;
-      }
-      else
-      {
+      if (!$voliModel->vec_voli($korisnik->IdK, $predvidjanje->IdP))
+      {          
           $predvidjanjeModel->voli($predvidjanje->IdP, true);
           $posl_id=$voliModel->poslednji_vestackiId();
-          $voliModel->voli($korisnik->IdK, $predvidjanje->IdP, $posl_id+1);
+          $voliModel->voli($korisnik->IdK, $predvidjanje->IdP, $posl_id+1);   
+      }
+      $stranica= $this->session->get('predvidjanje');
+      if($stranica=="novo"){
+          $this->sortPredvidjanjeNovo();
+      }else if($stranica=="popularno"){
+          $this->sortPredvidjanjePopularno();
+      }else if($stranica=="tezina"){
+          $this->sortPredvidjanjeNajteze();
+      }else{
+          $this->pregled_predvidjanja();
       }
   }
   /**
@@ -272,20 +282,26 @@ class Korisnik extends BaseController
   public function neVoliPredvidjanje()
   {
       $korisnik= $this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje"); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
+      $predvidjanjeId= $this->request->uri->getSegment(3);
+      $predvidjanjeModel=new PredvidjanjeModel();      
+      $predvidjanje= $predvidjanjeModel->dohvati_predvidjanja_id($predvidjanjeId);      
       $voliModel=new VoliModel();
-      if ($voliModel->vec_voli($korisnik->IdK, $predvidjanje->IdP))
+      if (!$voliModel->vec_voli($korisnik->IdK, $predvidjanje->IdP))
       {
-          //moze mozda neka poruka o gresci, a iskreno i ne mora
-          return;
-      }
-      else
-      {
-          $predvidjanjeModel=new PredvidjanjeModel();
           $predvidjanjeModel->voli($predvidjanje->IdP, false);
           $posl_id=$voliModel->poslednji_vestackiId();
           $voliModel->voli($korisnik->IdK, $predvidjanje->IdP, $posl_id+1);
       }
+      $stranica= $this->session->get('predvidjanje');
+      if($stranica=="novo"){
+          $this->sortPredvidjanjeNovo();
+      }else if($stranica=="popularno"){
+          $this->sortPredvidjanjePopularno();
+      }else if($stranica=="tezina"){
+          $this->sortPredvidjanjeNajteze();
+      }else{
+          $this->pregled_predvidjanja();
+      }      
   }
   /**
    * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
@@ -293,7 +309,9 @@ class Korisnik extends BaseController
   public function oceniPredvidjanje()
   {
       $korisnik= $this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje"); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
+      $predvidjanjeId= $this->request->uri->getSegment(3);
+      $predvidjanjeModel=new PredvidjanjeModel();      
+      $predvidjanje= $predvidjanjeModel->dohvati_predvidjanja_id($predvidjanjeId);        
       $ocena=$this->request->getVar("ocena");//pretpostavljam da ce tako biti najlakse dohvatiti, slovbodno promeniti
       $oceniModel=new DajeOcenuModel();
       if ($oceniModel->vec_dao_ocenu($korisnik->IdK, $predvidjanje->IdP) || date("Y-m-d H:i:s")>$predvidjanje->DatumEvaluacije)//ne sme se ni davati tezina minulom predvidjanju
@@ -302,9 +320,7 @@ class Korisnik extends BaseController
           return;
       }
       else
-      {
-          
-          $predvidjanjeModel=new PredvidjanjeModel();
+      {          
           $predvidjanjeModel->daje_ocenu($predvidjanje->IdP, $ocena);
           $posl_id=$oceniModel->poslednji_vestackiId();
           $oceniModel->daje_ocenu($korisnik->IdK, $predvidjanje->IdP, $ocena, $posl_id+1);
