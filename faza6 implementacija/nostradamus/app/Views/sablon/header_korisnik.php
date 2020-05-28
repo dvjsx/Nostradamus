@@ -15,7 +15,7 @@
                     <td class="podesavanje" width="" ><span class="cursive">Dobro dosli, <?php echo $korisnik->Username ?></span></td>
                 <td width="5%" rowspan="0">                    
                     <a href='<?php echo base_url()."/$controller/pregledprofilapredvidjanja" ?>'><image src="/slike/avatar.png" height="70px"></a> </td>              
-                <td width="10%"> &nbsp&nbsp;<a href='<?php echo base_url()."/$controller/logout" ?>' class="linkstyle">Izloguj se</a> </td>                
+                <td width="10%"> &nbsp;&nbsp;<a href='<?php echo base_url()."/$controller/logout" ?>' class="linkstyle">Izloguj se</a> </td>                
             </tr> 
         </table> 
         </form>
