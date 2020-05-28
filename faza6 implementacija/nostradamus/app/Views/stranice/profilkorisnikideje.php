@@ -63,8 +63,8 @@
                 </td>
             </tr>
         </table>
-            <form>
-                <table >
+            <form id='dodavanje_ideja_forma' method='post' action='<?= site_url("{$controller}/dajIdeju") ?>'>
+                 <table >
                     <tr >
                         <td class="box3"><center><h1>Dodaj novo</h1></center></td>
                     </tr>
@@ -72,8 +72,8 @@
                   <div class="wrapbox">
                       <tr class="box4">  <td width="200px">
                             <input type="radio" name="izaberi" checked id="predvidjanje">
-                            <label for="predvidjanja">Predvidjanje</label>    </td> 
-                          <td width="200px">  <input type="radio" name="izaberi" id="predvidjanje" > <label for="predvidjanja">Ideja</label></td>
+                                <label for="predvidjanja">Ideja</label>    </td> 
+                         
                      
                     </tr> 
                     <tr class="box5">
@@ -81,7 +81,7 @@
                     <center><h1>Datum:</h1></center>
                         </td>
                         <td width="50px">
-                            <input type="date"  >
+                            <input type="date"  name='datumPredvidjanja' value="<?= set_value('datumPredvidjanja')?>">
                         </td>
                     </tr>
                      <tr class="box6">
@@ -89,12 +89,12 @@
                     <center><h1>Naslov:</h1></center>
                         </td>
                         <td width="50px">
-                            <input type="text" size="30" placeholder="Unesi naslov ovde......" >
+                            <input type="text" size="30"  name='naslovPredvidjanja' value="<?= set_value('naslovPredvidjanja')?>" placeholder="Unesi naslov ovde......" >
                         </td>
                     </tr>
                     <tr>
                         <td class="box7">
-                            <textarea rows="10" cols="66" placeholder="Upisite tekst svoje ideje/predvidjanja ovde............"></textarea>
+                            <textarea rows="10" cols="66" name='sadrzajPredvidjanja' value="<?= set_value('sadrzajPredvidjanja')?>" placeholder="Upisite tekst svoje ideje/predvidjanja ovde............"></textarea>
                         </td>
                     </tr>
                     

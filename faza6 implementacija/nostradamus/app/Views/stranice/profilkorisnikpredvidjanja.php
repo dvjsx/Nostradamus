@@ -77,7 +77,7 @@
                       <tr class="box4">  <td width="200px">
                             <input type="radio" name="izaberi" checked id="predvidjanje">
                             <label for="predvidjanja">Predvidjanje</label>    </td> 
-                          <td width="200px">  <input type="radio" name="izaberi" id="predvidjanje" > <label for="predvidjanja">Ideja</label></td>
+                         
                      
                     </tr> 
                     <tr class="box5">
