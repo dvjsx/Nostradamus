@@ -250,7 +250,9 @@ class Korisnik extends BaseController
   public function voliPredvidjanje()
   {
       $korisnik= $this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje"); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
+      $predvidjanjeId= $this->request->uri->getSegment(3);
+      $predvidjanjeModel=new PredvidjanjeModel();      
+      $predvidjanje= $predvidjanjeModel->dohvati_predvidjanja_id($predvidjanjeId);
       $voliModel=new VoliModel();
       if ($voliModel->vec_voli($korisnik->IdK, $predvidjanje->IdP))
       {
@@ -259,7 +261,6 @@ class Korisnik extends BaseController
       }
       else
       {
-          $predvidjanjeModel=new PredvidjanjeModel();
           $predvidjanjeModel->voli($predvidjanje->IdP, true);
           $posl_id=$voliModel->poslednji_vestackiId();
           $voliModel->voli($korisnik->IdK, $predvidjanje->IdP, $posl_id+1);
