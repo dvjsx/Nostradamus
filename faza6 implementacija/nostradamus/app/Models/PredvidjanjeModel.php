@@ -174,5 +174,10 @@ class PredvidjanjeModel extends Model
     {
         $this->delete($idP);
     }
+    
+    public function dohvati_predvidjanja_id($predvidjanjeId)
+    {
+        return $this->where("IdP",$predvidjanjeId)->first();
+    }
 }
 
