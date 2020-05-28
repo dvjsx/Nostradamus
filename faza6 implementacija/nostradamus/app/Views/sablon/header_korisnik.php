@@ -12,7 +12,8 @@
                     <a href="<?php echo base_url()."/$controller"; ?>">
                         <?php echo "<img src='".base_url()."/slike/crystal_ball.png'>"; ?>
                     </a></td>
-                    <td class="podesavanje" width="" ><span class="cursive">Dobro dosli, <?php echo $korisnik->Username ?></span></td>
+                    <td class="podesavanje2" rowspan="0"  >Dobro dosli <?php echo $kor_tip ?> <?php echo $korisnik->Username ?></td>
+                    
                 <td width="5%" rowspan="0">                    
                     <a href='<?php echo base_url()."/$controller/pregledprofilapredvidjanja" ?>'><image src="/slike/avatar.png" height="70px"></a> </td>              
                 <td width="10%"> &nbsp;&nbsp;<a href='<?php echo base_url()."/$controller/logout" ?>' class="linkstyle">Izloguj se</a> </td>                

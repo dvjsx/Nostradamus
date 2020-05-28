@@ -263,7 +263,13 @@ span.ikonice{
     color:#212529;
     margin-top: 20px;
     font-family: cursive;
-   
+}    
+.podesavanje2 {
+    color:#212529;
+    margin-top: 35px;
+    font-family: cursive;
+    float:right;
+    margin-right: 20px;
 }    
 #uputstvo {
     position: absolute;
