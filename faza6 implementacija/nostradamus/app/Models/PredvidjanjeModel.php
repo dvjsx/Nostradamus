@@ -125,10 +125,10 @@ class PredvidjanjeModel extends Model
     public function daje_ocenu($idP,$ocena)
     {
         $predvidjanje= $this->find($idP);
-        $nom=$predvidjanje->NominalnaTezina;
-        $predvidjanje->NominalnaTezina=($nom*$predvidjanje->BrOcena+$ocena)/($predvidjanje->BrOcena+1);
+        $nom=$predvidjanje->Nominalna_Tezina;
+        $predvidjanje->Nominalna_Tezina=($nom*$predvidjanje->BrOcena+$ocena)/($predvidjanje->BrOcena+1);
         $predvidjanje->BrOcena++;
-        $predvidjanje->Tezina= $this->izracunaj_tezinu($predvidjanje->NominalnaTezina, $predvidjanje->DatumNastanka, $predvidjanje->DatumEvaluacije);
+        $predvidjanje->Tezina= $this->izracunaj_tezinu($predvidjanje->Nominalna_Tezina, $predvidjanje->DatumNastanka, $predvidjanje->DatumEvaluacije);
         $this->save($predvidjanje);
         
     }

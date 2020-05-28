@@ -253,7 +253,6 @@ class Korisnik extends BaseController
    */
   public function voliPredvidjanje()
   {
-      $data['korisnik']=$this->session->get('korisnik');
       $korisnik= $this->session->get("korisnik");
       $predvidjanjeId= $this->request->uri->getSegment(3);
       $predvidjanjeModel=new PredvidjanjeModel();      
@@ -312,19 +311,24 @@ class Korisnik extends BaseController
       $predvidjanjeId= $this->request->uri->getSegment(3);
       $predvidjanjeModel=new PredvidjanjeModel();      
       $predvidjanje= $predvidjanjeModel->dohvati_predvidjanja_id($predvidjanjeId);        
-      $ocena=$this->request->getVar("ocena");//pretpostavljam da ce tako biti najlakse dohvatiti, slovbodno promeniti
+      $ocena=$_POST[$predvidjanjeId];//pretpostavljam da ce tako biti najlakse dohvatiti, slovbodno promeniti
       $oceniModel=new DajeOcenuModel();
-      if ($oceniModel->vec_dao_ocenu($korisnik->IdK, $predvidjanje->IdP) || date("Y-m-d H:i:s")>$predvidjanje->DatumEvaluacije)//ne sme se ni davati tezina minulom predvidjanju
-      {
-          //moze mozda neka poruka o gresci, a iskreno i ne mora
-          return;
-      }
-      else
+      if (!$oceniModel->vec_dao_ocenu($korisnik->IdK, $predvidjanje->IdP) || !date("Y-m-d H:i:s")>$predvidjanje->DatumEvaluacije)
       {          
           $predvidjanjeModel->daje_ocenu($predvidjanje->IdP, $ocena);
           $posl_id=$oceniModel->poslednji_vestackiId();
           $oceniModel->daje_ocenu($korisnik->IdK, $predvidjanje->IdP, $ocena, $posl_id+1);
       }
+      $stranica= $this->session->get('predvidjanje');
+      if($stranica=="novo"){
+          $this->sortPredvidjanjeNovo();
+      }else if($stranica=="popularno"){
+          $this->sortPredvidjanjePopularno();
+      }else if($stranica=="tezina"){
+          $this->sortPredvidjanjeNajteze();
+      }else{
+          $this->pregled_predvidjanja();
+      }        
   }
   public function dajStatusSvomPredvidjanju()
   {

@@ -456,3 +456,47 @@ a.linkstyle:hover,a.linkstyle:active {
     float:right;
      border: 1px solid black;
 }
+
+span.cursive{
+    font-family: cursive;
+    font-weight: bold;
+    font-size: 24px;
+    color: white;
+    float: right;
+    padding-right:5;
+}
+.uputstvo a:hover{
+    background-color: #2f5473;  
+    border:1px solid black;
+}
+
+.rating{
+    position:relative;
+    display:flex;
+    flex-direction: row-reverse;
+    border:1px solid #000;
+    box-sizing: border-box;
+    background: linear-gradient(to left, #f00, #ff0, #0f0);
+}
+.rating input{
+    display:none;
+}
+
+.rating label{
+    cursor:pointer;
+    width:100%;
+    height:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    background: #fff;
+    color: #000;
+    border-right: 1px solid #000; 
+    font-size:15px;  
+}
+
+.rating input[type="radio"]:hover ~ label,
+.rating input[type="radio"]:checked ~label{
+    background: transparent;
+}
