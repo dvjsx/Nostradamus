@@ -44,9 +44,7 @@
         echo '<tr class="last">';
         echo "<td width='25%'>&nbsp;&nbsp;";
            if($kor_ime=="administratoru") {   echo    "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22'></a> "; }
-       echo   "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
-            . "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
-            . "<a href=''><img src='".base_url()."/slike/hate.png' height='22'></a> "
+       echo   "<img src='".base_url()."/slike/star.png' height='22'> "
             . "<span class='ikonice'>{$plus}{$ideja->Popularnost}</span></td>" ;
             
         echo "<td width='15%'>&nbsp;</td>";
