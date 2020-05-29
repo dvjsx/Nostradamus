@@ -106,9 +106,9 @@
                 </table>
                
                    
-               
+               <button class="dugme" type="submit">Prihvati dodavanje</button>
             </form>
-             <button class="dugme" type="submit">Prihvati dodavanje</button>
+             
         </table>
 </div>
 </div> 

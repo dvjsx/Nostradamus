@@ -141,7 +141,7 @@ class Administrator extends BaseController
   public function dajIdeju()
   {
       $korisnik= $this->session->get('korisnik');
-      $kor_tip= $this->sesssion->get('kor_tip');
+      $kor_tip= $this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
       $errors=[];
       $naslov=$this->request->getVar('naslovPredvidjanja');
