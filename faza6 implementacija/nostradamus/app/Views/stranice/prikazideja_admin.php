@@ -16,8 +16,11 @@
    
 
     <div class="col-md-4" > 
-        <td id="uputstvo" >
-         <a href="<?= site_url("$controller/uputstvo") ?>" ><image src="/slike/notepad.png" height="40px" width="40px" ></a> </td>
+         <td id="uputstvo" >
+            <span class="uputstvo"><a href='<?php echo base_url("/$controller/uputstvo") ?>'>
+                    <image src="/slike/notepad.png" height="40px"></a>
+            </span>
+        </td>
   </div>
   </table> </div> </div>
 <div class="row">

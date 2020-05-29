@@ -124,20 +124,23 @@ class Gost extends BaseController
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->dohvati_najnovija_predvidjanja();      
       $data['predvidjanja']=$predvidjanja;
+      $_SESSION['predvidjanje']='novo';
       $this->prikaz('pregled_predvidjanja', $data);     
   }
   public function sortPredvidjanjePopularno() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->dohvati_najpopularnija_predvidjanja();      
-    $data['predvidjanja']=$predvidjanja;
+      $data['predvidjanja']=$predvidjanja;
+      $_SESSION['predvidjanje']='popularno';
       $this->prikaz('pregled_predvidjanja', $data);        
   }
     public function sortPredvidjanjeNajteze() {
-        $data['kor_ime']=$this->session->get('kor_tip');
+      $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->dohvati_najteza_predvidjanja();     
       $data['predvidjanja']=$predvidjanja;
+      $_SESSION['predvidjanje']='tezina';      
       $this->prikaz('pregled_predvidjanja', $data);          
   }
   public function pretragaPredvidjanja(){
@@ -201,5 +204,41 @@ class Gost extends BaseController
    {
        $this->prikaz("uputstvo", []);
    }
+  public function voliPredvidjanje(){
+      $stranica= $this->session->get('predvidjanje');
+      if($stranica=="novo"){
+          $this->sortPredvidjanjeNovo();
+      }else if($stranica=="popularno"){
+          $this->sortPredvidjanjePopularno();
+      }else if($stranica=="tezina"){
+          $this->sortPredvidjanjeNajteze();
+      }else{
+          $this->pregled_predvidjanja();
+      }
+  }  
+  public function neVoliPredvidjanje(){
+      $stranica= $this->session->get('predvidjanje');
+      if($stranica=="novo"){
+          $this->sortPredvidjanjeNovo();
+      }else if($stranica=="popularno"){
+          $this->sortPredvidjanjePopularno();
+      }else if($stranica=="tezina"){
+          $this->sortPredvidjanjeNajteze();
+      }else{
+          $this->pregled_predvidjanja();
+      }
+  }
+  public function oceniPredvidjanje(){
+      $stranica= $this->session->get('predvidjanje');
+      if($stranica=="novo"){
+          $this->sortPredvidjanjeNovo();
+      }else if($stranica=="popularno"){
+          $this->sortPredvidjanjePopularno();
+      }else if($stranica=="tezina"){
+          $this->sortPredvidjanjeNajteze();
+      }else{
+          $this->pregled_predvidjanja();
+      }
+  }   
   
 }
