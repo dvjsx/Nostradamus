@@ -43,7 +43,7 @@
         echo '<tr><th class="naslov" colspan="4">';
         echo "{$predvidjanje->Naslov}</th>";
         echo '<td class="datum">';
-        echo "{$predvidjanje->DatumNastanka}</td></tr>";
+        echo "{$predvidjanje->DatumEvaluacije}</td></tr>";
         echo '<tr><td colspan="5" class="sadrzaj">';
         echo "{$predvidjanje->Sadrzaj}</td></tr>";
         echo '<tr class="last">';
