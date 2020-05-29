@@ -8,6 +8,8 @@ use App\Models\ModeratorModel;
 use App\Models\PredvidjanjeModel;
 use App\Models\IdejaModel;
 use App\Models\Odgovor_naModel;
+use App\Models\VoliModel;
+use App\Models\DajeOcenuModel;
 
 class Administrator extends BaseController
 {
@@ -245,19 +247,25 @@ class Administrator extends BaseController
   public function voliPredvidjanje()
   {
       $korisnik= $this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje"); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
+      $predvidjanjeId= $this->request->uri->getSegment(3);
+      $predvidjanjeModel=new PredvidjanjeModel();      
+      $predvidjanje= $predvidjanjeModel->dohvati_predvidjanja_id($predvidjanjeId);
       $voliModel=new VoliModel();
-      if ($voliModel->vec_voli($korisnik->IdK, $predvidjanje->IdP))
-      {
-          //moze mozda neka poruka o gresci, a iskreno i ne mora
-          return;
-      }
-      else
-      {
-          $predvidjanjeModel=new PredvidjanjeModel();
+      if (!$voliModel->vec_voli($korisnik->IdK, $predvidjanje->IdP))
+      {          
           $predvidjanjeModel->voli($predvidjanje->IdP, true);
           $posl_id=$voliModel->poslednji_vestackiId();
-          $voliModel->voli($korisnik->IdK, $predvidjanje->IdP, $posl_id+1);
+          $voliModel->voli($korisnik->IdK, $predvidjanje->IdP, $posl_id+1);   
+      }
+      $stranica= $this->session->get('predvidjanje');
+      if($stranica=="novo"){
+          $this->sortPredvidjanjeNovo();
+      }else if($stranica=="popularno"){
+          $this->sortPredvidjanjePopularno();
+      }else if($stranica=="tezina"){
+          $this->sortPredvidjanjeNajteze();
+      }else{
+          $this->pregled_predvidjanja();
       }
   }
   /**
@@ -266,20 +274,26 @@ class Administrator extends BaseController
   public function neVoliPredvidjanje()
   {
       $korisnik= $this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje"); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
+      $predvidjanjeId= $this->request->uri->getSegment(3);
+      $predvidjanjeModel=new PredvidjanjeModel();      
+      $predvidjanje= $predvidjanjeModel->dohvati_predvidjanja_id($predvidjanjeId);      
       $voliModel=new VoliModel();
-      if ($voliModel->vec_voli($korisnik->IdK, $predvidjanje->IdP))
+      if (!$voliModel->vec_voli($korisnik->IdK, $predvidjanje->IdP))
       {
-          //moze mozda neka poruka o gresci, a iskreno i ne mora
-          return;
-      }
-      else
-      {
-          $predvidjanjeModel=new PredvidjanjeModel();
           $predvidjanjeModel->voli($predvidjanje->IdP, false);
           $posl_id=$voliModel->poslednji_vestackiId();
           $voliModel->voli($korisnik->IdK, $predvidjanje->IdP, $posl_id+1);
       }
+      $stranica= $this->session->get('predvidjanje');
+      if($stranica=="novo"){
+          $this->sortPredvidjanjeNovo();
+      }else if($stranica=="popularno"){
+          $this->sortPredvidjanjePopularno();
+      }else if($stranica=="tezina"){
+          $this->sortPredvidjanjeNajteze();
+      }else{
+          $this->pregled_predvidjanja();
+      }      
   }
   /**
    * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
@@ -287,22 +301,27 @@ class Administrator extends BaseController
   public function oceniPredvidjanje()
   {
       $korisnik= $this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje"); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
-      $ocena=$this->request->getVar("ocena");//pretpostavljam da ce tako biti najlakse dohvatiti, slovbodno promeniti
+      $predvidjanjeId= $this->request->uri->getSegment(3);
+      $predvidjanjeModel=new PredvidjanjeModel();      
+      $predvidjanje= $predvidjanjeModel->dohvati_predvidjanja_id($predvidjanjeId);        
+      $ocena=$_POST[$predvidjanjeId];//pretpostavljam da ce tako biti najlakse dohvatiti, slovbodno promeniti
       $oceniModel=new DajeOcenuModel();
-      if ($oceniModel->vec_dao_ocenu($korisnik->IdK, $predvidjanje->IdP) || date("Y-m-d H:i:s")>$predvidjanje->DatumEvaluacije)
-      {
-          //moze mozda neka poruka o gresci, a iskreno i ne mora
-          return;
-      }
-      else
-      {
-          
-          $predvidjanjeModel=new PredvidjanjeModel();
+      if (!$oceniModel->vec_dao_ocenu($korisnik->IdK, $predvidjanje->IdP) || !date("Y-m-d H:i:s")>$predvidjanje->DatumEvaluacije)
+      {          
           $predvidjanjeModel->daje_ocenu($predvidjanje->IdP, $ocena);
           $posl_id=$oceniModel->poslednji_vestackiId();
           $oceniModel->daje_ocenu($korisnik->IdK, $predvidjanje->IdP, $ocena, $posl_id+1);
       }
+      $stranica= $this->session->get('predvidjanje');
+      if($stranica=="novo"){
+          $this->sortPredvidjanjeNovo();
+      }else if($stranica=="popularno"){
+          $this->sortPredvidjanjePopularno();
+      }else if($stranica=="tezina"){
+          $this->sortPredvidjanjeNajteze();
+      }else{
+          $this->pregled_predvidjanja();
+      }        
   }
   /**
    * Netestirano, izmeniti ako se menja u korisnik kontroleru
@@ -370,9 +389,17 @@ class Administrator extends BaseController
   //mozda treba da se ubaci i moderatoru, sad sam zaboravio, proveriti to
   public function obrisati_predvidjanje()
   {
-      $korisnik=$this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje");//ista stvar sa dohvatanjem ovoga
-      $predvidjanjeModel=new PredvidjanjeModel();
+      echo $this->request->uri->getSegment(3);
+      return;
+      $korIme= $this->request->uri->getSegment(4);
+      $korisnikModel=new KorisnikModel();
+      $korisnik=$korisnikModel->dohvati_korisnika($korIme);
+      
+      $predvidjanjeId= $this->request->uri->getSegment(3);
+      $predvidjanjeModel=new PredvidjanjeModel();      
+      $predvidjanje= $predvidjanjeModel->dohvati_predvidjanja_id($predvidjanjeId);   
+      
+      
       $predvidjanjeModel->obrisi_predvidjanje($predvidjanje->IdP);
       $odgovor_na_model=new Odgovor_naModel();
       $odgovor_na_model->obrisi_predvidjanje($predvidjanje->IdP);
