@@ -45,49 +45,66 @@
         if($predvidjanje->Popularnost>0) $plus="+";
             else $plus="";
             
-        /*$rok= new DateTime($predvidjanje->DatumEvaluacije);
+        $rok= new DateTime($predvidjanje->DatumEvaluacije);
         $now=new DateTime($time="now");
+        $flag=false;
         if($rok<$now){
+            $flag=true;
             if($predvidjanje->Status=="ISPUNJENO") echo '<table class="ispunjeno">';
                 else if($predvidjanje->Status=="NEISPUNJENO") echo '<table class="neispunjeno">';
                 else echo '<table class="cekanje">';
-        } else echo '<table class="content" border="0">';*/
+        } 
+        else { echo '<table class="content" border="0">';}
         
-        echo '<table class="content" border="0">';            
+       // echo '<table class="content" border="0">';            
         echo '<tr><th class="naslov" colspan="4">';
         echo "{$predvidjanje->Naslov}</th>";
+        
         echo '<td class="datum">';
         echo "{$predvidjanje->DatumEvaluacije}</td></tr>";
+        
         echo '<tr><td colspan="5" class="sadrzaj">';
         echo "{$predvidjanje->Sadrzaj}</td></tr>";
+        
         echo '<tr class="last">';
         echo "<td width='15%'>&nbsp;&nbsp;";
+        
        if($kor_ime=="administratoru" || $kor_ime=="moderatoru") {   echo    "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22' onclick='(zapamtiId({$predvidjanje->IdP}))'></a> "; }
-       echo   "<a href='$base/$controller/voliPredvidjanje/$predvidjanje->IdP'><img src='".base_url()."/slike/love.png' height='22'></a> "
-            . "<a href='$base/$controller/neVoliPredvidjanje/$predvidjanje->IdP'><img src='".base_url()."/slike/hate.png' height='22'></a> "      
-            . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>"        ;
-            
-        echo "<td width='10%'><img src='".base_url()."/slike/weight.png' height='22'> ";        
-        echo "<span class='ikonice'>{$predvidjanje->Tezina}</span></form></td>";
-        
-        echo "<form name='ocena_tezine' method='post'
-          action='$base/$controller/oceniPredvidjanje/$predvidjanje->IdP'>";
-        echo "<td><span class='rating'>"
-            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}10' value='10'><label for='{$predvidjanje->IdP}10'>10</label>"
-            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}9' value='9'><label for='{$predvidjanje->IdP}9'>9</label>"
-            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}8' value='8'><label for='{$predvidjanje->IdP}8'>8</label>"
-            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}7' value='7'><label for='{$predvidjanje->IdP}7'>7</label>"
-            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}6' value='6'><label for='{$predvidjanje->IdP}6'>6</label>"
-            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}5' value='5'><label for='{$predvidjanje->IdP}5'>5</label>"
-            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}4' value='4'><label for='{$predvidjanje->IdP}4'>4</label>"
-            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}3' value='3'><label for='{$predvidjanje->IdP}3'>3</label>"
-            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}2' value='2'><label for='{$predvidjanje->IdP}2'>2</label>"
-            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}1' value='1'><label for='{$predvidjanje->IdP}1'>1</label>"
-            . "</span></td>";
-        echo "<td width='5%'>&nbsp;&nbsp;"
-            . "<input type='image' name='ocena' src='".base_url()."/slike/rating.png' height='28'>"
-            . "</td></form>";
-        
+       if($flag==false){ //istekao rok
+        echo   "<a href='$base/$controller/voliPredvidjanje/$predvidjanje->IdP'><img src='".base_url()."/slike/love.png' height='22'></a> "
+             . "<a href='$base/$controller/neVoliPredvidjanje/$predvidjanje->IdP'><img src='".base_url()."/slike/hate.png' height='22'></a> "      
+             . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>"        ;
+
+         echo "<td width='10%'><img src='".base_url()."/slike/weight.png' height='22'> ";        
+         echo "<span class='ikonice'>{$predvidjanje->Tezina}</span></form></td>";
+
+         echo "<form name='ocena_tezine' method='post'
+           action='$base/$controller/oceniPredvidjanje/$predvidjanje->IdP'>";
+         echo "<td><span class='rating'>"
+             . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}10' value='10'><label for='{$predvidjanje->IdP}10'>10</label>"
+             . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}9' value='9'><label for='{$predvidjanje->IdP}9'>9</label>"
+             . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}8' value='8'><label for='{$predvidjanje->IdP}8'>8</label>"
+             . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}7' value='7'><label for='{$predvidjanje->IdP}7'>7</label>"
+             . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}6' value='6'><label for='{$predvidjanje->IdP}6'>6</label>"
+             . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}5' value='5'><label for='{$predvidjanje->IdP}5'>5</label>"
+             . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}4' value='4'><label for='{$predvidjanje->IdP}4'>4</label>"
+             . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}3' value='3'><label for='{$predvidjanje->IdP}3'>3</label>"
+             . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}2' value='2'><label for='{$predvidjanje->IdP}2'>2</label>"
+             . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}1' value='1'><label for='{$predvidjanje->IdP}1'>1</label>"
+             . "</span></td>";
+         echo "<td width='5%'>&nbsp;&nbsp;"
+             . "<input type='image' name='ocena' src='".base_url()."/slike/rating.png' height='28'>"
+             . "</td></form>";
+       }
+       //AKO JE ISTEKLO PREDVIDJANJE
+       else {
+           echo"<a href=''><img src='".base_url()."/slike/loveG.png' height='22'></a> "
+             . "<a href=''><img src='".base_url()."/slike/hateG.png' height='22'></a> "      
+             . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>"        ;
+           echo "<td width='10%'><img src='".base_url()."/slike/weightG.png' height='22'> ";        
+           echo "<span class='ikonice'>{$predvidjanje->Tezina}</span></form></td>";
+           echo "<td></td><td></td>";
+       }
         echo '<td class="autor">';
         echo "<a href='". site_url()."/$controller/pregledtudjegpredv/$predvidjanje->Username'>{$predvidjanje->Username} </a></td></tr>";
        

@@ -1,3 +1,8 @@
+<script type="text/javascript">
+    function zapamtiId(id){
+        document.cookie = "idTek="+id+";path=/";
+    }
+</script>
 <body>
 <div class="row">
     
@@ -36,16 +41,38 @@
     foreach ($predvidjanja as $predvidjanje) {
         if($predvidjanje->Popularnost>0) $plus="+";
             else $plus="";
-        echo '<table border="0" class="content">';
+        $rok= new DateTime($predvidjanje->DatumEvaluacije);
+        $now=new DateTime($time="now");
+        $flag=false;
+        $flagCeka=false;
+        if($rok<$now){
+            $flag=true;
+            if($predvidjanje->Status=="ISPUNJENO") echo '<table class="ispunjeno">';
+                else if($predvidjanje->Status=="NEISPUNJENO") echo '<table class="neispunjeno">';
+                else { $flagCeka=true; echo'<table class="cekanje">';}
+        } 
+        else { echo '<table class="content" border="0">';}
+                
+            
+        //echo '<table border="0" class="content">';
         echo '<tr><th class="naslov" colspan="4">';
         echo "{$predvidjanje->Naslov}</th>";
+        
         echo '<td class="datum">';
         echo "{$predvidjanje->DatumEvaluacije}</td></tr>";
+        
         echo '<tr><td colspan="5" class="sadrzaj">';
         echo "{$predvidjanje->Sadrzaj}</td></tr>";
+        
         echo '<tr class="last">';
         echo "<td width='15%'>&nbsp;&nbsp;";
-        echo "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22'></a> ";
+        
+        if($flagCeka==true){
+         echo "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22' onclick='(zapamtiId({$predvidjanje->IdP}))'></a> ";
+         
+         }
+        
+        if($flag==false){ 
        echo   "<a href='$base/$controller/voliPredvidjanje/$predvidjanje->IdP'><img src='".base_url()."/slike/love.png' height='22'></a> "
             . "<a href='$base/$controller/neVoliPredvidjanje/$predvidjanje->IdP'><img src='".base_url()."/slike/hate.png' height='22'></a> "      
             . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>"        ;
@@ -70,7 +97,15 @@
         echo "<td width='5%'>&nbsp;&nbsp;"
             . "<input type='image' name='ocena' src='".base_url()."/slike/rating.png' height='28'>"
             . "</td></form>";
-        
+        }
+        else{
+              echo"<a href=''><img src='".base_url()."/slike/loveG.png' height='22'></a> "
+             . "<a href=''><img src='".base_url()."/slike/hateG.png' height='22'></a> "      
+             . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>"        ;
+           echo "<td width='10%'><img src='".base_url()."/slike/weightG.png' height='22'> ";        
+           echo "<span class='ikonice'>{$predvidjanje->Tezina}</span></form></td>";
+           echo "<td></td><td></td>";
+        }
         echo '<td class="autor">';
             echo "{$predvidjanje->Username}</td></tr>";    
        
@@ -122,6 +157,7 @@
                         </td>
                         <td > <input type="date" size="30"  name='datumPredvidjanja' value="<?= set_value('datumPredvidjanja')?>">
                         </td>
+                        <td><?php if(!empty($errors['datum'])) { echo $errors['datum']; $errors['datum']=null;}?></td>
                     </tr>
                      <tr class="box4">
                         <td >
@@ -130,13 +166,15 @@
                         <td >
                             <input type="text" size="30"  name='naslovPredvidjanja' value="<?= set_value('naslovPredvidjanja')?>" placeholder="Unesi naslov ovde......" >
                         </td>
-                    </tr>
+         
+                      </tr>
+                      <?php if(!empty($errors['naslov'])) { echo $errors['naslov']."<br>"; $errors['naslov']=null;}?>
                     <tr class="box2">
                         <td colspan="2" class="box2">
                     <textarea class="txtarea" rows="10" cols="66" name='sadrzajPredvidjanja' value="<?= set_value('sadrzajPredvidjanja')?>" placeholder="Upisite tekst svoje ideje/predvidjanja ovde............"></textarea>
                        </td> 
                     </tr>
-                   
+                   <?php if(!empty($errors['sadrzaj'])) { echo $errors['sadrzaj']; $errors['sadrzaj']=null;}?>
                     
                 </table>
                
@@ -155,7 +193,7 @@
      <div>
 		<a href="#close" title="Close" class="close">X</a>
 		<h2>Postavite status vaseg predvidjanja</h2>
-                <form>
+                <form method="post" action='<?= base_url("$controller/dajStatusSvomPredvidjanju") ?>'>
                     <input type="radio" name="dane" value="DA">ISPUNJENO
                     <input type="radio" name="dane" value="NE">NEISPUNJENO 
                     <button type="submit" class="button2">POTVRDA</button>
