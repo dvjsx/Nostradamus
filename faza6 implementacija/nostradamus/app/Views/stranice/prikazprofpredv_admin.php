@@ -1,4 +1,9 @@
-
+<script type="text/javascript">
+    function zapamtiId(id){
+        console.log("hello");
+        document.cookie = "idTek="+id+";path=/";
+    }
+</script>
 <div class="row">
 <div class="navbar">
     <table border="0" width="100%">
@@ -30,8 +35,9 @@
     <div id="page1">
       <?php
       
-
+      $base=base_url();
     foreach ($predvidjanja as $predvidjanje) {
+        
         if($predvidjanje->Popularnost>0) $plus="+";
             else $plus="";
         echo '<table border="0" class="content">';
@@ -43,12 +49,32 @@
         echo "{$predvidjanje->Sadrzaj}</td></tr>";
         echo '<tr class="last">';
         echo "<td width='25%'>&nbsp;&nbsp;"
-        . "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22'></a> "
-            . "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
-            . "<a href=''><img src='".base_url()."/slike/hate.png' height='22'></a> "
-            . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>";        
+        . "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22' onclick='(zapamtiId({$predvidjanje->IdP}))'></a> "
+            . "<a href='$base/$controller/voliPredvidjanje/$predvidjanje->IdP'><img src='".base_url()."/slike/love.png' height='22'></a> "
+            . "<a href='$base/$controller/neVoliPredvidjanje/$predvidjanje->IdP'><img src='".base_url()."/slike/hate.png' height='22'></a> "
+            . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>"; 
+            
         echo "<td width='15%'><img src='".base_url()."/slike/weight.png' height='22'> ";        
         echo "<span class='ikonice'>{$predvidjanje->Tezina}</span></td>";
+        
+        echo "<form name='ocena_tezine' method='post'
+          action='$base/$controller/oceniPredvidjanje/$predvidjanje->IdP'>";
+         echo "<td><span class='rating'>"
+            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}10' value='10'><label for='{$predvidjanje->IdP}10'>10</label>"
+            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}9' value='9'><label for='{$predvidjanje->IdP}9'>9</label>"
+            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}8' value='8'><label for='{$predvidjanje->IdP}8'>8</label>"
+            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}7' value='7'><label for='{$predvidjanje->IdP}7'>7</label>"
+            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}6' value='6'><label for='{$predvidjanje->IdP}6'>6</label>"
+            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}5' value='5'><label for='{$predvidjanje->IdP}5'>5</label>"
+            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}4' value='4'><label for='{$predvidjanje->IdP}4'>4</label>"
+            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}3' value='3'><label for='{$predvidjanje->IdP}3'>3</label>"
+            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}2' value='2'><label for='{$predvidjanje->IdP}2'>2</label>"
+            . "<input type='radio' name='{$predvidjanje->IdP}' id='{$predvidjanje->IdP}1' value='1'><label for='{$predvidjanje->IdP}1'>1</label>"
+            . "</span></td>";
+        echo "<td width='5%'>&nbsp;&nbsp;"
+            . "<input type='image' name='ocena' src='".base_url()."/slike/rating.png' height='28'>"
+            . "</td></form>";
+        
         echo '<td></td><td class="autor">';
         echo "{$predvidjanje->Username}</td></tr>";    
         echo  "</table>";
@@ -80,8 +106,11 @@
 	<div>
 		<a href="#close" title="Close" class="close">X</a>
 		<h2>U sta zelite da promovisete datog korisnika?</h2>
-                <button type="button" class="button2">Administrator</button>
-                <button type="button" class="button3">Moderator</button>
+                <form method='post' action='<?= base_url("Administrator/promovisati")?>'>
+                 <input type="hidden" name='korisnik' value='<?php echo $user->Username ?>'>
+                <button type="submit" class="button2" name='uloga' value='admin'>Administrator</button>
+                <button type="submit" class="button3" name='uloga'value='mod'>Moderator</button>
+                </form>
 	</div>
 </div>
                 </tr> <?php } ?>
@@ -96,12 +125,13 @@
           
 	<div>
 		<a href="#close" title="Close" class="close">X</a>
-                <h2>Molim vas izaberite za koliko zelite da smanjite skor korisnika </h2> 
+                <h2>Molim vas da unesite za koliko zelite da smanjite skor korisnika </h2> 
               
         
-                            <form>
-                              <input type="number" min="0">
-                        
+                            <form method="post" action='<?= base_url("Administrator/sankcionisi_korisnika")?>'>
+ 
+                            <input type="number" name='kazna' min="0">
+                              <input type="hidden" name='korisnik' value='<?php echo $user->Username ?>'>
                              <button type="submit" class="button3">POTVRDI</button> </td>
                          </form>
                           
@@ -122,14 +152,14 @@
           
 	<div>
 		<a href="#close" title="Close" class="close">X</a>
-                <h2>Molim vas izaberite za koliko zelite da smanjite skor korisnika </h2> 
+                <h2>Molim vas unesite za koliko zelite da smanjite skor korisnika </h2> 
               
         
-                            <form>
-                              <input type="number" min="0">
-                        
+                <form method="post" action='<?= base_url("Moderator/sankcionisi_korisnika")?>'>
+                              <input type="number" name='kazna' min="0">
+                              <input type="hidden" name='korisnik' value='<?php echo $user->Username ?>'>
                              <button type="submit" class="button3">POTVRDI</button> </td>
-                         </form>
+                </form>
                           
              
 	</div>
@@ -147,7 +177,9 @@
     <div>
 		<a href="#close" title="Close" class="close">X</a>
 		<h2>Zelite li da obrisete ovo predvidjanje?</h2>
-                <button type="button" class="button2">DA,POTVRDJUJEM BRISANJE PREDVIDJANJA</button>
+                <form method="post" action='<?= base_url("Administrator/obrisati_predvidjanje")?>'>
+                <button type="submit" class="button2">DA</button>
+                </form>
                 
 	</div>
     <?php } ?>
@@ -155,7 +187,7 @@
     <div>
 		<a href="#close" title="Close" class="close">X</a>
 		<h2>Zelite da izmenite status predvidjanja?</h2>
-                <form>
+                <form method='post' action='<?= base_url("Moderator/izmeniStatusTudjegPredvidjanja") ?>'>
                     <input type="radio" name="dane" value="DA">ISPUNJENO
                     <input type="radio" name="dane" value="NE">NEISPUNJENO 
                     <button type="submit" class="button2">POTVRDA</button>

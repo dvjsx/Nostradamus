@@ -52,7 +52,7 @@ class KorisnikModel extends Model
      */
     public function sankcionisi($korisnik,$za_koliko)
     {
-        $this->uvecaj_skor($korisnik,-$za_koliko);
+        $this->uvecaj_skor($korisnik,0-$za_koliko);
     }
     /**
      * NETESTIRANO!

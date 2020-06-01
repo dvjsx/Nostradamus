@@ -1,3 +1,8 @@
+<script type="text/javascript">
+    function zapamtiId(id){
+        document.cookie = "idTekIdeja="+id+";path=/";
+    }
+</script>
 <div class="navbar">
     <table border="0" width="100%">
         <td width="10%">
@@ -46,7 +51,7 @@
         echo "{$ideja->Sadrzaj}</td></tr>";
         echo '<tr class="last">';
         echo "<td width='25%'>&nbsp;&nbsp;";
-           if($kor_ime=="administratoru") {   echo    "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22'></a> "; }
+           if($kor_ime=="administratoru") {   echo    "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22' onclick='zapamtiId({$ideja->IdI})'></a> "; }
        echo   "<img src='".base_url()."/slike/star.png' height='22'> "
             . "<span class='ikonice'>{$plus}{$ideja->Popularnost}</span></td>" ;
             
@@ -62,6 +67,7 @@
     <div>
 		<a href="#close" title="Close" class="close">X</a>
 		<h2>Zelite li da obrisete ovu ideju?</h2>
-                <button type="button" class="button2">DA,POTVRDJUJEM BRISANJE IDEJE</button>
-                
+                <form method='post' action="<?= base_url("Administrator/obrisati_ideju")?>">
+                    <button type="submit" class="button2">DA</button>
+                </form>
     </div> <?php } ?> </div>
