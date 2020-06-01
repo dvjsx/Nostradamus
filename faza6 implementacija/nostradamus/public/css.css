@@ -239,7 +239,7 @@ span.ikonice{
 #wrapper {
     margin:0 auto;
     width:100%;
-    background-color: yellow;
+    background-color: #ffcc66;
 }
 #page1 {
     width:calc(50% - 20px);
