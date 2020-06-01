@@ -4,35 +4,40 @@
     }
 </script>
 <div class="row">
+    
 <div class="navbar">
     <table border="0" width="100%">
-      <div class="col-md-2">  <td width="920px">
-  <div class="dropdown">
+        <td width="920px"> <div class="col-md-4">
+   <div class="dropdown">
     <button class="dropbtn">Ideje
     </button>
     <div class="dropdown-content">
          <a href='<?php echo base_url()."/$controller/pregledtudjegpredv/$user->Username"  ?>' >Predvidjanja</a>
     </div>
-  </div>  </td>   </div>
-    <div class="col-md-6">
+  </div>
+ </div>
+    
         <td >
+            <div class="col-md-5">
          <div class="podesavanje"> <h1><?php echo $user->Username ?></h1> </div>
-        </td> </div>
+        </div></td> 
    
 
-    <div class="col-md-4" > 
-         <td id="uputstvo" >
+    
+        <td id="uputstvo" >
+            <div class="col-md-3" > 
             <span class="uputstvo"><a href='<?php echo base_url("/$controller/uputstvo") ?>'>
                     <image src="/slike/notepad.png" height="40px"></a>
             </span>
+                </div>
         </td>
-  </div>
+  
   </table> </div> </div>
 <div class="row">
 <div id="wrapper">
     <div class="col-md-6">
     <div id="page1">
-    <?php
+     <?php
     foreach ($ideje as $ideja) {
         if($ideja->Popularnost>0) $plus="+";
             else $plus="";        
@@ -55,8 +60,8 @@
         echo  "</table>";
     }
     ?>
-     </div>  </div>
-      <div class="col-md-6">
+ </div>  </div>
+    <div class="col-md-6">
         <div id="page2">
         <table width="100%">
             <tr>
@@ -65,18 +70,28 @@
             </tr>
             <tr>
                 <td>
-                    <div class="box"><center><h2>500</h2></center></div>
+                    <div class="col-md-3"><center><div class="box"><center><h2>500</h2></center></div></center></div>
                 </td>
                 <td>
-                    <div class="box2"><center><h2>500</h2></center></div>
+                    <div class="col-md-3"><center><div class="box"><center><h2>500</h2></center></div></center></div>
                 </td>
             </tr>
-                    <div class="wrapbox">
+        </table>
+            <div class="col-md-6">&nbsp;</div>
+            <div class="col-md-6">&nbsp; </div>
+            <div class="col-md-6">&nbsp;</div>
+            <div class="col-md-6">&nbsp;</div>
+            <div class="col-md-6">&nbsp;</div>
+            <div class="col-md-6">&nbsp;</div>
+               <div class="col-md-6">
+                   <center>
+            <div class="wrapbox">
+                <table class="tabela">
                <?php 
                 if($kor_tip=='administratoru') { ?>
                 <tr>
-                    <td id="promote"><a href="#openModal" >
-                        <image src="/slike/promote.png" height="250px" width="250px"></a></td>
+                    <td colspan="2"><center><a href="#openModal"  >
+                        <image src="/slike/promote.png" height="250px" width="250px" id="promote"></a></center></td>
                         <div id="openModal" class="modalDialog">
 	<div>
 		<a href="#close" title="Close" class="close">X</a>
@@ -93,20 +108,20 @@
                  if($kor_tip=='administratoru') { ?>
         <tr>
          
-                <td id="flag"><a href="#openModalsankc">
-                        <image src="/slike/redflag.png" height="250px" width="250px"></a></td> </tr> </table>
+            <td  colspan="2"><center><a href="#openModalsankc" >
+                        <image src="/slike/redflag.png" height="250px" width="250px" id="flag"></a></center></td> </tr> </table>
             
         <div id="openModalsankc" class="modalDialog">
           
 	<div>
 		<a href="#close" title="Close" class="close">X</a>
-                <h2>Molim vas izaberite za koliko zelite da smanjite skor korisnika </h2> 
+                <h2>Molim vas da unesite za koliko zelite da smanjite skor korisnika </h2> 
               
         
                             <form method="post" action='<?= base_url("Administrator/sankcionisi_korisnika")?>'>
-                              <input type="number" name='kazna' min="0">
+ 
+                            <input type="number" name='kazna' min="0">
                               <input type="hidden" name='korisnik' value='<?php echo $user->Username ?>'>
-                        
                              <button type="submit" class="button3">POTVRDI</button> </td>
                          </form>
                           
@@ -117,38 +132,37 @@
                <?php } ?>
  <?php 
   if($kor_tip=='moderatoru') { ?>
-            <table>
-               <tr>
-          
-                <td id="flagmoderator"><a href="#openModalsankcMod">
-                        <image src="/slike/redflag.png" height="250px" width="250px"></a></td> </tr> </table>
+            <table class="tabela">
+               <tr >
+             
+                   <td colspan="2"><center><a href="#openModalsankcMod">
+                        <image src="/slike/redflag.png" height="250px" width="250px" id="flagmoderator"></a></center></td> </tr> </table>
       
          <div id="openModalsankcMod" class="modalDialog">
           
 	<div>
 		<a href="#close" title="Close" class="close">X</a>
-                <h2>Molim vas da unesete za koliko zelite da smanjite skor korisnika </h2> 
+                <h2>Molim vas unesite za koliko zelite da smanjite skor korisnika </h2> 
               
         
-                            <form method="post" action='<?= base_url("Moderator/sankcionisi_korisnika")?>'>
+                <form method="post" action='<?= base_url("Moderator/sankcionisi_korisnika")?>'>
                               <input type="number" name='kazna' min="0">
                               <input type="hidden" name='korisnik' value='<?php echo $user->Username ?>'>
-                        
                              <button type="submit" class="button3">POTVRDI</button> </td>
-                         </form>
+                </form>
                           
              
 	</div>
                
 </div>
                <?php } ?>
-            </div>
+            </div> </center> </div>
         
            
 </div>
 </div> 
 </div>
-    <div id="olovka" class="modalDialog">
+   	  <div id="olovka" class="modalDialog">
     <?php if($kor_tip=='administratoru') { ?>
     <div>
 		<a href="#close" title="Close" class="close">X</a>
@@ -157,3 +171,4 @@
                 <button type="submit" class="button2">DA</button>
                 </form>
     </div> <?php } ?> </div>
+	
