@@ -64,10 +64,10 @@
             </tr>
             <tr>
                 <td>
-                    <div class="col-md-3"><center><div class="box"><center><h2>500</h2></center></div></center></div>
+                    <div class="col-md-3"><center><div class="box"><center><h2><?php echo $user->Skor ?></h2></center></div></center></div>
                 </td>
                 <td>
-                    <div class="col-md-3"><center><div class="box"><center><h2>500</h2></center></div></center></div>
+                    <div class="col-md-3"><center><div class="box"><center><h2><?php echo $user->Popularnost ?></h2></center></div></center></div>
                 </td>
             </tr>
         </table>
