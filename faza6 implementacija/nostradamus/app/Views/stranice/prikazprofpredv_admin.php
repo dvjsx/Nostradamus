@@ -5,29 +5,32 @@
     }
 </script>
 <div class="row">
+    
 <div class="navbar">
     <table border="0" width="100%">
-      <div class="col-md-2">  <td width="920px">
+        <td width="920px"> <div class="col-md-4">
   <div class="dropdown">
     <button class="dropbtn">Predvidjanja
     </button>
     <div class="dropdown-content">
-        <a href='<?php echo base_url()."/$controller/pregledtudjegideja/$user->Username"  ?>' >Ideje</a> 
-    </div>
-  </div>  </td>   </div>
-    <div class="col-md-6">
+          <a href='<?php echo base_url()."/$controller/pregledtudjegideja/$user->Username"  ?>' >Ideje</a> 
+    </div></div></div>
+    
         <td >
+            <div class="col-md-5">
          <div class="podesavanje"> <h1><?php echo $user->Username ?></h1> </div>
-        </td> </div>
+        </div></td> 
    
 
-    <div class="col-md-4" > 
+    
         <td id="uputstvo" >
+            <div class="col-md-3" > 
             <span class="uputstvo"><a href='<?php echo base_url("/$controller/uputstvo") ?>'>
                     <image src="/slike/notepad.png" height="40px"></a>
             </span>
+                </div>
         </td>
-  </div>
+  
   </table> </div> </div>
 <div class="row">
 <div id="wrapper">
@@ -90,18 +93,28 @@
             </tr>
             <tr>
                 <td>
-                    <div class="box"><center><h2>500</h2></center></div>
+                    <div class="col-md-3"><center><div class="box"><center><h2><?php echo $user->Skor ?></h2></center></div></center></div>
                 </td>
                 <td>
-                    <div class="box2"><center><h2>500</h2></center></div>
+                    <div class="col-md-3"><center><div class="box"><center><h2><?php echo $user->Popularnost ?></h2></center></div></center></div>
                 </td>
             </tr>
+        </table>
+            <div class="col-md-6">&nbsp;</div>
+            <div class="col-md-6">&nbsp; </div>
+            <div class="col-md-6">&nbsp;</div>
+            <div class="col-md-6">&nbsp;</div>
+            <div class="col-md-6">&nbsp;</div>
+            <div class="col-md-6">&nbsp;</div>
+               <div class="col-md-6">
+                   <center>
             <div class="wrapbox">
+                <table class="tabela">
                <?php 
                 if($kor_tip=='administratoru') { ?>
                 <tr>
-                    <td id="promote"><a href="#openModal" >
-                        <image src="/slike/promote.png" height="250px" width="250px"></a></td>
+                    <td colspan="2"><center><a href="#openModal"  >
+                        <image src="/slike/promote.png" height="250px" width="250px" id="promote"></a></center></td>
                         <div id="openModal" class="modalDialog">
 	<div>
 		<a href="#close" title="Close" class="close">X</a>
@@ -118,8 +131,8 @@
                  if($kor_tip=='administratoru') { ?>
         <tr>
          
-                <td id="flag"><a href="#openModalsankc">
-                        <image src="/slike/redflag.png" height="250px" width="250px"></a></td> </tr> </table>
+            <td  colspan="2"><center><a href="#openModalsankc" >
+                        <image src="/slike/redflag.png" height="250px" width="250px" id="flag"></a></center></td> </tr> </table>
             
         <div id="openModalsankc" class="modalDialog">
           
@@ -142,11 +155,11 @@
                <?php } ?>
  <?php 
   if($kor_tip=='moderatoru') { ?>
-            <table>
-               <tr>
-          
-                <td id="flagmoderator"><a href="#openModalsankcMod">
-                        <image src="/slike/redflag.png" height="250px" width="250px"></a></td> </tr> </table>
+            <table class="tabela">
+               <tr >
+             
+                   <td colspan="2"><center><a href="#openModalsankcMod">
+                        <image src="/slike/redflag.png" height="250px" width="250px" id="flagmoderator"></a></center></td> </tr> </table>
       
          <div id="openModalsankcMod" class="modalDialog">
           
@@ -166,7 +179,7 @@
                
 </div>
                <?php } ?>
-            </div>
+            </div> </center> </div>
         
            
 </div>

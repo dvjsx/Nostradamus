@@ -239,7 +239,7 @@ span.ikonice{
 #wrapper {
     margin:0 auto;
     width:100%;
-    background-color: yellow;
+    background-color: #ffcc66;
 }
 #page1 {
     width:calc(50% - 20px);
@@ -249,6 +249,7 @@ span.ikonice{
 	font-weight:bold;
 	padding:10px;	
 	height:1000px;
+        overflow-y : auto;
 }
 #page2 
     {   height:1000px;
@@ -257,6 +258,7 @@ span.ikonice{
 	margin-top:10px;
 	padding:10px;
 	background-color: #ffcc66;
+        
 }
 
 .podesavanje {
@@ -279,65 +281,44 @@ span.ikonice{
 .box {
     border: 1px solid black ;
     background-color:  #5598cf;
-    position: absolute;
-    width:200px;
-    left:1077px;
+    width: 200px;    
+    
 }
 .box2 {
-    border: 1px solid black ;
-    background-color:  #5598cf;
-    position: absolute;
-    width:200px;
-    left:1542px;
+    width:590px;
+    height:112px;
+    margin-left: 10px;
+    margin-right: 1px;
 }
 .box3 {
     border: 1px solid black ;
     background-color:  #5598cf;
-    position: absolute;
-    top:530px;
-    left:1124px;
     width:600px;
     color:#ffcc66;
     font-family: cursive;
 }
 .wrapbox {
-     border: 1px solid black ;
+    border: 1px solid black ;
     background-color:#2f5473;
-    position: absolute;
     width:602px;
     height: 600px;
-    left:1124px;
-    top:607px;
+    
+}
+.tabela {
+    table-layout: fixed;
+    width:602px;
+    height: 550px;
 }
 .box4 { 
-   width: 590px;
-   position: absolute;
-    left:1270px;
-    top:680px;
-    color:#ffcc66;
-    font-family: cursive;
-}
-.box5 {
     width: 590px;
-    position: absolute;
-    left:1150px;
-    top:740px;
+    height: 60px;
     color:#ffcc66;
     font-family: cursive;
 }
-.box6 {
-    width: 590px;
-    position: absolute;
-    left:1155px;
-    top:800px;
-    color:#ffcc66;
-    font-family: cursive;
+.txtarea {
+    margin-left: 25px;
 }
-.box7 {
-    position: absolute;
-    left:1150px;
-    top:890px;
-}
+
 label {
 font-family: cursive;
 font-weight: bold;
@@ -347,29 +328,15 @@ float: right;
 font-size: 15pt;
 }
 .dugme {
-    position: absolute;
-    left:1370px;
-    top:1120px;
+   
     background-color: #ffcc66;
 }
 #flag {
-    position:absolute;
-    top:920px;
-    left:1300px;
     border: 1px solid black;
 }
 #promote {
-    position:absolute;
-    top:630px;
-    left:1300px;
     border: 1px solid black;
     background-color: white;
-}
-#flagmoderator {
-    position:absolute;
-    top:773px;
-    left:1300px;
-    border: 1px solid black;
 }
 
 a.linkstyle:link,a.linkstyle:visited {
@@ -499,4 +466,34 @@ span.cursive{
 .rating input[type="radio"]:hover ~ label,
 .rating input[type="radio"]:checked ~label{
     background: transparent;
+}
+table.ispunjeno{
+    background-color:#00bd0c;
+    border:2px;
+    border-style: solid;
+    margin-top:10px;
+    margin-left:5%;
+    margin-right:5%;
+    padding:5px;
+    width:90%;
+}
+table.neispunjeno{
+    background-color:#ff2f00;
+    border:2px;
+    border-style: solid;
+    margin-top:10px;
+    margin-left:5%;
+    margin-right:5%;
+    padding:5px;
+    width:90%;
+}
+table.cekanje{
+    background-color:#aaaaaa;
+    border:2px;
+    border-style: solid;
+    margin-top:10px;
+    margin-left:5%;
+    margin-right:5%;
+    padding:5px;
+    width:90%;
 }
