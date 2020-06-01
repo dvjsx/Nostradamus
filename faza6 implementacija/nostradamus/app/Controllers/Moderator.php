@@ -6,6 +6,8 @@ use App\Models\AdministratorModel;
 use App\Models\ModeratorModel;
 use App\Models\PredvidjanjeModel;
 use App\Models\IdejaModel;
+use App\Models\VoliModel;
+use App\Models\DajeOcenuModel;
 class Moderator extends BaseController
 {
 	
@@ -245,20 +247,20 @@ class Moderator extends BaseController
   public function voliPredvidjanje()
   {
       $korisnik= $this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje"); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
+      $predvidjanjeId= $this->request->uri->getSegment(3);
       $voliModel=new VoliModel();
-      if ($voliModel->vec_voli($korisnik->IdK, $predvidjanje->IdP))
+      if ($voliModel->vec_voli($korisnik->IdK, $predvidjanjeId))
       {
-          //moze mozda neka poruka o gresci, a iskreno i ne mora
-          return;
+         return redirect()->to( $_SERVER['HTTP_REFERER']);
       }
       else
       {
           $predvidjanjeModel=new PredvidjanjeModel();
-          $predvidjanjeModel->voli($predvidjanje->IdP, true);
+          $predvidjanjeModel->voli($predvidjanjeId, true);
           $posl_id=$voliModel->poslednji_vestackiId();
-          $voliModel->voli($korisnik->IdK, $predvidjanje->IdP, $posl_id+1);
+          $voliModel->voli($korisnik->IdK, $predvidjanjeId, $posl_id+1);
       }
+      return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   /**
    * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
@@ -266,43 +268,47 @@ class Moderator extends BaseController
   public function neVoliPredvidjanje()
   {
       $korisnik= $this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje"); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
+      $predvidjanjeId= $this->request->uri->getSegment(3);
       $voliModel=new VoliModel();
-      if ($voliModel->vec_voli($korisnik->IdK, $predvidjanje->IdP))
+      if ($voliModel->vec_voli($korisnik->IdK, $predvidjanjeId))
       {
-          //moze mozda neka poruka o gresci, a iskreno i ne mora
-          return;
+         return redirect()->to( $_SERVER['HTTP_REFERER']);
       }
       else
       {
           $predvidjanjeModel=new PredvidjanjeModel();
-          $predvidjanjeModel->voli($predvidjanje->IdP, false);
+          $predvidjanjeModel->voli($predvidjanjeId, false);
           $posl_id=$voliModel->poslednji_vestackiId();
-          $voliModel->voli($korisnik->IdK, $predvidjanje->IdP, $posl_id+1);
+          $voliModel->voli($korisnik->IdK, $predvidjanjeId, $posl_id+1);
       }
+      return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   /**
    * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
    */
   public function oceniPredvidjanje()
   {
+     
       $korisnik= $this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje"); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
-      $ocena=$this->request->getVar("ocena");//pretpostavljam da ce tako biti najlakse dohvatiti, slovbodno promeniti
+      $predvidjanjeId= $this->request->uri->getSegment(3);
+      $predvidjanjeModel=new PredvidjanjeModel();
+      $predvidjanje= $predvidjanjeModel->dohvati_predvidjanja_id($predvidjanjeId);       
+      $ocena=$_POST[$predvidjanjeId];//pretpostavljam da ce tako biti najlakse dohvatiti, slovbodno promeniti
       $oceniModel=new DajeOcenuModel();
+     
       if ($oceniModel->vec_dao_ocenu($korisnik->IdK, $predvidjanje->IdP) || date("Y-m-d H:i:s")>$predvidjanje->DatumEvaluacije)
       {
-          //moze mozda neka poruka o gresci, a iskreno i ne mora
-          return;
+           return redirect()->to( $_SERVER['HTTP_REFERER']);
       }
       else
       {
           
-          $predvidjanjeModel=new PredvidjanjeModel();
+          
           $predvidjanjeModel->daje_ocenu($predvidjanje->IdP, $ocena);
           $posl_id=$oceniModel->poslednji_vestackiId();
           $oceniModel->daje_ocenu($korisnik->IdK, $predvidjanje->IdP, $ocena, $posl_id+1);
       }
+      return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   /**
    * Netestirano, izmeniti ako se menja u korisnik kontroleru
@@ -332,17 +338,27 @@ class Moderator extends BaseController
   //ovo svakako ne stavljati u korisnika
   public function izmeniStatusTudjegPredvidjanja()
   {
-      $korisnik=$this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje");//ista stvar sa dohvatanjem ovoga
+      //$korisnik=$this->session->get("korisnik");
+      //$predvidjanje= $this->session->get("predvidjanje");//ista stvar sa dohvatanjem ovoga
+      $predvidjanjeID=$_COOKIE['idTek'];
+      setcookie("idTek", "", time() - 3600);
       $predvidjanjeModel=new PredvidjanjeModel();
+      $predvidjanje=$predvidjanjeModel->dohvati_predvidjanja_id($predvidjanjeID);
+      $korisnikIme=$predvidjanje->Username;
+      $korisnikModel=new KorisnikModel();
+      $korisnik=$korisnikModel->dohvati_korisnika($korisnikIme);
       $danas=date("Y-m-d H:i:s");
       //moze da se podeli u tri ifa, radi lepseg ispisa, ali ovde mislim da su svi slucajevi
       if ($danas<$predvidjanje->DatumEvaluacije)//ne sme jos da mu daje status
       {
-          //TODO:nekako ispisati gresku
+          echo "Greska";
           return;
       }
-      $status=$this->request->getVar("status");//isto proveriti u dizajnu, moze i neko drukcije dohvatanje samo da je status tu
+     //$status=$this->request->getVar("status");//isto proveriti u dizajnu, moze i neko drukcije dohvatanje samo da je status tu
+      $statusV=$this->request->getVar("dane");
+      if($statusV=='DA') $status="ISPUNJENO";
+      else $status="NEISPUNJENO";
+      
       $predvidjanjeModel->postavi_status($predvidjanje, $status);
       if ($status=="ISPUNJENO")
       {
@@ -354,7 +370,7 @@ class Moderator extends BaseController
           $korisnikModel=new KorisnikModel();
           $korisnikModel->sankcionisi($korisnik, $predvidjanje->Tezina);
       }
-      //$this->prikaz...
+      return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   /**
    * Netestirano, videti sta sa dohvatanjem
@@ -362,9 +378,11 @@ class Moderator extends BaseController
   public function sankcionisi_korisnika()
   {
       $moderator= $this->session->get("korisnik");
-      $sankcionisani= $this->session->get("sankcionisani");//ili na bilo koji drugi nacin dohvatanje
-      $kazna=$this->session->get("kazna");//ili na bilo koji drugi nacin dohvatanje
+      $sankcionisaniIme= $this->request->getVar('korisnik');
+      $kazna=$this->request->getVar('kazna');
       $korisnikModel=new KorisnikModel();
+      $sankcionisani=$korisnikModel->dohvati_korisnika($sankcionisaniIme);
       $korisnikModel->sankcionisi($sankcionisani, $kazna);
+      return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
 }

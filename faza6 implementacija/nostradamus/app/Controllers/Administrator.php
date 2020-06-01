@@ -8,6 +8,8 @@ use App\Models\ModeratorModel;
 use App\Models\PredvidjanjeModel;
 use App\Models\IdejaModel;
 use App\Models\Odgovor_naModel;
+use App\Models\VoliModel;
+use App\Models\DajeOcenuModel;
 
 class Administrator extends BaseController
 {
@@ -245,20 +247,20 @@ class Administrator extends BaseController
   public function voliPredvidjanje()
   {
       $korisnik= $this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje"); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
+      $predvidjanjeId= $this->request->uri->getSegment(3); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
       $voliModel=new VoliModel();
-      if ($voliModel->vec_voli($korisnik->IdK, $predvidjanje->IdP))
+      if ($voliModel->vec_voli($korisnik->IdK, $predvidjanjeId))
       {
-          //moze mozda neka poruka o gresci, a iskreno i ne mora
-          return;
+          return redirect()->to( $_SERVER['HTTP_REFERER']);
       }
       else
       {
           $predvidjanjeModel=new PredvidjanjeModel();
-          $predvidjanjeModel->voli($predvidjanje->IdP, true);
+          $predvidjanjeModel->voli($predvidjanjeId, true);
           $posl_id=$voliModel->poslednji_vestackiId();
-          $voliModel->voli($korisnik->IdK, $predvidjanje->IdP, $posl_id+1);
+          $voliModel->voli($korisnik->IdK, $predvidjanjeId, $posl_id+1);
       }
+       return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   /**
    * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
@@ -266,20 +268,20 @@ class Administrator extends BaseController
   public function neVoliPredvidjanje()
   {
       $korisnik= $this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje"); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
+      $predvidjanjeId= $this->request->uri->getSegment(3); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
       $voliModel=new VoliModel();
-      if ($voliModel->vec_voli($korisnik->IdK, $predvidjanje->IdP))
+      if ($voliModel->vec_voli($korisnik->IdK, $predvidjanjeId))
       {
-          //moze mozda neka poruka o gresci, a iskreno i ne mora
-          return;
+          return redirect()->to( $_SERVER['HTTP_REFERER']);
       }
       else
       {
           $predvidjanjeModel=new PredvidjanjeModel();
-          $predvidjanjeModel->voli($predvidjanje->IdP, false);
+          $predvidjanjeModel->voli($predvidjanjeId, false);
           $posl_id=$voliModel->poslednji_vestackiId();
-          $voliModel->voli($korisnik->IdK, $predvidjanje->IdP, $posl_id+1);
+          $voliModel->voli($korisnik->IdK, $predvidjanjeId, $posl_id+1);
       }
+      return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   /**
    * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
@@ -287,22 +289,25 @@ class Administrator extends BaseController
   public function oceniPredvidjanje()
   {
       $korisnik= $this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje"); //slobodno promeniti nacin dohvatanja, poenta je da mi treba predvidjanje koje je voljeno
-      $ocena=$this->request->getVar("ocena");//pretpostavljam da ce tako biti najlakse dohvatiti, slovbodno promeniti
+      $predvidjanjeId= $this->request->uri->getSegment(3);
+      $predvidjanjeModel=new PredvidjanjeModel();
+      $predvidjanje= $predvidjanjeModel->dohvati_predvidjanja_id($predvidjanjeId);       
+      $ocena=$_POST[$predvidjanjeId];//pretpostavljam da ce tako biti najlakse dohvatiti, slovbodno promeniti
       $oceniModel=new DajeOcenuModel();
+     
       if ($oceniModel->vec_dao_ocenu($korisnik->IdK, $predvidjanje->IdP) || date("Y-m-d H:i:s")>$predvidjanje->DatumEvaluacije)
       {
-          //moze mozda neka poruka o gresci, a iskreno i ne mora
-          return;
+           return redirect()->to( $_SERVER['HTTP_REFERER']);
       }
       else
       {
           
-          $predvidjanjeModel=new PredvidjanjeModel();
+          
           $predvidjanjeModel->daje_ocenu($predvidjanje->IdP, $ocena);
           $posl_id=$oceniModel->poslednji_vestackiId();
           $oceniModel->daje_ocenu($korisnik->IdK, $predvidjanje->IdP, $ocena, $posl_id+1);
       }
+      return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   /**
    * Netestirano, izmeniti ako se menja u korisnik kontroleru
@@ -361,48 +366,72 @@ class Administrator extends BaseController
    */
   public function sankcionisi_korisnika()
   {
-      $admin= $this->session->get("korisnik");
-      $sankcionisani= $this->session->get("sankcionisani");//ili na bilo koji drugi nacin dohvatanje
-      $kazna=$this->session->get("kazna");//ili na bilo koji drugi nacin dohvatanje
+
+      $sankcionisaniIme= $this->request->getVar('korisnik');
+      $kazna=$this->request->getVar('kazna');
+     // echo $sankcionisaniIme;
+      //echo $kazna;
+     $admin= $this->session->get("korisnik");
+      $sankcionisaniIme= $this->request->getVar('korisnik');//ili na bilo koji drugi nacin dohvatanje
+      $kazna=$this->request->getVar('kazna');//ili na bilo koji drugi nacin dohvatanje
       $korisnikModel=new KorisnikModel();
+      $sankcionisani=$korisnikModel->dohvati_korisnika($sankcionisaniIme);
       $korisnikModel->sankcionisi($sankcionisani, $kazna);
+      return redirect()->to( $_SERVER['HTTP_REFERER']);
+     
   }
   //mozda treba da se ubaci i moderatoru, sad sam zaboravio, proveriti to
   public function obrisati_predvidjanje()
   {
-      $korisnik=$this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje");//ista stvar sa dohvatanjem ovoga
+   
+    $idPOST=$_COOKIE['idTek'];
+    //$idPolje=$this->request->getVar('tekID');
+     //echo "Ok ";
+     //if(isset($idPOST)) echo $idPOST;
+    setcookie("idTek", "", time() - 3600);
+    
+    
+    //echo "  POST "+ $idPOST;
+      //$korisnik=$this->session->get("korisnik");
+      //$predvidjanje= $this->session->get("predvidjanje");//ista stvar sa dohvatanjem ovoga
       $predvidjanjeModel=new PredvidjanjeModel();
-      $predvidjanjeModel->obrisi_predvidjanje($predvidjanje->IdP);
+      $predvidjanjeModel->obrisi_predvidjanje($idPOST);
       $odgovor_na_model=new Odgovor_naModel();
-      $odgovor_na_model->obrisi_predvidjanje($predvidjanje->IdP);
-      //$this->prikaz...
+      $odgovor_na_model->obrisi_predvidjanje($idPOST);
+      return redirect()->to( $_SERVER['HTTP_REFERER']);
+     
   }
   //isto nisam siguran je l' i moderator to sme da radi
   public function obrisati_ideju()
   {
-      $korisnik=$this->session->get("korisnik");
-      $ideja= $this->session->get("ideja");//ista stvar sa dohvatanjem ovoga
+      $IdI=$_COOKIE['idTekIdeja'];
+      setcookie("idTek", "", time() - 3600);
       $idejaModel=new IdejaModel();
       $odgovor_na_model=new Odgovor_naModel();
-      $predvidjanja=$odgovor_na_model->vrati_sva_predvidjanja_na_datu_ideju($ideja->IdI);
-      $odgovor_na_model->obrisi_ideju($ideja->IdI);
+      $predvidjanja=$odgovor_na_model->vrati_sva_predvidjanja_na_datu_ideju($IdI);
+      $odgovor_na_model->obrisi_ideju($IdI);
       $predvidjanjeModel=new PredvidjanjeModel();
       foreach ($predvidjanja as $predvidjanje)
       {
           $predvidjanjeModel->obrisi_predvidjanje($predvidjanje->IdP);
       }
-      $idejaModel->obrisi_ideju($ideja->IdI);
+      $idejaModel->obrisi_ideju($IdI);
+      return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   //ovo valjda samo admin sme
   public function promovisati()
   {
-      $promovisani=$this->session->get("promovisani");//ili kako god da je vec dohvatanje
+      
+      $promovisaniIme=$this->request->getVar('korisnik');//ili kako god da je vec dohvatanje
       $korisnikModel=new KorisnikModel();
+      $promovisani=$korisnikModel->dohvati_korisnika($promovisaniIme);
       $stara_uloga=$korisnikModel->pronadjiUlogu($promovisani);
-      $nova_uloga=$this->session->get("nova_uloga");//ili iz requesta ili neceg treceg
+      $uloga=$this->request->getVar('uloga');
+      if($uloga=='admin') $nova_uloga='ADMIN';
+      else if($uloga=='mod') $nova_uloga='MODERATOR';
       $korisnikModel->promovisi($promovisani, $stara_uloga, $nova_uloga);
-      //$this->prikaz...
+      return redirect()->to( $_SERVER['HTTP_REFERER']);
+       
   }
   
 }

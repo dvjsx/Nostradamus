@@ -1,3 +1,9 @@
+<script type="text/javascript">
+    function zapamtiId(id){
+        
+        document.cookie = "idTek="+id+";path=/";
+    }
+</script>
 <div class="navbar">
     <table border="0" width="100%">
         <td width="10%">
@@ -48,7 +54,7 @@
         echo "{$predvidjanje->Sadrzaj}</td></tr>";
         echo '<tr class="last">';
         echo "<td width='15%'>&nbsp;&nbsp;";
-       if($kor_ime=="administratoru" || $kor_ime=="moderatoru") {   echo    "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22'></a> "; }
+       if($kor_ime=="administratoru" || $kor_ime=="moderatoru") {   echo    "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22' onclick='(zapamtiId({$predvidjanje->IdP}))'></a> "; }
        echo   "<a href='$base/$controller/voliPredvidjanje/$predvidjanje->IdP'><img src='".base_url()."/slike/love.png' height='22'></a> "
             . "<a href='$base/$controller/neVoliPredvidjanje/$predvidjanje->IdP'><img src='".base_url()."/slike/hate.png' height='22'></a> "      
             . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>"        ;
@@ -86,7 +92,9 @@
     <div>
 		<a href="#close" title="Close" class="close">X</a>
 		<h2>Zelite li da obrisete ovo predvidjanje?</h2>
-                <button type="button" class="button2">DA,POTVRDJUJEM BRISANJE PREDVIDJANJA</button>
+                <form method="post" action='<?= base_url("Administrator/obrisati_predvidjanje")?>'>
+                    <button type="submit" class="button2">DA</button>
+                </form>
                 
 	</div>
     <?php } ?>
@@ -94,7 +102,7 @@
     <div>
 		<a href="#close" title="Close" class="close">X</a>
 		<h2>Zelite da izmenite status predvidjanja?</h2>
-                <form>
+                <form method='post' action='<?= base_url("Moderator/izmeniStatusTudjegPredvidjanja") ?>'>
                     <input type="radio" name="dane" value="DA">ISPUNJENO
                     <input type="radio" name="dane" value="NE">NEISPUNJENO 
                     <button type="submit" class="button2">POTVRDA</button>

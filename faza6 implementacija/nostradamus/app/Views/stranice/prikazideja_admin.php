@@ -1,3 +1,8 @@
+<script type="text/javascript">
+    function zapamtiId(id){
+        document.cookie = "idTekIdeja="+id+";path=/";
+    }
+</script>
 <div class="row">
 <div class="navbar">
     <table border="0" width="100%">
@@ -40,7 +45,7 @@
         echo "{$ideja->Sadrzaj}</td></tr>";
         echo '<tr class="last">';
         echo "<td width='25%'>&nbsp;&nbsp;";
-            if($kor_ime=="administratoru") {   echo    "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22'></a> "; }
+            if($kor_tip=="administratoru") {   echo    "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22' onclick='zapamtiId({$ideja->IdI})'></a> "; }
        echo   "<a href=''><img src='".base_url()."/slike/love.png' height='22'></a> "
             . "<a href=''><img src='".base_url()."/slike/hate.png' height='22'></a> "
             . "<span class='ikonice'>{$plus}{$ideja->Popularnost}</span></td>"; 
@@ -76,8 +81,11 @@
 	<div>
 		<a href="#close" title="Close" class="close">X</a>
 		<h2>U sta zelite da promovisete datog korisnika?</h2>
-                <button type="button" class="button2">Administrator</button>
-                <button type="button" class="button3">Moderator</button>
+                <form method='post' action='<?= base_url("Administrator/promovisati")?>'>
+                 <input type="hidden" name='korisnik' value='<?php echo $user->Username ?>'>
+                <button type="submit" class="button2" name='uloga' value='admin'>Administrator</button>
+                <button type="submit" class="button3" name='uloga'value='mod'>Moderator</button>
+                </form>
 	</div>
 </div>
                 </tr> <?php } ?>
@@ -95,8 +103,9 @@
                 <h2>Molim vas izaberite za koliko zelite da smanjite skor korisnika </h2> 
               
         
-                            <form>
-                              <input type="number" min="0">
+                            <form method="post" action='<?= base_url("Administrator/sankcionisi_korisnika")?>'>
+                              <input type="number" name='kazna' min="0">
+                              <input type="hidden" name='korisnik' value='<?php echo $user->Username ?>'>
                         
                              <button type="submit" class="button3">POTVRDI</button> </td>
                          </form>
@@ -118,11 +127,12 @@
           
 	<div>
 		<a href="#close" title="Close" class="close">X</a>
-                <h2>Molim vas izaberite za koliko zelite da smanjite skor korisnika </h2> 
+                <h2>Molim vas da unesete za koliko zelite da smanjite skor korisnika </h2> 
               
         
-                            <form>
-                              <input type="number" min="0">
+                            <form method="post" action='<?= base_url("Moderator/sankcionisi_korisnika")?>'>
+                              <input type="number" name='kazna' min="0">
+                              <input type="hidden" name='korisnik' value='<?php echo $user->Username ?>'>
                         
                              <button type="submit" class="button3">POTVRDI</button> </td>
                          </form>
@@ -139,10 +149,11 @@
 </div> 
 </div>
     <div id="olovka" class="modalDialog">
-    <?php if($kor_ime=='administratoru') { ?>
+    <?php if($kor_tip=='administratoru') { ?>
     <div>
 		<a href="#close" title="Close" class="close">X</a>
 		<h2>Zelite li da obrisete ovu ideju?</h2>
-                <button type="button" class="button2">DA,POTVRDJUJEM BRISANJE IDEJE</button>
-                
+                <form method='post' action="<?= base_url("Administrator/obrisati_ideju")?>">
+                <button type="submit" class="button2">DA</button>
+                </form>
     </div> <?php } ?> </div>

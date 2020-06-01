@@ -80,9 +80,9 @@ class Gost extends BaseController
 //sacuvam podatke u sesiju         
         $this->session->set('korisnik', $korisnik);
         $this->session->set('kor_tip', $kor_tip);
-        if($kor_tip=='administratoru') { return redirect()->to(site_url("Administrator/index"));}
-        else if ($kor_tip=='moderatoru') { return redirect()->to(site_url("Moderator/index"));}
-            else return redirect()->to(site_url("Korisnik/index"));
+        if($kor_tip=='administratoru') { return redirect()->to(base_url("Administrator/index"));}
+        else if ($kor_tip=='moderatoru') { return redirect()->to(base_url("Moderator/index"));}
+            else return redirect()->to(base_url("Korisnik/index"));
         
     }
     public function regSubmit() {
