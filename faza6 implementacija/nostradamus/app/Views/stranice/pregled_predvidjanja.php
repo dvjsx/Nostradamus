@@ -39,13 +39,21 @@
     </table>
 </div>
 <div class="page">
-
     <?php
     $base=base_url();
     foreach ($predvidjanja as $predvidjanje) {
         if($predvidjanje->Popularnost>0) $plus="+";
             else $plus="";
-        echo '<table border="0" class="content">';
+            
+        /*$rok= new DateTime($predvidjanje->DatumEvaluacije);
+        $now=new DateTime($time="now");
+        if($rok<$now){
+            if($predvidjanje->Status=="ISPUNJENO") echo '<table class="ispunjeno">';
+                else if($predvidjanje->Status=="NEISPUNJENO") echo '<table class="neispunjeno">';
+                else echo '<table class="cekanje">';
+        } else echo '<table class="content" border="0">';*/
+        
+        echo '<table class="content" border="0">';            
         echo '<tr><th class="naslov" colspan="4">';
         echo "{$predvidjanje->Naslov}</th>";
         echo '<td class="datum">';
@@ -86,7 +94,7 @@
         echo  "</table>";
     }
     ?>
-</div>
+</div>    
 <div id="olovka" class="modalDialog">
     <?php if($kor_ime=='administratoru') { ?>
     <div>

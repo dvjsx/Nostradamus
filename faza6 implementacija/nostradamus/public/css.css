@@ -500,3 +500,33 @@ span.cursive{
 .rating input[type="radio"]:checked ~label{
     background: transparent;
 }
+table.ispunjeno{
+    background-color:#00bd0c;
+    border:2px;
+    border-style: solid;
+    margin-top:10px;
+    margin-left:5%;
+    margin-right:5%;
+    padding:5px;
+    width:90%;
+}
+table.neispunjeno{
+    background-color:#ff2f00;
+    border:2px;
+    border-style: solid;
+    margin-top:10px;
+    margin-left:5%;
+    margin-right:5%;
+    padding:5px;
+    width:90%;
+}
+table.cekanje{
+    background-color:#aaaaaa;
+    border:2px;
+    border-style: solid;
+    margin-top:10px;
+    margin-left:5%;
+    margin-right:5%;
+    padding:5px;
+    width:90%;
+}
