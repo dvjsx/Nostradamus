@@ -39,9 +39,9 @@ class Validation
             'rules'  => 'required|min_length[2]|max_length[20]|alpha_dash|is_unique[korisnik.Username]',
             'errors' => [
                 'required' => 'Molimo Vas da unesete korisničko ime',
-                'min_length'=>'Molimo Vas da uneste korisničko ime koje sadrži bar 2 znaka',
-                'max_length'=>'Molimo Vas da uneste korisničko ime koje je kraće od 20 znakova',
-                'alpha_dash'=>'Unešeno korisničko sadrži nedozvoljene znake. Dozvoljeni znaci su A-Z,a-z,0-9,-,_',
+                'min_length'=>'Molimo Vas da uneste korisničko ime<br> koje sadrži bar 2 znaka',
+                'max_length'=>'Molimo Vas da uneste korisničko ime<br> koje je kraće od 20 znakova',
+                'alpha_dash'=>'Unešeno korisničko sadrži nedozvoljene znake.<br>Dozvoljeni znaci su A-Z,a-z,0-9,-,_',
                 'is_unique'=> 'Korisničko ime već postoji'
             ]
         ],
@@ -57,17 +57,17 @@ class Validation
             'rules' => 'required|min_length[6]|max_length[20]|alpha_numeric_punct|regex_match[/\d/]|regex_match[/[A-Z]/]',
             'errors'=>[
                 'required' => 'Molimo Vas da unesete lozinku',
-                'min_length'=>'Molimo Vas da uneste lozinku koja sadrži bar 6 znakova',
-                'max_length'=>'Molimo Vas da uneste lozinku koja sadrži manje od 20 znakova',
-                'alpha_dash'=>'Unešena lozinka sadrži nedozvoljene znake. Dozvoljeni znaci su A-Z,a-z,0-9,~,!,#,$,%,&,*,-, _,+,=,|,:,.',
-                'regex_match'=>'Molimo Vas da uneste lozinku koja sadrži bar jedan broj i bar jedno veliko slovo'
+                'min_length'=>'Molimo Vas da uneste lozinku koja<br> sadrži bar 6 znakova',
+                'max_length'=>'Molimo Vas da uneste lozinku koja<br> sadrži manje od 20 znakova',
+                'alpha_numeric_punct'=>'Unešena lozinka sadrži nedozvoljene znake.<br>Dozvoljeni znaci su <br> A-Z,a-z,0-9,~,!,#,$,%,&,*,-, _,+,=,|,:,.',
+                'regex_match'=>'Molimo Vas da uneste lozinku koja sadrži bar<br> jedan broj i bar jedno veliko slovo'
             ]
         ],
         'reLozinka'=>[
             'rules'=>'required|matches[lozinka]',
             'errors'=>[
                 'required'=>'Molimo Vas da potvrdite unešenu lozinku',
-                'matches'=>'Lozinka nije ispravno potvrđena. Molimo Vas da ponovo potvrdite lozinku',
+                'matches'=>'Lozinka nije ispravno potvrđena.<br> Molimo Vas da ponovo potvrdite lozinku',
             ]
         ]
     ];

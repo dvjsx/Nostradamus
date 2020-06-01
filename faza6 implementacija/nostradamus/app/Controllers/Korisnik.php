@@ -333,22 +333,26 @@ class Korisnik extends BaseController
   public function dajStatusSvomPredvidjanju()
   {
       $korisnik=$this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje");//ista stvar sa dohvatanjem ovoga
+      $idPred=$_COOKIE['idTek'];
+      setcookie("idTek", "", time() - 3600);
       $predvidjanjeModel=new PredvidjanjeModel();
+      $predvidjanje=$predvidjanjeModel->dohvati_predvidjanja_id($idPred);
       $danas=date("Y-m-d H:i:s");
       //moze da se podeli u tri ifa, radi lepseg ispisa, ali ovde mislim da su svi slucajevi
       if ($danas<$predvidjanje->DatumEvaluacije || $predvidjanje->Status!="CEKA" || $korisnik->IdK!=$predvidjanje->IdK)//ne sme jos da mu daje status
       {
-          //TODO:nekako ispisati gresku
+          echo "Greska";
           return;
       }
-      $status=$this->request->getVar("status");//isto proveriti u dizajnu, moze i neko drukcije dohvatanje samo da je status tu
+      $statusV=$this->request->getVar("dane");
+      if($statusV=='DA') $status="ISPUNJENO";
+      else $status="NEISPUNJENO";
       $predvidjanjeModel->postavi_status($predvidjanje, $status);
       if ($status=="ISPUNJENO")
       {
           $korisnikModel=new KorisnikModel();
           $korisnikModel->uvecaj_skor($korisnik, $predvidjanje->Tezina);
       }
-      //$this->prikaz...
+     return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
 }

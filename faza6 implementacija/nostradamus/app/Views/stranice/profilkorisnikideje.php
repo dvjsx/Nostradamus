@@ -99,6 +99,7 @@
                         </td>
                         <td > <input type="date" size="30"  name='datumPredvidjanja' value="<?= set_value('datumPredvidjanja')?>">
                         </td>
+                        <td><?php if(!empty($errors['datum'])) { echo $errors['datum']; $errors['datum']=null;}?></td>
                     </tr>
                      <tr class="box4">
                         <td >
@@ -107,11 +108,13 @@
                         <td >
                             <input type="text" size="30"  name='naslovPredvidjanja' value="<?= set_value('naslovPredvidjanja')?>" placeholder="Unesi naslov ovde......" >
                         </td>
+                         <?php if(!empty($errors['naslov'])) { echo $errors['naslov']."<br>"; $errors['naslov']=null;}?>
                     </tr>
                     <tr class="box2">
                         <td colspan="2" class="box2">
                     <textarea class="txtarea" rows="10" cols="66" name='sadrzajPredvidjanja' value="<?= set_value('sadrzajPredvidjanja')?>" placeholder="Upisite tekst svoje ideje/predvidjanja ovde............"></textarea>
                        </td> 
+                       <?php if(!empty($errors['sadrzaj'])) { echo $errors['sadrzaj']; $errors['sadrzaj']=null;}?>
                     </tr>
                    
                     

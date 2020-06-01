@@ -8,6 +8,7 @@ use App\Models\PredvidjanjeModel;
 use App\Models\IdejaModel;
 use App\Models\VoliModel;
 use App\Models\DajeOcenuModel;
+use App\Models\Odgovor_naModel;
 class Moderator extends BaseController
 {
 	
@@ -15,6 +16,8 @@ class Moderator extends BaseController
         $data['controller']='Moderator';
         $data['korisnik']=$this->session->get('korisnik');
         $data['kor_tip']=$this->session->get('kor_tip');
+        if (!empty($this->session->getFlashdata('errors'))) 
+            $data['errors'] = $this->session->getFlashdata('errors');
         echo view('sablon/header_korisnik',$data);
         echo view("stranice/$page",$data);
         echo view('sablon/footer');         
@@ -165,14 +168,16 @@ class Moderator extends BaseController
       if (!empty($errors))
       {
           //ovde zavrsiti, print_r je za testiranje
-          print_r($errors);
-          return;
+         $this->session->setFlashdata('errors', $errors);
+         return redirect()->to(base_url("Moderator/pregledprofilaideje"));
+         
       }
       //ako je sve ok
       $idejaModel->ubaci_novu_ideju($korisnik->IdK,$korisnik->Username, $this->request->getVar('naslovPredvidjanja'), 
               $datum, $this->request->getVar("sadrzajPredvidjanja"));
-      $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($korisnik->Username);
-      $this->prikaz("profilkorisnikideje", ['user'=>$korisnik,'ideje'=>$ideje]);
+      //$ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($korisnik->Username);
+      //$this->prikaz("profilkorisnikideje", ['user'=>$korisnik,'ideje'=>$ideje]);
+       return redirect()->to(base_url("Moderator/pregledprofilaideje"));
   }
     public function dajPredvidjanje()
   {
@@ -210,8 +215,10 @@ class Moderator extends BaseController
       if (!empty($errors))
       {
           //ovde zavrsiti, print_r je za testiranje
-          print_r($errors);
-          return;
+         // print_r($errors);
+         // return;
+          $this->session->setFlashdata('errors', $errors);
+          return redirect()->to(base_url("Moderator/pregledprofilapredvidjanja"));
       }
       //ako je odgovor na ideju
       if ($ideja!=null)//Povecava se popularnost ideje, povecava se popularnost korisnika,pamti se odgovor na ideju
@@ -232,10 +239,10 @@ class Moderator extends BaseController
       //ako je sve ok
       $predvidjanjeModel->ubaci_novo_predvidjanje($korisnik->IdK,$korisnik->Username, $this->request->getVar('naslovPredvidjanja'), 
               $datum, $this->request->getVar("sadrzajPredvidjanja"));
-      $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($korisnik->Username);
+      //$predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($korisnik->Username);
       
       
-      $this->prikaz("profilkorisnikpredvidjanja", ['user'=>$korisnik,'predvidjanja'=>$predvidjanja]);
+     return redirect()->to(base_url("Moderator/pregledprofilapredvidjanja"));
   }
   public function uputstvo()
   {
@@ -316,24 +323,29 @@ class Moderator extends BaseController
    */
   public function dajStatusSvomPredvidjanju()
   {
+      
       $korisnik=$this->session->get("korisnik");
-      $predvidjanje= $this->session->get("predvidjanje");//ista stvar sa dohvatanjem ovoga
+      $idPred=$_COOKIE['idTek'];
+      setcookie("idTek", "", time() - 3600);
       $predvidjanjeModel=new PredvidjanjeModel();
+      $predvidjanje=$predvidjanjeModel->dohvati_predvidjanja_id($idPred);
       $danas=date("Y-m-d H:i:s");
       //moze da se podeli u tri ifa, radi lepseg ispisa, ali ovde mislim da su svi slucajevi
       if ($danas<$predvidjanje->DatumEvaluacije || $predvidjanje->Status!="CEKA" || $korisnik->IdK!=$predvidjanje->IdK)//ne sme jos da mu daje status
       {
-          //TODO:nekako ispisati gresku
+          echo "GRESKA";
           return;
       }
-      $status=$this->request->getVar("status");//isto proveriti u dizajnu, moze i neko drukcije dohvatanje samo da je status tu
+     $statusV=$this->request->getVar("dane");
+      if($statusV=='DA') $status="ISPUNJENO";
+      else $status="NEISPUNJENO";
       $predvidjanjeModel->postavi_status($predvidjanje, $status);
       if ($status=="ISPUNJENO")
       {
           $korisnikModel=new KorisnikModel();
           $korisnikModel->uvecaj_skor($korisnik, $predvidjanje->Tezina);
       }
-      //$this->prikaz...
+       return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   //ovo svakako ne stavljati u korisnika
   public function izmeniStatusTudjegPredvidjanja()

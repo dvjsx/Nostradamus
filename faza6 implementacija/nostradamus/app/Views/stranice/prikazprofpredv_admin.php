@@ -1,6 +1,5 @@
 <script type="text/javascript">
     function zapamtiId(id){
-        console.log("hello");
         document.cookie = "idTek="+id+";path=/";
     }
 </script>
@@ -43,17 +42,36 @@
         
         if($predvidjanje->Popularnost>0) $plus="+";
             else $plus="";
-        echo '<table border="0" class="content">';
+            
+        $rok= new DateTime($predvidjanje->DatumEvaluacije);
+        $now=new DateTime($time="now");
+        $flag=false;
+        if($rok<$now){
+            $flag=true;
+            if($predvidjanje->Status=="ISPUNJENO") echo '<table class="ispunjeno">';
+                else if($predvidjanje->Status=="NEISPUNJENO") echo '<table class="neispunjeno">';
+                else {   echo'<table class="cekanje">';}
+        } 
+        else { echo '<table class="content" border="0">';}
+                
+       // echo '<table border="0" class="content">';
         echo '<tr><th class="naslov" colspan="3">';
         echo "{$predvidjanje->Naslov}</th>";
+        
         echo '<td class="datum">';
         echo "{$predvidjanje->DatumNastanka}</td></tr>";
+        
         echo '<tr><td colspan="4" class="sadrzaj">';
         echo "{$predvidjanje->Sadrzaj}</td></tr>";
+        
         echo '<tr class="last">';
-        echo "<td width='25%'>&nbsp;&nbsp;"
-        . "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22' onclick='(zapamtiId({$predvidjanje->IdP}))'></a> "
-            . "<a href='$base/$controller/voliPredvidjanje/$predvidjanje->IdP'><img src='".base_url()."/slike/love.png' height='22'></a> "
+       echo "<td width='50%'>&nbsp;&nbsp;";
+        if($kor_ime=='administratoru' || $kor_ime=='moderatoru' ){
+            
+            echo "<td><a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22' onclick='(zapamtiId({$predvidjanje->IdP}))'></a> </td>";
+        }
+        if($flag==false){ 
+        echo  "<a href='$base/$controller/voliPredvidjanje/$predvidjanje->IdP'><img src='".base_url()."/slike/love.png' height='22'></a> "
             . "<a href='$base/$controller/neVoliPredvidjanje/$predvidjanje->IdP'><img src='".base_url()."/slike/hate.png' height='22'></a> "
             . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>"; 
             
@@ -77,8 +95,16 @@
         echo "<td width='5%'>&nbsp;&nbsp;"
             . "<input type='image' name='ocena' src='".base_url()."/slike/rating.png' height='28'>"
             . "</td></form>";
-        
-        echo '<td></td><td class="autor">';
+       }
+       else{
+           echo"<a href=''><img src='".base_url()."/slike/loveG.png' height='22'></a> "
+             . "<a href=''><img src='".base_url()."/slike/hateG.png' height='22'></a></td> "      
+             . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span>"        ;
+           echo "<td width='10%'><img src='".base_url()."/slike/weightG.png' height='22'> ";        
+           echo "<span class='ikonice'>{$predvidjanje->Tezina}</span></form></td>";
+           echo "<td></td><td></td>td></td>";
+       }
+        echo '<td class="autor">';
         echo "{$predvidjanje->Username}</td></tr>";    
         echo  "</table>";
     }
@@ -154,7 +180,7 @@
 </div>
                <?php } ?>
  <?php 
-  if($kor_tip=='moderatoru') { ?>
+  if($kor_ime=='moderatoru') { ?>
             <table class="tabela">
                <tr >
              
