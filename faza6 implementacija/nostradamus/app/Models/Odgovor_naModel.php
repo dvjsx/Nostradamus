@@ -22,6 +22,7 @@ class Odgovor_naModel extends Model
      */
     public function sacuvaj_odgovor($idP,$idI)
     {
+        
         $data=["IdP"=>$idP,"IdI"=>$idI];
         $this->insert($data);
     }
@@ -37,6 +38,7 @@ class Odgovor_naModel extends Model
         $predvidjanja=[];
         foreach ($odgovori as $odg)
         {
+            echo $predModel->first($odg->IdP)->Sadrzaj;
             array_push($predvidjanja, $predModel->first($odg->IdP));
         }
         return $predvidjanja;

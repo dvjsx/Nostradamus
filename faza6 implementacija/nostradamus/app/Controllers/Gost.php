@@ -9,8 +9,19 @@ use App\Models\PredvidjanjeModel;
 use App\Models\IdejaModel;
 use App\Models\Obican_ili_VeranModel;
 
+/**
+ * @version 1.0
+ * @author Janko Kitanovic 2016/694
+ * @author Katarina Svrkota 2015/648
+ * Kontroler za gosta na sajtu
+ */
 class Gost extends BaseController
 {
+    /**
+     * 
+     * @param string $page stranica koja se prikazuje
+     * @param array $data podaci, mogu biti predvidjanja ideje, greske...
+     */
     protected function prikaz($page,$data){
         $data['controller']='Gost';
          $this->session->set('kor_tip', 'gost');
@@ -21,6 +32,10 @@ class Gost extends BaseController
         echo view("stranice/$page",$data);
         echo view('sablon/footer');         
     }
+    /**
+     * Pocetna stranica
+     * @return void 
+     */
     public function index()
     {$data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -28,9 +43,17 @@ class Gost extends BaseController
       $data['predvidjanja']=$predvidjanja;
       $this->prikaz('pregled_predvidjanja', $data);
     }
+    /**
+     * Prikaz stranice za registraciju
+     * @return void 
+     */
     public function registracija(){
         $this->prikaz('registracija',[]);
     }
+    /**
+     * Gost pokusava da se uloguje na sajt
+     * @return void
+     */
     public function loginSubmit(){
 //dohvatim podatke
         $korIme= $this->request->getVar('user');
@@ -85,6 +108,10 @@ class Gost extends BaseController
             else return redirect()->to(base_url("Korisnik/index"));
         
     }
+    /**
+     * Gost pokusava da se registruje
+     * @return void
+     */
     public function regSubmit() {
 
 //dohvatimo sve podatke
@@ -191,6 +218,9 @@ class Gost extends BaseController
       $data['predvidjanja']=$predvidjanja;
       $this->prikaz('tudjprofilpredvidjanja_korisnik', $data);
    }
+   /**
+    * pregled tudje ideje
+    */
    public function pregledtudjegideja() {
       $username=$this->request->uri->getSegment(3);
       $korisnikModel=new KorisnikModel();
@@ -200,10 +230,16 @@ class Gost extends BaseController
       $data['ideje']=$ideje;
       $this->prikaz('tudjprofilideje_korisnik', $data); 
    }
+   /**
+    * prikazuje uputstvo
+    */
    public function uputstvo()
    {
        $this->prikaz("uputstvo", []);
    }
+   /**
+   * Ne sme to da radi samo se refreshuje stranica
+   */
   public function voliPredvidjanje(){
       $stranica= $this->session->get('predvidjanje');
       if($stranica=="novo"){
@@ -216,6 +252,9 @@ class Gost extends BaseController
           $this->pregled_predvidjanja();
       }
   }  
+  /**
+   * Ne sme to da radi samo se refreshuje stranica
+   */
   public function neVoliPredvidjanje(){
       $stranica= $this->session->get('predvidjanje');
       if($stranica=="novo"){
@@ -228,6 +267,9 @@ class Gost extends BaseController
           $this->pregled_predvidjanja();
       }
   }
+  /**
+   * Ne sme to da radi samo se refreshuje stranica
+   */
   public function oceniPredvidjanje(){
       $stranica= $this->session->get('predvidjanje');
       if($stranica=="novo"){

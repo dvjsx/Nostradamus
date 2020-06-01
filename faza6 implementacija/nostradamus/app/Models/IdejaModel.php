@@ -23,7 +23,7 @@ class IdejaModel extends Model
     public function ubaci_novu_ideju($Id_autor,$username,$naslov,$datum,$sadrzaj)
     {
         $data=["IdK"=>$Id_autor,"Username"=>$username,"Naslov"=>$naslov,"DatumEvaluacije"=>$datum,"Sadrzaj"=>$sadrzaj,"Popularnost"=>0];
-        $this->save($data);
+        $this->insert($data);
     }
     /**
      * Dohvata sve ideeje iz baze

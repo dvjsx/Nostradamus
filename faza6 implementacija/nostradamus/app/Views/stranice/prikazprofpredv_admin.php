@@ -65,17 +65,17 @@
         echo "{$predvidjanje->Sadrzaj}</td></tr>";
         
         echo '<tr class="last">';
-       echo "<td width='50%'>&nbsp;&nbsp;";
+       echo "<td width='15%'>&nbsp;&nbsp;";
         if($kor_ime=='administratoru' || $kor_ime=='moderatoru' ){
             
-            echo "<td><a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22' onclick='(zapamtiId({$predvidjanje->IdP}))'></a> </td>";
+            echo "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22' onclick='(zapamtiId({$predvidjanje->IdP}))'></a>";
         }
         if($flag==false){ 
         echo  "<a href='$base/$controller/voliPredvidjanje/$predvidjanje->IdP'><img src='".base_url()."/slike/love.png' height='22'></a> "
             . "<a href='$base/$controller/neVoliPredvidjanje/$predvidjanje->IdP'><img src='".base_url()."/slike/hate.png' height='22'></a> "
             . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>"; 
             
-        echo "<td width='15%'><img src='".base_url()."/slike/weight.png' height='22'> ";        
+        echo "<td width='10%'><img src='".base_url()."/slike/weight.png' height='22'> ";        
         echo "<span class='ikonice'>{$predvidjanje->Tezina}</span></td>";
         
         echo "<form name='ocena_tezine' method='post'
@@ -98,11 +98,11 @@
        }
        else{
            echo"<a href=''><img src='".base_url()."/slike/loveG.png' height='22'></a> "
-             . "<a href=''><img src='".base_url()."/slike/hateG.png' height='22'></a></td> "      
-             . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span>"        ;
+             . "<a href=''><img src='".base_url()."/slike/hateG.png' height='22'></a> "      
+             . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>"        ;
            echo "<td width='10%'><img src='".base_url()."/slike/weightG.png' height='22'> ";        
            echo "<span class='ikonice'>{$predvidjanje->Tezina}</span></form></td>";
-           echo "<td></td><td></td>td></td>";
+           echo "<td></td>";
        }
         echo '<td class="autor">';
         echo "{$predvidjanje->Username}</td></tr>";    

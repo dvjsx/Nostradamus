@@ -11,6 +11,11 @@ use App\Models\Odgovor_naModel;
 use App\Models\VoliModel;
 use App\Models\DajeOcenuModel;
 
+/**
+ * @author Katarina Svrkota 2015/648
+ * @author Dusan Vojinovic 2017/80
+ * @version 1.0
+ */
 class Administrator extends BaseController
 {
 	protected function prikaz($page,$data){
@@ -141,7 +146,6 @@ class Administrator extends BaseController
       $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);
   } 
-  //netestirano, promeniti ako je promenjeno u Korisnik
   public function dajIdeju()
   {
       $korisnik= $this->session->get('korisnik');
@@ -158,6 +162,7 @@ class Administrator extends BaseController
       {
           $errors["korisnik"]="Morate da budete verni korisnik (bar 3 dana na sajtu) da biste davali ideje"; 
       }
+      
       $validation =\Config\Services::validation();
       $validation->setRuleGroup('dodavanje_ideja');
       if (!$validation->run(["datum"=>$this->request->getVar("datumPredvidjanja"),"sadrzaj"=>$this->request->getVar("sadrzajPredvidjanja"),"naslov"=>$naslov],'dodavanje_ideja')) {
@@ -172,9 +177,11 @@ class Administrator extends BaseController
            $this->session->setFlashdata('errors', $errors);
           return redirect()->to(base_url("Administrator/pregledprofilaideje"));
       }
+      
       //ako je sve ok
       $idejaModel->ubaci_novu_ideju($korisnik->IdK,$korisnik->Username, $this->request->getVar('naslovPredvidjanja'), 
               $datum, $this->request->getVar("sadrzajPredvidjanja"));
+      
       $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($korisnik->Username);
      // $this->prikaz("profilkorisnikideje", ['user'=>$korisnik,'ideje'=>$ideje]);
       return redirect()->to(base_url("Administrator/pregledprofilaideje"));
@@ -268,7 +275,7 @@ class Administrator extends BaseController
        return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   /**
-   * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
+   * 
    */
   public function neVoliPredvidjanje()
   {
@@ -289,7 +296,7 @@ class Administrator extends BaseController
       return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   /**
-   * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
+   * 
    */
   public function oceniPredvidjanje()
   {
@@ -315,7 +322,7 @@ class Administrator extends BaseController
       return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   /**
-   * Netestirano, izmeniti ako se menja u korisnik kontroleru
+   * 
    * @return type
    */
   public function dajStatusSvomPredvidjanju()
@@ -344,10 +351,7 @@ class Administrator extends BaseController
       return redirect()->to( $_SERVER['HTTP_REFERER']);
      
   }
-  //ovo svakako ne stavljati u korisnika
-  /**
-   * Netestirano, videti sta sa dohvatanjem
-   */
+
   public function sankcionisi_korisnika()
   {
 
@@ -364,7 +368,7 @@ class Administrator extends BaseController
       return redirect()->to( $_SERVER['HTTP_REFERER']);
      
   }
-  //mozda treba da se ubaci i moderatoru, sad sam zaboravio, proveriti to
+
   public function obrisati_predvidjanje()
   {
    
@@ -385,7 +389,7 @@ class Administrator extends BaseController
       return redirect()->to( $_SERVER['HTTP_REFERER']);
      
   }
-  //isto nisam siguran je l' i moderator to sme da radi
+ 
   public function obrisati_ideju()
   {
       $IdI=$_COOKIE['idTekIdeja'];
@@ -393,20 +397,31 @@ class Administrator extends BaseController
       $idejaModel=new IdejaModel();
       $odgovor_na_model=new Odgovor_naModel();
       $predvidjanja=$odgovor_na_model->vrati_sva_predvidjanja_na_datu_ideju($IdI);
+      
       $odgovor_na_model->obrisi_ideju($IdI);
+      
       $predvidjanjeModel=new PredvidjanjeModel();
+      $indexi=[];
       foreach ($predvidjanja as $predvidjanje)
       {
-          $predvidjanjeModel->obrisi_predvidjanje($predvidjanje->IdP);
+           // echo $predvidjanje->Sadrzaj;
+           array_push($indexi,$predvidjanje->IdP);
+            //$predvidjanjeModel->obrisi_predvidjanje($predvidjanje->IdP);
+            
       }
+      foreach ($indexi as $idp)
+      {
+          $predvidjanjeModel->obrisi_predvidjanje($idp);
+      }
+      //return;
       $idejaModel->obrisi_ideju($IdI);
       return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
-  //ovo valjda samo admin sme
+  
   public function promovisati()
   {
       
-      $promovisaniIme=$this->request->getVar('korisnik');//ili kako god da je vec dohvatanje
+      $promovisaniIme=$this->request->getVar('korisnik');
       $korisnikModel=new KorisnikModel();
       $promovisani=$korisnikModel->dohvati_korisnika($promovisaniIme);
       $stara_uloga=$korisnikModel->pronadjiUlogu($promovisani);

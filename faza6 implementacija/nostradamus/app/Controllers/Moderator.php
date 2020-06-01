@@ -9,6 +9,11 @@ use App\Models\IdejaModel;
 use App\Models\VoliModel;
 use App\Models\DajeOcenuModel;
 use App\Models\Odgovor_naModel;
+/**
+ * @version 1.0
+ * @author Smiljana Spasic 2014/588
+ *  @author ktarina Svrkota 2015/648
+ */
 class Moderator extends BaseController
 {
 	

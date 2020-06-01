@@ -65,7 +65,7 @@
         echo "{$predvidjanje->Sadrzaj}</td></tr>";
         
         echo '<tr class="last">';
-        echo "<td width='15%'>&nbsp;&nbsp;";
+        echo "<td width='25%'>&nbsp;&nbsp;";
         
         if($flagCeka==true){
          echo "<a href='#olovka'><img src='".base_url()."/slike/pencil.png' height='22' onclick='(zapamtiId({$predvidjanje->IdP}))'></a> ";

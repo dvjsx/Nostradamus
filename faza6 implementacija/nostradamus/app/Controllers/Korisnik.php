@@ -11,9 +11,17 @@ use \App\Models\Odgovor_naModel;
 use App\Models\VoliModel;
 use App\Models\DajeOcenuModel;
 
+/***
+ * @author Dusan Vojinovic 2017/80
+ * @author Janko Kitanovic 2016/694
+ */
 class Korisnik extends BaseController
 {
-   
+   /**
+     * 
+     * @param string $page stranica koja se prikazuje
+     * @param array $data podaci, mogu biti predvidjanja ideje, greske...
+     */
     protected function prikaz($page,$data){
         $data['controller']='Korisnik';
         $data['korisnik']=$this->session->get('korisnik');
@@ -22,6 +30,10 @@ class Korisnik extends BaseController
         echo view("stranice/$page",$data);
         echo view('sablon/footer');         
     }
+     /**
+     * Pocetna stranica
+     * @return void 
+     */
     public function index()
     {$data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -59,6 +71,7 @@ class Korisnik extends BaseController
       $data['predvidjanja']=$predvidjanja;
       $this->prikaz($trenprikaz, $data);
    }
+   
    public function pregledtudjegideja() {
       $trenprikaz='tudjprofilideje_korisnik';
       $username=$this->request->uri->getSegment(3);
@@ -75,10 +88,17 @@ class Korisnik extends BaseController
    {
        $this->prikaz("uputstvo", []);
    }
+   /**
+    * Korisnik se izloguje
+    * @return void
+    */
   public function logout(){
         $this->session->destroy();
         return redirect()->to(site_url('/'));
     }
+    /**
+     * Prikazuju se sva predvidjanja
+     */
  public function pregled_predvidjanja() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -86,6 +106,9 @@ class Korisnik extends BaseController
       $data['predvidjanja']=$predvidjanja;
       $this->prikaz('pregled_predvidjanja', $data);
   }
+   /**
+     * Prikazuju se sva predvidjanja sortirano
+     */
   public function sortPredvidjanjeNovo() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -94,6 +117,9 @@ class Korisnik extends BaseController
       $_SESSION['predvidjanje']='novo';
       $this->prikaz('pregled_predvidjanja', $data);     
   }
+  /**
+     * Prikazuju se sva predvidjanja sortirano
+     */
   public function sortPredvidjanjePopularno() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -102,6 +128,9 @@ class Korisnik extends BaseController
       $_SESSION['predvidjanje']='popularno';
       $this->prikaz('pregled_predvidjanja', $data);        
   }
+  /**
+     * Prikazuju se sva predvidjanja sortirano
+     */
     public function sortPredvidjanjeNajteze() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -110,6 +139,9 @@ class Korisnik extends BaseController
       $_SESSION['predvidjanje']='tezina';
       $this->prikaz('pregled_predvidjanja', $data);          
   }
+  /**
+     * Prikazuju se sva predvidjanja sortirano
+     */
   public function pretragaPredvidjanja(){
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -125,6 +157,9 @@ class Korisnik extends BaseController
       $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);
   }
+  /**
+     * Prikazuju se sva predvidjanja sortirano
+     */
   public function sortIdejaAktuelno() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
@@ -132,6 +167,9 @@ class Korisnik extends BaseController
       $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);     
   }
+  /**
+     * Prikazuju se sva predvidjanja sortirano
+     */
   public function sortIdejaPopularno() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
@@ -146,9 +184,10 @@ class Korisnik extends BaseController
       $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($korisnik);
       $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);
-  } 
-  //mislim da je najlakse za implementaciju da se uklone cekboxovi i da korisnik moze da daje ideju
-  //sa prikaza ideja, a predvidjanja sa prikaza predvidjanja
+  }
+  /***
+   * Verni korisnik daje ideju
+   */
   public function dajIdeju()
   {
       $korisnik= $this->session->get('korisnik');
@@ -184,7 +223,9 @@ class Korisnik extends BaseController
       $this->prikaz("profilkorisnikideje", ['user'=>$korisnik,'ideje'=>$ideje]);
   }
 
-  //testirano
+  /**
+   * Korisnik daje predvidjanje
+   */
   public function dajPredvidjanje()
   {
       $korisnik= $this->session->get('korisnik');
@@ -249,7 +290,7 @@ class Korisnik extends BaseController
       $this->prikaz("profilkorisnikpredvidjanja", ['user'=>$korisnik,'predvidjanja'=>$predvidjanja]);
   }
   /**
-   * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
+   * 
    */
   public function voliPredvidjanje()
   {
@@ -276,7 +317,7 @@ class Korisnik extends BaseController
       }
   }
   /**
-   * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
+   * 
    */
   public function neVoliPredvidjanje()
   {
@@ -302,9 +343,7 @@ class Korisnik extends BaseController
           $this->pregled_predvidjanja();
       }      
   }
-  /**
-   * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
-   */
+
   public function oceniPredvidjanje()
   {
       $korisnik= $this->session->get("korisnik");
@@ -330,6 +369,7 @@ class Korisnik extends BaseController
           $this->pregled_predvidjanja();
       }        
   }
+
   public function dajStatusSvomPredvidjanju()
   {
       $korisnik=$this->session->get("korisnik");

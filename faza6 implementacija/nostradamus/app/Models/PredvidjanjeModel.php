@@ -172,6 +172,7 @@ class PredvidjanjeModel extends Model
      */
     public function obrisi_predvidjanje($idP)
     {
+        
         $this->delete($idP);
     }
     
