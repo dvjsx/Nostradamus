@@ -98,9 +98,11 @@
        }
        //AKO JE ISTEKLO PREDVIDJANJE
        else {
-           echo"<a href=''><img src='".base_url()."/slike/loveG.png' height='22'></a> "
-             . "<a href=''><img src='".base_url()."/slike/hateG.png' height='22'></a> "      
-             . "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>"        ;
+            if ($plus=='+')
+                echo"<img src='".base_url()."/slike/loveG.png' height='22'> ";
+            else
+                echo "<img src='".base_url()."/slike/hateG.png' height='22'> "  ;    
+           echo "<span class='ikonice'>{$plus}{$predvidjanje->Popularnost}</span></td>"        ;
            echo "<td width='10%'><img src='".base_url()."/slike/weightG.png' height='22'> ";        
            echo "<span class='ikonice'>{$predvidjanje->Tezina}</span></form></td>";
            echo "<td></td><td></td>";
