@@ -22,7 +22,7 @@
         </td>
         <td width="40%">
     <form name="pretraga_autora" method="get"
-          action="<?= site_url("$controller/pretragaIdeja") ?>" ><br>
+          action="<?= site_url("$controller/pregledtudjegpredv") ?>" ><br>
         <div class="search-box">                       
             <input type="image" class="search-btn" name="submit" src="<?php echo base_url(); ?>/slike/search-icon.png">
             <input type="text" class="search-txt" name="pretraga" placeholder="Pretraga autora">

@@ -1,0 +1,7 @@
+CRITICAL - 2020-05-13 15:37:49 --> Call to undefined function App\Controllers\pretragaPredvidjanja()
+#0 C:\wamp64\www\nostradamus\vendor\codeigniter4\framework\system\CodeIgniter.php(914): App\Controllers\Gost->pretragaPredvidjanja()
+#1 C:\wamp64\www\nostradamus\vendor\codeigniter4\framework\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Gost))
+#2 C:\wamp64\www\nostradamus\vendor\codeigniter4\framework\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\wamp64\www\nostradamus\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\wamp64\www\nostradamus\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\wamp64\\www\\n...')
+#5 {main}

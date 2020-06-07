@@ -62,7 +62,7 @@ class Korisnik extends BaseController
     *  takodje 2 metode jedna za ideje,druga za predvidjanja   **/
    public function pregledtudjegpredv() {
       $trenprikaz='tudjprofilpredvidjanja_korisnik';      
-      $username=$this->request->uri->getSegment(3);
+      $username= $this->request->getVar("pretraga");
       $korisnikModel=new KorisnikModel();
       $data['user']=$korisnikModel->dohvati_korisnika($username);
       if(($data['user']->Username)==($this->session->get('korisnik')->Username)) {$data['user']=$this->session->get('korisnik');  $trenprikaz='profilkorisnikpredvidjanja'; }

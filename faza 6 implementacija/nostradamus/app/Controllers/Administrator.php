@@ -57,10 +57,10 @@ class Administrator extends BaseController
      public function pregledtudjegpredv() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $trenprikaz='prikazprofpredv_admin';      
-      $username=$this->request->uri->getSegment(3);
+      $username=$this->request->getVar("pretraga");
       $korisnikModel=new KorisnikModel();
       $data['user']=$korisnikModel->dohvati_korisnika($username);
-      if(($data['user']->Username)==($this->session->get('korisnik')->Username)) {$data['user']=$this->session->get('korisnik');  $trenprikaz='profilkorisnikpredvidjanja'; }
+      if(($data['user']->Username)==($this->session->get('korisnik')->Username)) {$data['user']=$this->session->get('korisnik'); $trenprikaz='profilkorisnikpredvidjanja'; }
       $predvidjanjeModel=new PredvidjanjeModel();
       $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($data['user']->Username);
       $data['predvidjanja']=$predvidjanja;
