@@ -1225,113 +1225,32 @@
     "id": "1af71322-a29f-4464-a78d-0a3d3760a8d0",
     "name": "Voljenje predvidjanja",
     "commands": [{
-      "id": "a4791ec0-4889-438a-a716-03c282f8c7be",
+      "id": "5176fb1d-2cd6-40db-bdde-a2566d41dfc1",
       "comment": "",
       "command": "open",
-      "target": "/",
+      "target": "/Administrator/index",
       "targets": [],
       "value": ""
     }, {
-      "id": "4f4fb5e1-3445-4db3-a7f4-dec1c5ae8ac4",
+      "id": "6fe4c2e0-65d1-40e9-8a06-582360dd6219",
       "comment": "",
       "command": "setWindowSize",
-      "target": "1042x544",
+      "target": "1043x545",
       "targets": [],
       "value": ""
     }, {
-      "id": "3ef1263c-2a29-43fc-bd93-b6c7cc3aa0df",
-      "comment": "",
-      "command": "click",
-      "target": "name=user",
-      "targets": [
-        ["name=user", "name"],
-        ["css=td:nth-child(1) > input", "css:finder"],
-        ["xpath=//input[@name='user']", "xpath:attributes"],
-        ["xpath=//input", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "6bd53300-da10-4639-9151-b81f63592f2d",
-      "comment": "",
-      "command": "type",
-      "target": "name=user",
-      "targets": [
-        ["name=user", "name"],
-        ["css=td:nth-child(1) > input", "css:finder"],
-        ["xpath=//input[@name='user']", "xpath:attributes"],
-        ["xpath=//input", "xpath:position"]
-      ],
-      "value": "novi5"
-    }, {
-      "id": "0873ade7-0b4a-4d16-bc6d-a064216f3615",
-      "comment": "",
-      "command": "click",
-      "target": "name=pass",
-      "targets": [
-        ["name=pass", "name"],
-        ["css=td:nth-child(2) > input", "css:finder"],
-        ["xpath=//input[@name='pass']", "xpath:attributes"],
-        ["xpath=//td[2]/input", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "c0a01bc2-c785-4b04-8fa7-1cac98f41585",
-      "comment": "",
-      "command": "type",
-      "target": "name=pass",
-      "targets": [
-        ["name=pass", "name"],
-        ["css=td:nth-child(2) > input", "css:finder"],
-        ["xpath=//input[@name='pass']", "xpath:attributes"],
-        ["xpath=//td[2]/input", "xpath:position"]
-      ],
-      "value": "MaliCar5Ds"
-    }, {
-      "id": "4824e9b0-2163-4ec2-bce0-ed1b014b0536",
-      "comment": "",
-      "command": "click",
-      "target": "css=.button1",
-      "targets": [
-        ["css=.button1", "css:finder"],
-        ["xpath=//input[@value='Uloguj se']", "xpath:attributes"],
-        ["xpath=//td[3]/input", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "aaf151d2-feae-4b8a-bcfb-7220bdf29522",
-      "comment": "",
-      "command": "click",
-      "target": "css=.ispunjeno a:nth-child(2) > img",
-      "targets": [
-        ["css=.ispunjeno a:nth-child(2) > img", "css:finder"],
-        ["xpath=//img[contains(@src,'http://localhost:8080/slike/loveG.png')]", "xpath:img"],
-        ["xpath=//a[2]/img", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "01d17a1e-4787-4f76-aee6-8e0517f1d682",
+      "id": "abaa5aab-0658-4e4c-910c-7a1a7ad27df1",
       "comment": "",
       "command": "click",
       "target": "css=.content:nth-child(2) a:nth-child(2) > img",
       "targets": [
         ["css=.content:nth-child(2) a:nth-child(2) > img", "css:finder"],
         ["xpath=//img[contains(@src,'http://localhost:8080/slike/love.png')]", "xpath:img"],
-        ["xpath=//table[2]/tbody/tr[3]/td/a[2]/img", "xpath:position"]
+        ["xpath=//a[2]/img", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "b2250b52-e818-4130-8301-60fe96316cd1",
-      "comment": "",
-      "command": "click",
-      "target": "css=.neispunjeno a:nth-child(3) > img",
-      "targets": [
-        ["css=.neispunjeno a:nth-child(3) > img", "css:finder"],
-        ["xpath=(//img[contains(@src,'http://localhost:8080/slike/hateG.png')])[2]", "xpath:img"],
-        ["xpath=//table[3]/tbody/tr[3]/td/a[3]/img", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "788b17fe-e232-47d4-b6a6-0233f674e7a6",
+      "id": "c84fd1e5-0b88-4522-936d-f76c92ef6a59",
       "comment": "",
       "command": "click",
       "target": "css=.content:nth-child(4) a:nth-child(3) > img",
@@ -1342,29 +1261,84 @@
       ],
       "value": ""
     }, {
-      "id": "041fdba1-a695-4d15-8d9d-78760a6a6996",
+      "id": "86670269-6ff7-402f-9692-408dad3e29fc",
       "comment": "",
       "command": "click",
-      "target": "css=.content:nth-child(5) a:nth-child(3) > img",
+      "target": "css=.content:nth-child(5) a:nth-child(2) > img",
       "targets": [
-        ["css=.content:nth-child(5) a:nth-child(3) > img", "css:finder"],
-        ["xpath=(//img[contains(@src,'http://localhost:8080/slike/hate.png')])[3]", "xpath:img"],
-        ["xpath=//table[5]/tbody/tr[3]/td/a[3]/img", "xpath:position"]
+        ["css=.content:nth-child(5) a:nth-child(2) > img", "css:finder"],
+        ["xpath=(//img[contains(@src,'http://localhost:8080/slike/love.png')])[3]", "xpath:img"],
+        ["xpath=//table[5]/tbody/tr[3]/td/a[2]/img", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "323deb61-c5d4-4532-bd8f-e8305cca1130",
+      "id": "0c302eba-f086-4798-b20f-7ab7811d07ab",
       "comment": "",
       "command": "click",
-      "target": "css=.content:nth-child(6) a:nth-child(2) > img",
+      "target": "css=.content:nth-child(6) a:nth-child(3) > img",
       "targets": [
-        ["css=.content:nth-child(6) a:nth-child(2) > img", "css:finder"],
-        ["xpath=(//img[contains(@src,'http://localhost:8080/slike/love.png')])[4]", "xpath:img"],
-        ["xpath=//table[6]/tbody/tr[3]/td/a[2]/img", "xpath:position"]
+        ["css=.content:nth-child(6) a:nth-child(3) > img", "css:finder"],
+        ["xpath=(//img[contains(@src,'http://localhost:8080/slike/hate.png')])[4]", "xpath:img"],
+        ["xpath=//table[6]/tbody/tr[3]/td/a[3]/img", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "21b17c1b-8f87-4db8-9680-1adabaa53bcc",
+      "id": "b3005d8f-35c5-4eda-80ed-5c294ca45044",
+      "comment": "",
+      "command": "click",
+      "target": "css=.content:nth-child(2) a:nth-child(2) > img",
+      "targets": [
+        ["css=.content:nth-child(2) a:nth-child(2) > img", "css:finder"],
+        ["xpath=//img[contains(@src,'http://localhost:8080/slike/love.png')]", "xpath:img"],
+        ["xpath=//a[2]/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2dec3ed8-3bfc-43e5-87aa-2bde8f42726e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.ispunjeno td:nth-child(1) > img",
+      "targets": [
+        ["css=.ispunjeno td:nth-child(1) > img", "css:finder"],
+        ["xpath=//img[contains(@src,'http://localhost:8080/slike/loveG.png')]", "xpath:img"],
+        ["xpath=//td/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "67d700a3-5d3f-4544-9ad5-714056e5598a",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "css=.ispunjeno td:nth-child(1) > img",
+      "targets": [
+        ["css=.ispunjeno td:nth-child(1) > img", "css:finder"],
+        ["xpath=//img[contains(@src,'http://localhost:8080/slike/loveG.png')]", "xpath:img"],
+        ["xpath=//td/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9d25e3f3-27f5-4b0b-8bbc-1a91198e00bf",
+      "comment": "",
+      "command": "click",
+      "target": "css=.neispunjeno td:nth-child(1) > img",
+      "targets": [
+        ["css=.neispunjeno td:nth-child(1) > img", "css:finder"],
+        ["xpath=(//img[contains(@src,'http://localhost:8080/slike/loveG.png')])[2]", "xpath:img"],
+        ["xpath=//table[3]/tbody/tr[3]/td/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1f2ddf1b-20c0-4fd3-85da-28c8e7d42363",
+      "comment": "",
+      "command": "click",
+      "target": "css=.neispunjeno td:nth-child(1) > img",
+      "targets": [
+        ["css=.neispunjeno td:nth-child(1) > img", "css:finder"],
+        ["xpath=(//img[contains(@src,'http://localhost:8080/slike/loveG.png')])[2]", "xpath:img"],
+        ["xpath=//table[3]/tbody/tr[3]/td/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "32052007-6875-46ad-a4d1-108c69408c88",
       "comment": "",
       "command": "click",
       "target": "css=.content:nth-child(6) a:nth-child(2) > img",
