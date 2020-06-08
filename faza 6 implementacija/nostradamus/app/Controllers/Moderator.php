@@ -55,8 +55,8 @@ class Moderator extends BaseController
     /**  pregled profila odredjenog korisnika,imamo dve metode,jednu za pregled predvidjanja a drugu za pregled ideja **/
      public function pregledtudjegpredv() {
       $data['kor_ime']=$this->session->get('kor_tip');
-      $trenprikaz='prikazprofpredv_admin';      
-      $username= $this->request->getVar("pretraga");
+      $trenprikaz='prikazprofpredv_admin';
+      $username=$this->request->uri->getSegment(3);      
       $korisnikModel=new KorisnikModel();
       $data['user']=$korisnikModel->dohvati_korisnika($username);
       if(($data['user']->Username)==($this->session->get('korisnik')->Username)) {$data['user']=$this->session->get('korisnik');  $trenprikaz='profilkorisnikpredvidjanja'; }

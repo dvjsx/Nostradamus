@@ -211,7 +211,6 @@ class Gost extends BaseController
 /** pregled tudjeg profila,gost moze pogledati profile drugih ljudi   **/
    public function pregledtudjegpredv() {
       $username=$this->request->uri->getSegment(3);
-      $username= $this->request->getVar("pretraga");
       $korisnikModel=new KorisnikModel();
       $data['user']=$korisnikModel->dohvati_korisnika($username);
       $predvidjanjeModel=new PredvidjanjeModel();
