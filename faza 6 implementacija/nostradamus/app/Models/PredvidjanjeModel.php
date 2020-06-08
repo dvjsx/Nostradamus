@@ -90,7 +90,7 @@ class PredvidjanjeModel extends Model
     public function dohvati_predvidjanja_po_korisnickom_imenu($username)
     {
         //moza "%".$username."%" za deo imena, ali to nismo predvidjali u specifikaciji
-        return $this->like("Username",$username)->findAll();
+        return $this->where("Username",$username)->findAll();
     }
 
     /**
