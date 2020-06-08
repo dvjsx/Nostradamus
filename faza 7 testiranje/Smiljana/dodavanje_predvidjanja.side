@@ -1,0 +1,837 @@
+{
+  "id": "b5336afb-ec32-49c4-bca3-b68f05f6bc3a",
+  "version": "2.0",
+  "name": "dodavanje_predvidjanja",
+  "url": "http://localhost:8080/Korisnik/index",
+  "tests": [{
+    "id": "8fb0cc17-90b9-4707-9738-7e4d9fd4c972",
+    "name": "uspesno_dodavanje",
+    "commands": [{
+      "id": "62aab5af-c7a9-46b0-bb08-8a9e841b4217",
+      "comment": "",
+      "command": "open",
+      "target": "/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "737bb09b-f4f0-4472-bfe0-df04c5760bd5",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ae19950d-78c1-441f-a22c-9433b620b6a5",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2cd4ca9e-dfff-492c-a325-4aa45fa7eb9c",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2c154b37-1571-4d2a-9bc8-a909edda1aeb",
+      "comment": "",
+      "command": "type",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "2020-06-17"
+    }, {
+      "id": "db8d414d-67a0-4af1-9379-a7e3bc046eda",
+      "comment": "",
+      "command": "click",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cee5d648-b4df-4e29-9d3c-4c4d7485e3f2",
+      "comment": "",
+      "command": "type",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "Naslov"
+    }, {
+      "id": "e03bbfd3-1489-4007-a6b1-ffcf3e7c42eb",
+      "comment": "",
+      "command": "click",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "30020c26-1de6-4f83-9d17-e7a44e2107a8",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Predvidjam da cu sutra pasti"
+    }, {
+      "id": "2aae89d7-7804-4344-bb25-b35fd2ad4b1b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.dugme",
+      "targets": [
+        ["css=.dugme", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/center/button", "xpath:idRelative"],
+        ["xpath=//center/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prihvati dodavanje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "6dc2bda6-1841-4b48-9df3-f1f293b5d8bc",
+    "name": "uspesan_odgovor_na_ideju",
+    "commands": [{
+      "id": "e99e53c1-8d24-42b4-ab71-a256d2881f35",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "54264586-6576-4ebd-8e87-86da03b6da8a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6433414f-52fe-49b1-8c58-8a7fa53589ad",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bac0cbc9-3da5-4510-bc85-e3d59c3bff80",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "20108279-a73b-4bde-a22f-5efb77453242",
+      "comment": "",
+      "command": "type",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "2020-06-19"
+    }, {
+      "id": "0a482e25-f0a8-4d7f-bb40-9dbd5f63d1be",
+      "comment": "",
+      "command": "click",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "645271e4-8b42-4803-84a6-60cc809c70e7",
+      "comment": "",
+      "command": "type",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "#Jon Jones- Nganu"
+    }, {
+      "id": "f1f2d09b-3d18-455d-b6ee-71212b7b2676",
+      "comment": "",
+      "command": "click",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "00d6e086-6d2e-4f89-bd21-7bec4efd1b81",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Prvi tim pobedjuje"
+    }, {
+      "id": "7b9d77a1-28b2-4b03-8359-710b6ab00fff",
+      "comment": "",
+      "command": "click",
+      "target": "css=.dugme",
+      "targets": [
+        ["css=.dugme", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/center/button", "xpath:idRelative"],
+        ["xpath=//center/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prihvati dodavanje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "6e2bf158-6edc-42ef-ad5e-6a57be2b94d9",
+    "name": "nije_uneto_nista",
+    "commands": [{
+      "id": "35677500-f3b6-4cc3-bf25-ee260f65375e",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fafbe0c2-6aab-403f-851c-1f3f31519d36",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "46c71bf6-a3fd-478c-8fa9-10bc8e801de0",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a4cb9490-48b3-48d5-b9b1-33a03e71717b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.dugme",
+      "targets": [
+        ["css=.dugme", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/center/button", "xpath:idRelative"],
+        ["xpath=//center/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prihvati dodavanje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "d76b091a-61fc-4d99-9776-a70e1238070e",
+    "name": "datum_iz_proslosti",
+    "commands": [{
+      "id": "10d2f943-be6f-4a47-8a06-68732fc97a8e",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "382e3488-5dd6-4a35-8db5-2d1e7f4e9f95",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "efdb4733-9082-4789-8f33-e5b1967c6de6",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "39db4cac-174e-4cb2-af1c-0cc1aa238f67",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff789f27-4eba-40f9-9e10-0cf95a887123",
+      "comment": "",
+      "command": "type",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "2020-06-02"
+    }, {
+      "id": "bc2a86d9-7b13-49c5-9176-2eb3a2eb09e0",
+      "comment": "",
+      "command": "click",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "00b13b4b-63dc-4a07-9f94-d9526486c986",
+      "comment": "",
+      "command": "type",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "Naslov"
+    }, {
+      "id": "8a047ae0-3b00-4ac0-acc2-d7bd75b68ae9",
+      "comment": "",
+      "command": "click",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7e729078-311b-47c0-9c39-734d9d632c88",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "blablabal"
+    }, {
+      "id": "bde7dd59-ee14-4a0e-9a82-78324357214e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.dugme",
+      "targets": [
+        ["css=.dugme", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/center/button", "xpath:idRelative"],
+        ["xpath=//center/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prihvati dodavanje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "e1ad23fc-279d-49ae-93e2-9be7be712804",
+    "name": "nije_unet_naslov",
+    "commands": [{
+      "id": "aad30a44-8ca7-4a65-a92c-599d5878f238",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "eda3f522-b4bb-46d4-883c-d4c134ba692d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3220ff39-717c-477e-b1eb-8ee24ad5aa80",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c7214853-2278-4f84-9bc9-09ad66bc9f4c",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "33e5abf2-3098-46b8-9245-e063ab801cb4",
+      "comment": "",
+      "command": "type",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "2020-06-16"
+    }, {
+      "id": "95ce6a1f-de28-4cbc-9237-b12bdcf3727a",
+      "comment": "",
+      "command": "click",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9d1496f8-6449-4d6d-b45b-e621d70d7e0f",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "kjfaoijfao;hfa"
+    }, {
+      "id": "03a1c13d-605f-407c-9f82-c4b3729c80d4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.dugme",
+      "targets": [
+        ["css=.dugme", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/center/button", "xpath:idRelative"],
+        ["xpath=//center/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prihvati dodavanje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "bd092a9f-e36d-4dfd-9ef1-061bea8786be",
+    "name": "nije_unet_sadrzaj",
+    "commands": [{
+      "id": "ff5e04bf-95ea-47e2-b179-f878dacaceb8",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ef74fe1a-1ce1-43c8-82cd-e9a7a2b3fb2a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "768cb0d5-973d-4976-b7db-941029939544",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3a84c873-6855-442e-8bf5-fb4382e51f66",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "567d2145-3e99-4f6a-b71a-30dc5361bd87",
+      "comment": "",
+      "command": "type",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "2020-06-24"
+    }, {
+      "id": "e24fe7ac-21fa-4434-8d55-c5765756fe28",
+      "comment": "",
+      "command": "click",
+      "target": "css=.box4:nth-child(2) > td:nth-child(2)",
+      "targets": [
+        ["css=.box4:nth-child(2) > td:nth-child(2)", "css:finder"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[2]/td[2]", "xpath:idRelative"],
+        ["xpath=//form/table/tbody/tr[2]/td[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "318cd8c5-72e6-4a9f-9542-52ee18ef0c6a",
+      "comment": "",
+      "command": "click",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "46f83c5a-9f4b-497b-ae5f-c4928507beb8",
+      "comment": "",
+      "command": "type",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "PLAFD"
+    }, {
+      "id": "397069d9-a54a-4404-8daf-0ffc51a73f76",
+      "comment": "",
+      "command": "click",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7186e75a-ed9e-433c-a94c-2de40c93e79e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.dugme",
+      "targets": [
+        ["css=.dugme", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/center/button", "xpath:idRelative"],
+        ["xpath=//center/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prihvati dodavanje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "5c343e2d-f509-42f2-b0a8-71294dad12fa",
+    "name": "odgovor_na_nepostojecu_ideju",
+    "commands": [{
+      "id": "11b4bcf0-1717-488e-9719-5d594070e9f5",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4fd48e7f-81a7-437d-bc93-2c9a27480744",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "44e6342a-f6ca-48a2-a4a1-2095bb0ac137",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8256f451-b174-4609-8dec-bc3f0669646d",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "31e2b324-77b0-483c-9f8e-2ebc053ea943",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4a722338-08e3-47b5-988b-2a82419b8e11",
+      "comment": "",
+      "command": "type",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "2020-07-01"
+    }, {
+      "id": "bbdd6b7c-f643-46f1-b899-34f93b71c90a",
+      "comment": "",
+      "command": "click",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "00f237a2-fc46-4697-b42b-93c25329b8f3",
+      "comment": "",
+      "command": "type",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "#udheja"
+    }, {
+      "id": "712a1d5e-fdbf-4bd2-884b-899e645ccbf6",
+      "comment": "",
+      "command": "click",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f150432a-f26d-4393-8351-01f7c72dfd1f",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "odgovaram na ovo "
+    }, {
+      "id": "e0280af9-aa69-4e37-81d2-e01e66fa31c4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.dugme",
+      "targets": [
+        ["css=.dugme", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/center/button", "xpath:idRelative"],
+        ["xpath=//center/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prihvati dodavanje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "70cfbe76-528f-40d6-b74c-6ad64917197b",
+    "name": "nije_unet_datum",
+    "commands": [{
+      "id": "bef1f6d2-63f8-4838-8089-2680f16e3b76",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c7f419c4-9ba5-4f50-9f18-bda4be278e19",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6de3ace0-d19c-4d80-ac25-93d930ff3a12",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b242e930-ea03-4bb0-844f-cbeeb4d4b1ef",
+      "comment": "",
+      "command": "click",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c4087f14-f2ef-4802-819d-2e76e630213a",
+      "comment": "",
+      "command": "type",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "Naslovnaslov"
+    }, {
+      "id": "271750dd-a70c-4b1c-a741-88ad98f244ee",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "foasjfoasj"
+    }, {
+      "id": "faf20a78-7c64-4b0d-9787-85ad7e8469f5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.dugme",
+      "targets": [
+        ["css=.dugme", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/center/button", "xpath:idRelative"],
+        ["xpath=//center/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prihvati dodavanje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "d62bda43-fb96-465c-8598-fa8117eaf8d3",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["8fb0cc17-90b9-4707-9738-7e4d9fd4c972"]
+  }],
+  "urls": ["http://localhost:8080/", "http://localhost:8080/Korisnik/index"],
+  "plugins": []
+}

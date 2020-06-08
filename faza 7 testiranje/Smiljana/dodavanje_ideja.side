@@ -1,0 +1,852 @@
+{
+  "id": "2222798e-476f-4f16-aee7-8337434e5506",
+  "version": "2.0",
+  "name": "dodavanje_ideja",
+  "url": "http://localhost:8080/Korisnik/index",
+  "tests": [{
+    "id": "75cf9f24-c1d0-4ad3-8ba2-2dabe77472a0",
+    "name": "korisnik_nije_veran",
+    "commands": [{
+      "id": "79c525d4-4a07-43b5-b468-e11da768306c",
+      "comment": "",
+      "command": "open",
+      "target": "/index.php/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "860678aa-c67b-43b4-a157-6060feeea544",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7e6ab4ae-3270-4446-b4bd-782c451d3967",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b3a73e61-ddb8-42ca-84a7-5e147b198ac9",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Ideje",
+      "targets": [
+        ["linkText=Ideje", "linkText"],
+        ["css=.dropdown-content > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Ideje')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8080/Korisnik/pregledprofilaideje']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Ideje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f45c9276-ab8e-43cf-9d3e-626951f2828a",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "21081cf4-7c5c-43c5-9d12-52a405562593",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bb6c16fb-9149-4421-868e-d31bb98b89d8",
+      "comment": "",
+      "command": "type",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2020-06-24"
+    }, {
+      "id": "56d639fb-525c-4422-a68f-824a4664160b",
+      "comment": "",
+      "command": "click",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "52a738aa-c575-4eb0-9420-c0b22fd07b0d",
+      "comment": "",
+      "command": "type",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "NovaIdeja"
+    }, {
+      "id": "2ae1d576-a5cf-43a6-bfb8-665a682af46e",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Ko ce biti najbolji na faksu?"
+    }, {
+      "id": "2de66df3-c670-467d-bdbe-5364f844d81d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.dugme",
+      "targets": [
+        ["css=.dugme", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/center/button", "xpath:idRelative"],
+        ["xpath=//center/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prihvati dodavanje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "395bfce2-32b8-40f9-a115-a6d93f5001bc",
+    "name": "uspesno_dodavanje",
+    "commands": [{
+      "id": "86d0af6f-b2f6-4411-a7f3-84297fe00b62",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7a6f932e-5ecf-4b00-a0a5-0d8b3ce0b8b4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "58e3bc49-00a8-48a2-8806-0eca15667a90",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9be85e17-03db-4ea4-a8ce-fd2ba1e3ccc4",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0647309b-8f28-4e77-8925-8ae367539ce8",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d292cbe3-20fc-4e60-ae6d-70f135e52c34",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Ideje",
+      "targets": [
+        ["linkText=Ideje", "linkText"],
+        ["css=.dropdown-content > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Ideje')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8080/Korisnik/pregledprofilaideje']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Ideje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0e4cd698-3caa-41f9-bd76-181c6ddff08a",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8020fd9d-6c79-4897-bdc1-b820367f12cf",
+      "comment": "",
+      "command": "type",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2020-06-17"
+    }, {
+      "id": "17ac0a54-a6c3-4d0c-b58e-b03d4bbc4245",
+      "comment": "",
+      "command": "click",
+      "target": "css=.box4:nth-child(2) > td:nth-child(2)",
+      "targets": [
+        ["css=.box4:nth-child(2) > td:nth-child(2)", "css:finder"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[2]/td[2]", "xpath:idRelative"],
+        ["xpath=//form/table/tbody/tr[2]/td[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1c989a8f-7427-4149-8833-562042b61131",
+      "comment": "",
+      "command": "click",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c928c147-3ee9-49ac-a7d2-37ceaf7bc1fe",
+      "comment": "",
+      "command": "type",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "BundesLiga"
+    }, {
+      "id": "d95757a0-4b1a-41e2-871b-f29a2132a404",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Neko pobedjuje"
+    }, {
+      "id": "39070c09-1ef8-4916-9f3d-9f4e390e3963",
+      "comment": "",
+      "command": "click",
+      "target": "css=.dugme",
+      "targets": [
+        ["css=.dugme", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/center/button", "xpath:idRelative"],
+        ["xpath=//center/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prihvati dodavanje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "638d71da-b7c4-4566-97cf-1e19e915de54",
+    "name": "datum_stavljen_u_proslost",
+    "commands": [{
+      "id": "7de3c43a-8990-4076-a8d8-fde70273c416",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f7b53e20-6caa-45cc-ab3b-2b2016a368f4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b2d96bfd-8bf5-4e24-a244-0e67d931a522",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "47a8f659-295d-4212-893d-56e9298b7cad",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Ideje",
+      "targets": [
+        ["linkText=Ideje", "linkText"],
+        ["css=.dropdown-content > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Ideje')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8080/Korisnik/pregledprofilaideje']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Ideje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d98f9db-becf-4f57-b7ec-12b28e5a3e43",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9e2c1388-bc3b-4274-8ac4-88732b09a97e",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9582766e-5246-45fb-b673-f2ded148260d",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a4c3d2fb-a2aa-4f24-a915-10e3e50eb9cc",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5f614842-48ef-429f-bbc3-3c5989559f3d",
+      "comment": "",
+      "command": "type",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2020-06-03"
+    }, {
+      "id": "2d181add-2f57-44f4-bda1-713b314e26f4",
+      "comment": "",
+      "command": "click",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "029adca4-cd5b-45ef-9fa5-8b200f0c5355",
+      "comment": "",
+      "command": "type",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "Naslov"
+    }, {
+      "id": "a4123529-c2cf-45a1-9047-6a46f1968e94",
+      "comment": "",
+      "command": "click",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d593f7dc-ff4e-44fd-902e-469e42db66da",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "bezveze"
+    }, {
+      "id": "cfca549d-384a-44b0-a294-ed1bd0214ec8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.dugme",
+      "targets": [
+        ["css=.dugme", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/center/button", "xpath:idRelative"],
+        ["xpath=//center/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prihvati dodavanje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "91987a8a-3004-4895-a764-86fa2f1adb58",
+    "name": "prazan_datum",
+    "commands": [{
+      "id": "7733a469-1bff-495b-98da-aae12cd573d1",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "54bcacfe-ede6-453c-9c49-0a162f7d0f1f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "62c2245f-db28-4d1e-94fd-6641938bcedb",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5a2cefb3-def2-4690-b575-6c1c77ebb063",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Ideje",
+      "targets": [
+        ["linkText=Ideje", "linkText"],
+        ["css=.dropdown-content > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Ideje')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8080/Korisnik/pregledprofilaideje']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Ideje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9d7966fb-9c1f-46ec-9140-32942dec09fa",
+      "comment": "",
+      "command": "click",
+      "target": "css=.box4:nth-child(2) > td:nth-child(2)",
+      "targets": [
+        ["css=.box4:nth-child(2) > td:nth-child(2)", "css:finder"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[2]/td[2]", "xpath:idRelative"],
+        ["xpath=//form/table/tbody/tr[2]/td[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0597bbf3-1022-4cd5-a341-7acedda8c1ab",
+      "comment": "",
+      "command": "click",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "47c18c94-e6ee-4a89-ac1a-1d8f14f36f0d",
+      "comment": "",
+      "command": "type",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "Idejaideja"
+    }, {
+      "id": "081d5df3-7123-407e-9033-3c9dc25b7ac3",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "jigofjgojdfoigjsdo"
+    }, {
+      "id": "0b42f32a-ba4e-43d3-b200-203adc8243a8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.dugme",
+      "targets": [
+        ["css=.dugme", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/center/button", "xpath:idRelative"],
+        ["xpath=//center/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prihvati dodavanje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "e7f584f4-a704-4b56-84c2-2cb875f95412",
+    "name": "prazan_naslov",
+    "commands": [{
+      "id": "36aadc04-62fa-4235-9006-b2da3298971e",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ff1b2400-00e4-4264-99fd-2a6d2d727d6f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9837e747-7901-49e1-ae1b-9ec7e07d5296",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "33601e17-a7ab-431a-8604-d94d3b5bd2ad",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a6db3868-853f-41ca-901a-a47951777661",
+      "comment": "",
+      "command": "type",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2020-06-18"
+    }, {
+      "id": "c8291f6b-47c0-4bea-86cc-2a52b975c320",
+      "comment": "",
+      "command": "click",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8a965c12-3815-4165-88b3-cf451634c59d",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzajPredvidjanja",
+      "targets": [
+        ["name=sadrzajPredvidjanja", "name"],
+        ["css=.txtarea", "css:finder"],
+        ["xpath=//textarea[@name='sadrzajPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/table/tbody/tr[3]/td/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Neki tekst 12345678"
+    }, {
+      "id": "bc875c43-e04e-448a-a136-c6b4605c7074",
+      "comment": "",
+      "command": "click",
+      "target": "css=.dugme",
+      "targets": [
+        ["css=.dugme", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_predvidjanja_forma']/center/button", "xpath:idRelative"],
+        ["xpath=//center/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prihvati dodavanje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "e8946a44-0379-4b72-ae42-8e955a01363d",
+    "name": "prazan_sadrzaj",
+    "commands": [{
+      "id": "c8372784-23fe-48b6-aad9-1bb5a49ed13d",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a18f66fa-6ad3-4a5d-bcea-58cab986e417",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6b2f2cd0-1f85-4abd-9956-be9ae3a17036",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "eff277c3-3024-4f1c-8d9c-9f9a50f5eb8f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Ideje",
+      "targets": [
+        ["linkText=Ideje", "linkText"],
+        ["css=.dropdown-content > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Ideje')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8080/Korisnik/pregledprofilaideje']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Ideje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c01cc379-bc6e-4c6c-8ec8-c188f5a4bcbd",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "052bae6a-1149-418b-9e62-82698a4961a8",
+      "comment": "",
+      "command": "click",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5d3ae5c8-3654-4ba5-a507-d7d758ecf859",
+      "comment": "",
+      "command": "type",
+      "target": "name=datumPredvidjanja",
+      "targets": [
+        ["name=datumPredvidjanja", "name"],
+        ["css=.box4:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='datumPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2020-06-23"
+    }, {
+      "id": "9e7e6579-2615-4216-9c39-991fc2f8eb33",
+      "comment": "",
+      "command": "click",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1973802b-2249-4c35-88b3-e8c3c57d50bc",
+      "comment": "",
+      "command": "type",
+      "target": "name=naslovPredvidjanja",
+      "targets": [
+        ["name=naslovPredvidjanja", "name"],
+        ["css=.box4:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='naslovPredvidjanja']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "NekiNaslov"
+    }, {
+      "id": "cc6da5cf-848e-4400-ae50-64b095f70758",
+      "comment": "",
+      "command": "click",
+      "target": "css=.dugme",
+      "targets": [
+        ["css=.dugme", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/center/button", "xpath:idRelative"],
+        ["xpath=//center/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prihvati dodavanje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "14633866-94e1-4dd1-b568-19da6233142f",
+    "name": "prazna_sva_polja",
+    "commands": [{
+      "id": "48ef5c84-44ca-4bf4-810a-5078f2bdae51",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "39a80620-6c43-4bde-8be0-a6492ec7e38f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5a187835-926a-4474-8539-68b412b62470",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c9edb15c-7725-4d87-8529-5af5d7ba3346",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Ideje",
+      "targets": [
+        ["linkText=Ideje", "linkText"],
+        ["css=.dropdown-content > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Ideje')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8080/Korisnik/pregledprofilaideje']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Ideje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c6da9bf3-696e-47a4-8bd4-656db2248b85",
+      "comment": "",
+      "command": "click",
+      "target": "css=.dugme",
+      "targets": [
+        ["css=.dugme", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='dodavanje_ideja_forma']/center/button", "xpath:idRelative"],
+        ["xpath=//center/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prihvati dodavanje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "232bc2b1-7a2a-4199-a3ae-3c60074e0a6e",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["75cf9f24-c1d0-4ad3-8ba2-2dabe77472a0"]
+  }],
+  "urls": ["http://localhost:8080/", "http://localhost:8080/Korisnik/index"],
+  "plugins": []
+}
