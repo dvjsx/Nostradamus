@@ -11,7 +11,7 @@ use App\Models\DajeOcenuModel;
 use App\Models\Odgovor_naModel;
 /**
  * @version 1.0
- * @author Smiljana Spasic 2014/588
+ * @author Smiljana Spasic 2014/588 - funkcije za pregled sopstvenog i tudjeg profila
  *  @author ktarina Svrkota 2015/648
  */
 class Moderator extends BaseController

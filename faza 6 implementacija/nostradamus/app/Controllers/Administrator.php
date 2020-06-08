@@ -14,6 +14,7 @@ use App\Models\DajeOcenuModel;
 /**
  * @author Katarina Svrkota 2015/648
  * @author Dusan Vojinovic 2017/80
+ * @author Smiljana Spasic 2014/588 - funkcije za pregled sopstvenog i tudjeg profila
  * @version 1.0
  */
 class Administrator extends BaseController

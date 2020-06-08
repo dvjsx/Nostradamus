@@ -14,6 +14,7 @@ use App\Models\DajeOcenuModel;
 /***
  * @author Dusan Vojinovic 2017/80
  * @author Janko Kitanovic 2016/694
+ * @author Smiljana Spasic 2014/588 - funkcije za pregled sopstvenog i tudjeg profila
  */
 class Korisnik extends BaseController
 {
