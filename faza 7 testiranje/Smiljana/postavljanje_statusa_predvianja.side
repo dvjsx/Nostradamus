@@ -1,0 +1,150 @@
+{
+  "id": "59cc57ae-cd17-4df0-8386-9b2d8d19c871",
+  "version": "2.0",
+  "name": "postavljanje_statusa_predviđanja",
+  "url": "http://localhost:8080/Korisnik/index",
+  "tests": [{
+    "id": "893d0131-a36b-4c8e-9ec1-8e75a63366bd",
+    "name": "postavljanje_statusa_ispunjeno",
+    "commands": [{
+      "id": "cfd86ae8-6fe9-42f5-8484-3f5b6d1024c4",
+      "comment": "",
+      "command": "open",
+      "target": "/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "08a33a83-8ec8-405a-80f6-823a3302ff07",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5fbb1510-16a3-498a-b7d2-9f56ebb77f31",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7586e29b-2dec-4599-aeb8-33cd4dee906f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.last a:nth-child(1) > img",
+      "targets": [
+        ["css=.last a:nth-child(1) > img", "css:finder"],
+        ["xpath=//img[contains(@src,'http://localhost:8080/slike/pencil.png')]", "xpath:img"],
+        ["xpath=//img[@onclick='(zapamtiId(1000))']", "xpath:attributes"],
+        ["xpath=//div[@id='page1']/table/tbody/tr[3]/td/a/img", "xpath:idRelative"],
+        ["xpath=//tr[3]/td/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6e390721-ccca-4cc6-b514-73650015e841",
+      "comment": "",
+      "command": "click",
+      "target": "name=dane",
+      "targets": [
+        ["name=dane", "name"],
+        ["css=form > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='dane']", "xpath:attributes"],
+        ["xpath=//div[@id='olovka']/div/form/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a153c4a8-ddbd-4b50-b565-8f15c09c8d78",
+      "comment": "",
+      "command": "click",
+      "target": "css=.button2",
+      "targets": [
+        ["css=.button2", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='olovka']/div/form/button", "xpath:idRelative"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'POTVRDA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "895c0b5d-d5b7-4059-90a5-6ed5795860e2",
+    "name": "postavljanje_statusa_neispunjeno",
+    "commands": [{
+      "id": "548cd933-1288-467c-a582-59083dcbcdcf",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Korisnik/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "14c42453-42aa-4105-9a2c-23ca27018e6f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "85ab9baa-df63-4e7b-bf54-808c3be8b959",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) img",
+      "targets": [
+        ["css=td:nth-child(3) img", "css:finder"],
+        ["xpath=//td[3]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e112321c-e2ac-45d9-b350-7e0554bcd47c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.cekanje a:nth-child(1) > img",
+      "targets": [
+        ["css=.cekanje a:nth-child(1) > img", "css:finder"],
+        ["xpath=//img[contains(@src,'http://localhost:8080/slike/pencil.png')]", "xpath:img"],
+        ["xpath=//img[@onclick='(zapamtiId(781))']", "xpath:attributes"],
+        ["xpath=//div[@id='page1']/table[2]/tbody/tr[3]/td/a/img", "xpath:idRelative"],
+        ["xpath=//table[2]/tbody/tr[3]/td/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3483572e-c874-4e03-ab23-dc6619c2c1b8",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(2)",
+      "targets": [
+        ["css=input:nth-child(2)", "css:finder"],
+        ["xpath=(//input[@name='dane'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='olovka']/div/form/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e28f027c-500d-4324-a42a-b3eb568ad97c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.button2",
+      "targets": [
+        ["css=.button2", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='olovka']/div/form/button", "xpath:idRelative"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'POTVRDA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "40d77527-db45-46ac-ab86-c92ee46f9983",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["893d0131-a36b-4c8e-9ec1-8e75a63366bd"]
+  }],
+  "urls": ["http://localhost:8080/", "http://localhost:8080/Korisnik/index"],
+  "plugins": []
+}

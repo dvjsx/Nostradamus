@@ -1,0 +1,279 @@
+{
+  "id": "90cb1222-c560-4882-bb15-7824d5e62ac3",
+  "version": "2.0",
+  "name": "promena_statusa_predvidjanja",
+  "url": "http://localhost:8080/Moderator/index",
+  "tests": [{
+    "id": "0f88d9cd-cd24-44f4-841b-980173608426",
+    "name": "promena_statusa_sa_glavne_stranice_uspesno",
+    "commands": [{
+      "id": "70ad62c6-6784-4cb3-816e-522b24c4ffdc",
+      "comment": "",
+      "command": "open",
+      "target": "/Moderator/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c4a4e36a-4ef8-46f9-b124-2c2075f934c4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6f69e92e-4875-4196-8dbd-3acd3bff725d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.neispunjeno:nth-child(3) a > img",
+      "targets": [
+        ["css=.neispunjeno:nth-child(3) a > img", "css:finder"],
+        ["xpath=(//img[contains(@src,'http://localhost:8080/slike/pencil.png')])[3]", "xpath:img"],
+        ["xpath=//img[@onclick='(zapamtiId(22))']", "xpath:attributes"],
+        ["xpath=//table[3]/tbody/tr[3]/td/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ab46057d-afa0-4771-90c2-fe6d1437f1a3",
+      "comment": "",
+      "command": "click",
+      "target": "name=dane",
+      "targets": [
+        ["name=dane", "name"],
+        ["css=form > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='dane']", "xpath:attributes"],
+        ["xpath=//div[@id='olovka']/div/form/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ca8bce95-c366-4a11-a54d-6371bc9e914d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.button2",
+      "targets": [
+        ["css=.button2", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='olovka']/div/form/button", "xpath:idRelative"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'POTVRDA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "ccebbef0-5afc-47c1-8e81-844f5ccad721",
+    "name": "promena_statusa_sa_glavne_stranice_neusesno",
+    "commands": [{
+      "id": "92b75443-5712-497f-85f0-52b3a2201a3b",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Moderator/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3b948ce6-303c-4c3a-9400-165f025b3a5e",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2f3d2fa8-b30b-41ea-a95a-ea0dd0ac8d4f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.content:nth-child(2) a:nth-child(1) > img",
+      "targets": [
+        ["css=.content:nth-child(2) a:nth-child(1) > img", "css:finder"],
+        ["xpath=(//img[contains(@src,'http://localhost:8080/slike/pencil.png')])[2]", "xpath:img"],
+        ["xpath=//img[@onclick='(zapamtiId(34))']", "xpath:attributes"],
+        ["xpath=//table[2]/tbody/tr[3]/td/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff00c762-9a9b-434c-b31c-574c1c855480",
+      "comment": "",
+      "command": "click",
+      "target": "css=div > form:nth-child(3)",
+      "targets": [
+        ["css=div > form:nth-child(3)", "css:finder"],
+        ["xpath=//form[@action='http://localhost:8080/Moderator/izmeniStatusTudjegPredvidjanja']", "xpath:attributes"],
+        ["xpath=//div[@id='olovka']/div/form", "xpath:idRelative"],
+        ["xpath=//div[4]/div/form", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2e4cef1a-11b8-45a0-bc8e-e141d94bddc2",
+      "comment": "",
+      "command": "click",
+      "target": "css=form > input:nth-child(2)",
+      "targets": [
+        ["css=form > input:nth-child(2)", "css:finder"],
+        ["xpath=(//input[@name='dane'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='olovka']/div/form/input[2]", "xpath:idRelative"],
+        ["xpath=//form/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f9231989-d72a-47f6-82ab-c826f46d111a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.button2",
+      "targets": [
+        ["css=.button2", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='olovka']/div/form/button", "xpath:idRelative"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'POTVRDA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "15085b23-08e1-4e15-9312-c997e29fea9f",
+    "name": "promena_statusa_sa_profila_uspesno",
+    "commands": [{
+      "id": "5ef9fc17-91c3-4c2a-83c1-386e942ee0dd",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Moderator/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "018972a6-c4c4-46c4-88fd-3f0e676d5476",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3d09615a-37d0-4504-83b3-0b3c5d94de71",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=korisniknovi",
+      "targets": [
+        ["linkText=korisniknovi", "linkText"],
+        ["css=.ispunjeno:nth-child(9) .autor > a", "css:finder"],
+        ["xpath=//a[contains(text(),'korisniknovi')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8080/index.php/Moderator/pregledtudjegpredv/korisniknovi']", "xpath:href"],
+        ["xpath=//table[9]/tbody/tr[3]/td[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'korisniknovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ad88c436-6979-43fd-a36a-dfb4583b82d9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.ispunjeno a:nth-child(1) > img",
+      "targets": [
+        ["css=.ispunjeno a:nth-child(1) > img", "css:finder"],
+        ["xpath=//img[contains(@src,'http://localhost:8080/slike/pencil.png')]", "xpath:img"],
+        ["xpath=//img[@onclick='(zapamtiId(1000))']", "xpath:attributes"],
+        ["xpath=//div[@id='page1']/table/tbody/tr[3]/td/a/img", "xpath:idRelative"],
+        ["xpath=//tr[3]/td/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5e3b3f12-429a-4c6f-977f-c21e31ba8de1",
+      "comment": "",
+      "command": "click",
+      "target": "css=#olovka input:nth-child(2)",
+      "targets": [
+        ["css=#olovka input:nth-child(2)", "css:finder"],
+        ["xpath=(//input[@name='dane'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='olovka']/div/form/input[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/form/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "93ea90c5-8c51-486e-83eb-62bf9579d4ab",
+      "comment": "",
+      "command": "click",
+      "target": "css=.button2",
+      "targets": [
+        ["css=.button2", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='olovka']/div/form/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'POTVRDA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "dc737fa1-cfda-454b-9d94-405e7f3402a5",
+    "name": "promena_statusa_sa_profila_neuspesno",
+    "commands": [{
+      "id": "19c66ea6-9962-440a-89ec-7bdc6ebd65fc",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Moderator/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "21cb638f-f242-4dea-94e9-0a1cc24c23da",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1611x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dd85cd2d-e72d-463b-b643-577f283c58db",
+      "comment": "",
+      "command": "click",
+      "target": "css=.content:nth-child(2) .autor > a",
+      "targets": [
+        ["css=.content:nth-child(2) .autor > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'prvobitni_admin')])[2]", "xpath:link"],
+        ["xpath=(//a[@href='http://localhost:8080/index.php/Moderator/pregledtudjegpredv/prvobitni_admin'])[2]", "xpath:href"],
+        ["xpath=//table[2]/tbody/tr[3]/td[5]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0791bcba-5c7f-4698-aad9-b51162297b75",
+      "comment": "",
+      "command": "click",
+      "target": "css=.content a:nth-child(1) > img",
+      "targets": [
+        ["css=.content a:nth-child(1) > img", "css:finder"],
+        ["xpath=(//img[contains(@src,'http://localhost:8080/slike/pencil.png')])[2]", "xpath:img"],
+        ["xpath=//img[@onclick='(zapamtiId(34))']", "xpath:attributes"],
+        ["xpath=//div[@id='page1']/table[2]/tbody/tr[3]/td/a/img", "xpath:idRelative"],
+        ["xpath=//table[2]/tbody/tr[3]/td/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "30ee5f08-dc09-4471-9415-d7478a2247c4",
+      "comment": "",
+      "command": "click",
+      "target": "name=dane",
+      "targets": [
+        ["name=dane", "name"],
+        ["css=#olovka input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='dane']", "xpath:attributes"],
+        ["xpath=//div[@id='olovka']/div/form/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "70fec151-0541-49e2-9457-15ffa768d91a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.button2",
+      "targets": [
+        ["css=.button2", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='olovka']/div/form/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'POTVRDA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "adbd7c57-79af-4d8a-bbec-393dd14a4cff",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["0f88d9cd-cd24-44f4-841b-980173608426"]
+  }],
+  "urls": ["http://localhost:8080/", "http://localhost:8080/Moderator/index"],
+  "plugins": []
+}
