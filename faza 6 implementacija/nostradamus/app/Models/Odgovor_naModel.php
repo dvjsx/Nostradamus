@@ -38,9 +38,10 @@ class Odgovor_naModel extends Model
         $predvidjanja=[];
         foreach ($odgovori as $odg)
         {
-            echo $predModel->first($odg->IdP)->Sadrzaj;
-            array_push($predvidjanja, $predModel->first($odg->IdP));
+            //echo $predModel->first($odg->IdP)->IdP;
+            array_push($predvidjanja, $predModel->where("IdP",$odg->IdP)->first());
         }
+        
         return $predvidjanja;
     }
     /**

@@ -274,8 +274,7 @@ class Korisnik extends BaseController
           $idejaModel->povecaj_popularnost($ideja->IdI);
           //cuvanje odgovora
           $odgovor_na=new Odgovor_naModel();
-          $idP=$predvidjanjeModel->poslednje_predvidjanje();
-          $odgovor_na->sacuvaj_odgovor($idP, $ideja->IdI);
+          
           //povecavanje popularnosti korisnika
           $korisnikModel=new KorisnikModel();
           $autor_ideje=$korisnikModel->where("IdK",$ideja->IdK)->first();
@@ -285,6 +284,11 @@ class Korisnik extends BaseController
       //ako je sve ok
       $predvidjanjeModel->ubaci_novo_predvidjanje($korisnik->IdK,$korisnik->Username, $this->request->getVar('naslovPredvidjanja'), 
               $datum, $this->request->getVar("sadrzajPredvidjanja"));
+      if ($ideja!=null)
+      {
+          $idP=$predvidjanjeModel->poslednje_predvidjanje();
+          $odgovor_na->sacuvaj_odgovor($idP, $ideja->IdI);
+      }
       $predvidjanja=$predvidjanjeModel->dohvati_predvidjanja_po_korisnickom_imenu($korisnik->Username);
       
       
