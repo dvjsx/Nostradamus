@@ -134,6 +134,7 @@ INSERT INTO `korisnik` (`IdK`, `Username`, `Password`, `DatumReg`, `Email`, `Sko
 (1004, 'novi4', 'MaliCar5Ds', '2020-05-19 06:18:13', 'rvojinovic-dusan@hotmail.rs', '0.00', 0),
 (1005, 'novi5', 'MaliCar5Ds', '2020-05-19 06:19:29', 'vrojinovic-dusan@hotmail.rs', '-3.00', 10),
 (1006, 'novi7', 'MaliCar5Ds', '2020-05-29 04:16:52', 'vorraxjinovic-dusan@hotmail.rs', '0.00', 1),
+(10008, 'korisniknovi', 'Novi123', '2020-06-08 11:55:15', 'korisniknovi@gmail.com', '0.00', 0),
 (1007, 'moderator', 'MaliCar5Ds', '2020-05-29 00:00:00', 'vojinosasasasd@hoxsasa.rs', '0.00', 0);
 
 -- --------------------------------------------------------
@@ -229,7 +230,9 @@ INSERT INTO `predvidjanje` (`IdK`, `Username`, `IdP`, `Naslov`, `DatumNastanka`,
 (1004, 'novi4', 22, 'Obicna', '2020-05-19 07:23:31', '2020-05-31 00:00:00', 'sadasdasdsa', '0.00', '0.00', 1, 'NEISPUNJENO', 0),
 (1005, 'novi5', 29, 'Vozacki', '2020-06-01 15:39:15', '2020-06-26 00:00:00', 'Polozicu ispit iz voznje', '4.00', '19.74', 1, 'CEKA', 1),
 (1005, 'novi5', 31, '#Jon Jones- Nganu', '2020-06-01 15:59:09', '2020-06-30 00:00:00', 'Nece.', '0.00', '0.00', 0, 'CEKA', 0),
-(1005, 'novi5', 32, '#Ideja', '2020-06-01 16:13:11', '2020-06-30 00:00:00', 'lllll', '0.00', '0.00', 0, 'CEKA', 0);
+(1005, 'novi5', 32, '#Ideja', '2020-06-01 16:13:11', '2020-06-30 00:00:00', 'lllll', '0.00', '0.00', 0, 'CEKA', 0),
+(10008, 'korisniknovi', 1000, 'Bezveze', '2020-06-02 19:41:44', '2020-06-07 19:41:44', 'OKOKOKOK', '0.00', '5.00', 0, 'CEKA', 0),
+(10008, 'korisniknovi', 781, 'Treci svetski rat', '2020-06-03 20:06:44', '2020-06-07 20:06:44', 'Predvidjam da ce svetski treci rat poceti za par dana', '10.00', '10.00', 0, 'CEKA', 0);
 
 -- --------------------------------------------------------
 
