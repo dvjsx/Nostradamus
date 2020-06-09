@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jun 09, 2020 at 08:16 AM
+-- Generation Time: Jun 09, 2020 at 02:31 PM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.12
 
@@ -180,7 +180,8 @@ INSERT INTO `obican_ili_veran` (`IdK`, `Veran`) VALUES
 (1002, 0),
 (1003, 1),
 (1004, 1),
-(1006, 1);
+(1006, 1),
+(10008, 0);
 
 -- --------------------------------------------------------
 
