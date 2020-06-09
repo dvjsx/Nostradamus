@@ -226,7 +226,7 @@
         ["xpath=//th", "xpath:position"],
         ["xpath=//th[contains(.,'#I')]", "xpath:innerText"]
       ],
-      "value": "#I"
+      "value": "Treci svetski rat"
     }, {
       "id": "e2e3532d-56b1-42d5-bdcd-be379d611583",
       "comment": "",
