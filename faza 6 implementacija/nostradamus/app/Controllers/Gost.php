@@ -139,6 +139,9 @@ class Gost extends BaseController
         $this->session->set('kor_tip', 'korisnice');
         return redirect()->to(site_url("Korisnik/index"));
   }
+  /**
+   * Pregled svih predvidjanja
+   */
   public function pregled_predvidjanja() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -146,6 +149,9 @@ class Gost extends BaseController
       $data['predvidjanja']=$predvidjanja;
       $this->prikaz('pregled_predvidjanja', $data);
   }
+  /**
+   * Pregled predvidjanja sortiranih po datumu nastanka
+   */
   public function sortPredvidjanjeNovo() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -154,6 +160,9 @@ class Gost extends BaseController
       $_SESSION['predvidjanje']='novo';
       $this->prikaz('pregled_predvidjanja', $data);     
   }
+  /**
+   * Pregled predvidjanja sortiranih po popularnosti
+   */
   public function sortPredvidjanjePopularno() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -162,6 +171,9 @@ class Gost extends BaseController
       $_SESSION['predvidjanje']='popularno';
       $this->prikaz('pregled_predvidjanja', $data);        
   }
+  /**
+   * Pregled predvidjanja sortiranih po tezini
+   */
     public function sortPredvidjanjeNajteze() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -170,6 +182,9 @@ class Gost extends BaseController
       $_SESSION['predvidjanje']='tezina';      
       $this->prikaz('pregled_predvidjanja', $data);          
   }
+  /**
+   * Pregled predvidjanja sortiranih datog korisnika
+   */
   public function pretragaPredvidjanja(){
        $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -178,6 +193,9 @@ class Gost extends BaseController
       $data['predvidjanja']=$predvidjanja;
       $this->prikaz('pregled_predvidjanja', $data);     
   }
+  /**
+   * Pregled svih ideja 
+   */
   public function pregled_ideja() {
        $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
@@ -185,6 +203,9 @@ class Gost extends BaseController
       $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);
   }
+  /**
+   * Pregled ideja sortiranih po aktuelnosti
+   */
   public function sortIdejaAktuelno() {
        $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
@@ -192,6 +213,9 @@ class Gost extends BaseController
       $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);     
   }
+  /**
+   * Pregled ideja sortiranih po popularnosti
+   */
   public function sortIdejaPopularno() {
        $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
@@ -199,6 +223,9 @@ class Gost extends BaseController
        $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);
   } 
+  /**
+   * Pregled ideja  datog korisnika
+   */
   public function pretragaIdeja(){
       $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();

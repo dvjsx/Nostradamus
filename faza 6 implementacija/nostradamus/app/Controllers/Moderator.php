@@ -16,7 +16,11 @@ use App\Models\Odgovor_naModel;
  */
 class Moderator extends BaseController
 {
-	
+	/**
+         * Prikazuje odgovarajucu stranicu
+         * @param string $page stranica koja se prikazuje
+         * @param string $data potrebni podaci (recimo sva predvidjanja, koji je korisnik i sl)
+         */
 	protected function prikaz($page,$data){
         $data['controller']='Moderator';
         $data['korisnik']=$this->session->get('korisnik');
@@ -27,6 +31,9 @@ class Moderator extends BaseController
         echo view("stranice/$page",$data);
         echo view('sablon/footer');         
     }
+    /**
+     * Pocetna stranica
+     */
  public function index()
     {
       $data['kor_ime']=$this->session->get('kor_tip');
@@ -82,6 +89,9 @@ class Moderator extends BaseController
         $this->session->destroy();
         return redirect()->to(site_url('/'));
     }
+    /**
+     * Prikaz svih predvidjanja
+     */
   public function pregled_predvidjanja() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -89,6 +99,9 @@ class Moderator extends BaseController
       $data['predvidjanja']=$predvidjanja;
       $this->prikaz('pregled_predvidjanja', $data);
   }
+  /**
+   * Prikaz predvidjanja sortiranih po datumu nastanka.
+   */
   public function sortPredvidjanjeNovo() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -96,6 +109,9 @@ class Moderator extends BaseController
       $data['predvidjanja']=$predvidjanja;
       $this->prikaz('pregled_predvidjanja', $data);     
   }
+  /**
+   * Prikaz predvidjanja sortiranih po popularnosti
+   */
   public function sortPredvidjanjePopularno() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -103,6 +119,9 @@ class Moderator extends BaseController
     $data['predvidjanja']=$predvidjanja;
       $this->prikaz('pregled_predvidjanja', $data);        
   }
+  /**
+   * Prikaz predvidjanja sortiranih po tezini
+   */
     public function sortPredvidjanjeNajteze() {
         $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -110,6 +129,9 @@ class Moderator extends BaseController
       $data['predvidjanja']=$predvidjanja;
       $this->prikaz('pregled_predvidjanja', $data);          
   }
+  /**
+   * Prikaz predvidjanja zadatog korisnika
+   */
   public function pretragaPredvidjanja(){
        $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -118,6 +140,9 @@ class Moderator extends BaseController
       $data['predvidjanja']=$predvidjanja;
       $this->prikaz('pregled_predvidjanja', $data);     
   }
+  /**
+   * Prikaz svih ideja
+   */
    public function pregled_ideja() {
        $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
@@ -125,6 +150,9 @@ class Moderator extends BaseController
       $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);
   }
+  /**
+   * Prikaz ideja sortiranih po aktuelnosti
+   */
   public function sortIdejaAktuelno() {
        $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
@@ -132,6 +160,9 @@ class Moderator extends BaseController
       $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);     
   }
+  /**
+   * Prikaz ideja sortiranih po popularnosti
+   */
   public function sortIdejaPopularno() {
        $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
@@ -139,6 +170,9 @@ class Moderator extends BaseController
        $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);
   } 
+  /**
+   * Prikaz ideja datog autora
+   */
   public function pretragaIdeja(){
       $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
@@ -147,7 +181,10 @@ class Moderator extends BaseController
       $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);
   } 
-  //netestirano, promeniti ako se menja u korisnik
+  /**
+   * 
+   * Moderator daje ideju.
+   */
   public function dajIdeju()
   {
       $korisnik= $this->session->get('korisnik');
@@ -184,6 +221,11 @@ class Moderator extends BaseController
       //$this->prikaz("profilkorisnikideje", ['user'=>$korisnik,'ideje'=>$ideje]);
        return redirect()->to(base_url("Moderator/pregledprofilaideje"));
   }
+  /**
+   * 
+   * Moderator daje predvidjanje. Ako je ono (validan) odgovor na ideju, povecava se popularnost
+   * ideje i njenog autora, i cuva se spoj u bazi.
+   */
     public function dajPredvidjanje()
   {
       $korisnik= $this->session->get('korisnik');
@@ -252,12 +294,16 @@ class Moderator extends BaseController
       
      return redirect()->to(base_url("Moderator/pregledprofilapredvidjanja"));
   }
+  /**
+   * Prikaz uputstva
+   */
   public function uputstvo()
   {
      $this->prikaz("uputstvo", []);
   }
   /**
-   * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
+   * Moderator voli predvidjanje. Ukoliko ga je vec voleo/nije voleo, ne desava se nista, inace se povecava
+   * popularnost predvidjanja.
    */
   public function voliPredvidjanje()
   {
@@ -278,7 +324,8 @@ class Moderator extends BaseController
       return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   /**
-   * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
+   * Moderator ne voli predvidjanje. Ukoliko ga je vec voleo/nije voleo, ne desava se nista, inace se smanjuje
+   * popularnost predvidjanja.
    */
   public function neVoliPredvidjanje()
   {
@@ -299,7 +346,8 @@ class Moderator extends BaseController
       return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   /**
-   * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
+   * Moderator ocenjuje tezinu predvidjanja. Ukoliko ga je vec ocenio, ne desava se nista, inace se azurira
+   * tezina predvidjanja.
    */
   public function oceniPredvidjanje()
   {
@@ -326,8 +374,7 @@ class Moderator extends BaseController
       return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   /**
-   * Netestirano, izmeniti ako se menja u korisnik kontroleru
-   * @return type
+   * Moderator daje status svom predvidjanju. Ako je ispunjeno, uvecava mu se skor za tezinu predvidjanja.
    */
   public function dajStatusSvomPredvidjanju()
   {
@@ -355,7 +402,10 @@ class Moderator extends BaseController
       }
        return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
-  //ovo svakako ne stavljati u korisnika
+  /**
+   * 
+   * Moderator menja status datog predvidjanja ako je korisnik lagao/slucajno pogresio
+   */
   public function izmeniStatusTudjegPredvidjanja()
   {
       //$korisnik=$this->session->get("korisnik");
@@ -393,7 +443,7 @@ class Moderator extends BaseController
       return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   /**
-   * Netestirano, videti sta sa dohvatanjem
+   * 
    */
   public function sankcionisi_korisnika()
   {

@@ -19,6 +19,11 @@ use App\Models\DajeOcenuModel;
  */
 class Administrator extends BaseController
 {
+    /**
+     * Prikazuje odgovarajucu stranicu
+     * @param type $page stranica koja se prikazuje
+     * @param type $data podaci koji su joj potrebni (npr. koji je korisnik ili koja predvidjanja itd.)
+     */
 	protected function prikaz($page,$data){
         $data['controller']='Administrator';
         $data['korisnik']=$this->session->get('korisnik');
@@ -29,7 +34,9 @@ class Administrator extends BaseController
         echo view("stranice/$page",$data);
         echo view('sablon/footer');         
     }
-    
+    /**
+     * Pocetna stranica
+     */
      public function index()
     {
       $data['kor_ime']=$this->session->get('kor_tip');
@@ -78,10 +85,14 @@ class Administrator extends BaseController
       $data['ideje']=$ideje;
       $this->prikaz($trenprikaz, $data); 
    }
+    
       public function logout(){
         $this->session->destroy();
         return redirect()->to(site_url('/'));
     }
+    /**
+     * Prikazuje predvidjanja
+     */
   public function pregled_predvidjanja() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -89,6 +100,9 @@ class Administrator extends BaseController
       $data['predvidjanja']=$predvidjanja;
       $this->prikaz('pregled_predvidjanja', $data);
   }
+  /**
+   * Prikazuje predvidjanja sortirana po datumu nastanka (novija na vrhu)
+   */
   public function sortPredvidjanjeNovo() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -96,6 +110,9 @@ class Administrator extends BaseController
       $data['predvidjanja']=$predvidjanja;
       $this->prikaz('pregled_predvidjanja', $data);     
   }
+  /**
+   * Prikazuje predvidjanja sortirana po popularnosti (popularnija na vrhu)
+   */
   public function sortPredvidjanjePopularno() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -103,6 +120,9 @@ class Administrator extends BaseController
     $data['predvidjanja']=$predvidjanja;
       $this->prikaz('pregled_predvidjanja', $data);        
   }
+  /**
+   * Prikazuje predvidjanja sortirana po tezzini (teza na vrhu)
+   */
     public function sortPredvidjanjeNajteze() {
         $data['kor_ime']=$this->session->get('kor_tip');
       $predvidjanjeModel=new PredvidjanjeModel();
@@ -118,6 +138,9 @@ class Administrator extends BaseController
       $data['predvidjanja']=$predvidjanja;
       $this->prikaz('pregled_predvidjanja', $data);     
   }
+  /**
+   * Prikaz svih ideja
+   */
    public function pregled_ideja() {
        $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
@@ -125,6 +148,9 @@ class Administrator extends BaseController
       $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);
   }
+  /**
+   * Prikaz ideja sortiranih po aktuelnosti (aktuelnija pri vrhu)
+   */
   public function sortIdejaAktuelno() {
        $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
@@ -132,6 +158,9 @@ class Administrator extends BaseController
       $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);     
   }
+  /**
+   * Prikaz ideja sortiranih po popularnosti (popularnija pri vrhu)
+   */
   public function sortIdejaPopularno() {
        $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
@@ -139,6 +168,9 @@ class Administrator extends BaseController
        $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);
   } 
+  /**
+   * Prikaz ideja datog autora
+   */
   public function pretragaIdeja(){
       $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
@@ -147,6 +179,10 @@ class Administrator extends BaseController
       $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);
   } 
+  /**
+   * 
+   * Administrator daje ideju. Ideja se cuva u bazi, ili se prikazuje greska na stranici.
+   */
   public function dajIdeju()
   {
       $korisnik= $this->session->get('korisnik');
@@ -187,6 +223,11 @@ class Administrator extends BaseController
      // $this->prikaz("profilkorisnikideje", ['user'=>$korisnik,'ideje'=>$ideje]);
       return redirect()->to(base_url("Administrator/pregledprofilaideje"));
   }
+  /**
+   * 
+   * Administrator daje predvidjanje. Predvidjanje se cuva u bazi (i prikazuje na stranici). 
+   * Ako je predvidjanje odgovor na ideju popularnost ideje i njenog autora se povecavaju.
+   */
   public function dajPredvidjanje()
   {
       $korisnik= $this->session->get('korisnik');
@@ -254,12 +295,16 @@ class Administrator extends BaseController
       
        return redirect()->to(base_url("Administrator/pregledprofilapredvidjanja"));
   }
+  /**
+   * Prikazuje se korisnicko uputstvo
+   */
   public function uputstvo()
   {
        $this->prikaz("uputstvo", []);
   }  
   /**
-   * Netestirano, treba mi dizajn, ali trebalo bi da su pokriveni slucajevi
+   * Administrator voli dato predvidjanje. Ako je vec oznacio da ga voli ili ne voli, ne desava se nista, inace se povecava popularnost
+   * predvidjanja
    */
   public function voliPredvidjanje()
   {
@@ -280,7 +325,8 @@ class Administrator extends BaseController
        return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   /**
-   * 
+   * Administrator voli dato predvidjanje. Ako je vec oznacio da ga voli ili ne voli, ne desava se nista, inace se dekrementira popularnost
+   * predvidjanja
    */
   public function neVoliPredvidjanje()
   {
@@ -301,7 +347,7 @@ class Administrator extends BaseController
       return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
   /**
-   * 
+   * Administrator ocenjuje predvidjanje. Ako ga je vec ocenio, ne desava se nista, inace se azurira tezina predvidjanja.
    */
   public function oceniPredvidjanje()
   {
@@ -328,7 +374,7 @@ class Administrator extends BaseController
   }
   /**
    * 
-   * @return type
+   * Kad istekne datum evaluacije administrator daje status svom predvidjanju. Ako je ispunjeno, povecava mu se skor.
    */
   public function dajStatusSvomPredvidjanju()
   {
@@ -356,7 +402,10 @@ class Administrator extends BaseController
       return redirect()->to( $_SERVER['HTTP_REFERER']);
      
   }
-
+  /**
+   * 
+   * Sankcionise datog korisnika. Korisniku se smanjuje skor za izabrani broj poena (moze da "ode u minus")
+   */
   public function sankcionisi_korisnika()
   {
 
@@ -373,7 +422,10 @@ class Administrator extends BaseController
       return redirect()->to( $_SERVER['HTTP_REFERER']);
      
   }
-
+  /**
+   * 
+   * Brise dato predvidjanje
+   */
   public function obrisati_predvidjanje()
   {
    
@@ -394,7 +446,10 @@ class Administrator extends BaseController
       return redirect()->to( $_SERVER['HTTP_REFERER']);
      
   }
- 
+ /**
+  * 
+  * Brise se data ideja i svi odgovori na nju.
+  */
   public function obrisati_ideju()
   {
       $IdI=$_COOKIE['idTekIdeja'];
@@ -421,7 +476,10 @@ class Administrator extends BaseController
       $idejaModel->obrisi_ideju($IdI);
       return redirect()->to( $_SERVER['HTTP_REFERER']);
   }
-  
+  /**
+   * 
+   * Izabranom korisniku se menja uloga.
+   */
   public function promovisati()
   {
       

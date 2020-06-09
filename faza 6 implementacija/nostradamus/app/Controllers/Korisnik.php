@@ -12,6 +12,7 @@ use App\Models\VoliModel;
 use App\Models\DajeOcenuModel;
 
 /***
+ * @version 1.0
  * @author Dusan Vojinovic 2017/80
  * @author Janko Kitanovic 2016/694
  * @author Smiljana Spasic 2014/588 - funkcije za pregled sopstvenog i tudjeg profila
@@ -84,7 +85,9 @@ class Korisnik extends BaseController
       $data['ideje']=$ideje;
       $this->prikaz($trenprikaz, $data); 
    }
-      
+      /**
+       * Prikaz korisnickog uputstva
+       */
   public function uputstvo()
    {
        $this->prikaz("uputstvo", []);
@@ -108,7 +111,7 @@ class Korisnik extends BaseController
       $this->prikaz('pregled_predvidjanja', $data);
   }
    /**
-     * Prikazuju se sva predvidjanja sortirano
+     * Prikazuju se sva predvidjanja sortirana po datumu nastanka
      */
   public function sortPredvidjanjeNovo() {
       $data['kor_ime']=$this->session->get('kor_tip');
@@ -119,7 +122,7 @@ class Korisnik extends BaseController
       $this->prikaz('pregled_predvidjanja', $data);     
   }
   /**
-     * Prikazuju se sva predvidjanja sortirano
+     * Prikazuju se sva predvidjanja sortirana po popularnosti
      */
   public function sortPredvidjanjePopularno() {
       $data['kor_ime']=$this->session->get('kor_tip');
@@ -130,7 +133,7 @@ class Korisnik extends BaseController
       $this->prikaz('pregled_predvidjanja', $data);        
   }
   /**
-     * Prikazuju se sva predvidjanja sortirano
+     * Prikazuju se sva predvidjanja sortirana po tezini
      */
     public function sortPredvidjanjeNajteze() {
       $data['kor_ime']=$this->session->get('kor_tip');
@@ -141,7 +144,7 @@ class Korisnik extends BaseController
       $this->prikaz('pregled_predvidjanja', $data);          
   }
   /**
-     * Prikazuju se sva predvidjanja sortirano
+     * Prikazuju se sva predvidjanja datog korisnika
      */
   public function pretragaPredvidjanja(){
       $data['kor_ime']=$this->session->get('kor_tip');
@@ -151,6 +154,9 @@ class Korisnik extends BaseController
       $data['predvidjanja']=$predvidjanja;
       $this->prikaz('pregled_predvidjanja', $data);     
   }
+  /**
+   * Prikazuju se sve ideje
+   */
   public function pregled_ideja() {
       $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
@@ -159,7 +165,7 @@ class Korisnik extends BaseController
       $this->prikaz('pregled_ideja', $data);
   }
   /**
-     * Prikazuju se sva predvidjanja sortirano
+     * Prikazuju se sve ideje sortirane po aktuelnosti
      */
   public function sortIdejaAktuelno() {
       $data['kor_ime']=$this->session->get('kor_tip');
@@ -169,7 +175,7 @@ class Korisnik extends BaseController
       $this->prikaz('pregled_ideja', $data);     
   }
   /**
-     * Prikazuju se sva predvidjanja sortirano
+     * Prikazuju se sve ideje sortirane po popularnosti
      */
   public function sortIdejaPopularno() {
       $data['kor_ime']=$this->session->get('kor_tip');
@@ -178,6 +184,9 @@ class Korisnik extends BaseController
       $data['ideje']=$ideje;
       $this->prikaz('pregled_ideja', $data);
   } 
+  /**
+   * Prikazuju se sve ideje datog autora
+   */
   public function pretragaIdeja(){
       $data['kor_ime']=$this->session->get('kor_tip');
       $idejaModel=new IdejaModel();
@@ -225,7 +234,8 @@ class Korisnik extends BaseController
   }
 
   /**
-   * Korisnik daje predvidjanje
+   * Korisnik daje predvidjanje. Predvidjanje se cuva u bazi (i prikazuje na stranici). 
+   * Ako je predvidjanje odgovor na ideju popularnost ideje i njenog autora se povecavaju.
    */
   public function dajPredvidjanje()
   {
@@ -295,7 +305,8 @@ class Korisnik extends BaseController
       $this->prikaz("profilkorisnikpredvidjanja", ['user'=>$korisnik,'predvidjanja'=>$predvidjanja]);
   }
   /**
-   * 
+   * Korisnik voli dato predvidjanje. Ako je vec oznacio da ga voli ili ne voli, ne desava se nista, inace se povecava popularnost
+   * predvidjanja
    */
   public function voliPredvidjanje()
   {
@@ -322,7 +333,8 @@ class Korisnik extends BaseController
       }
   }
   /**
-   * 
+   * Korisnik ne voli dato predvidjanje. Ako je vec oznacio da ga voli ili ne voli, ne desava se nista, inace se povecava popularnost
+   * predvidjanja
    */
   public function neVoliPredvidjanje()
   {
@@ -348,7 +360,9 @@ class Korisnik extends BaseController
           $this->pregled_predvidjanja();
       }      
   }
-
+  /**
+   * Korisnik daje ocenu datom predvidjanju, sto ne radi nista ako je vec bio dao ocenu, inace azurira tezinu.
+   */
   public function oceniPredvidjanje()
   {
       $korisnik= $this->session->get("korisnik");
@@ -374,7 +388,10 @@ class Korisnik extends BaseController
           $this->pregled_predvidjanja();
       }        
   }
-
+  /**
+   * 
+   * Kad istekne datum evaluacije korisnik daje status svom predvidjanju. Ako je ispunjeno, povecava mu se skor.
+   */
   public function dajStatusSvomPredvidjanju()
   {
       $korisnik=$this->session->get("korisnik");
