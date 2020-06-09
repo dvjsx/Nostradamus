@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jun 01, 2020 at 09:47 PM
+-- Generation Time: Jun 09, 2020 at 08:16 AM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.12
 
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   `Popularnost` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`IdK`),
   UNIQUE KEY `XAK1Korisnik` (`Username`)
-) ENGINE=MyISAM AUTO_INCREMENT=10008 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10009 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `korisnik`
@@ -196,6 +196,13 @@ CREATE TABLE IF NOT EXISTS `odgovor_na` (
   KEY `R_8` (`IdI`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `odgovor_na`
+--
+
+INSERT INTO `odgovor_na` (`IdP`, `IdI`) VALUES
+(31, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -218,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `predvidjanje` (
   `BrOcena` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`IdP`),
   KEY `R_5` (`IdK`)
-) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `predvidjanje`
@@ -226,11 +233,11 @@ CREATE TABLE IF NOT EXISTS `predvidjanje` (
 
 INSERT INTO `predvidjanje` (`IdK`, `Username`, `IdP`, `Naslov`, `DatumNastanka`, `DatumEvaluacije`, `Sadrzaj`, `Nominalna_Tezina`, `Tezina`, `Popularnost`, `Status`, `BrOcena`) VALUES
 (1000, 'prvobitni_admin', 8, 'Dokumentacija', '2020-05-17 10:54:40', '2020-05-21 00:00:00', 'Bice gotova', '0.00', '0.00', 4, 'ISPUNJENO', 0),
-(1000, 'prvobitni_admin', 34, '#I', '2020-06-01 16:23:17', '2020-06-30 00:00:00', 'Ddsadadd', '0.00', '0.00', 0, 'CEKA', 0),
+(1000, 'prvobitni_admin', 34, 'I', '2020-06-01 16:23:17', '2020-06-30 00:00:00', 'Ddsadadd', '0.00', '0.00', 0, 'CEKA', 0),
 (1004, 'novi4', 22, 'Obicna', '2020-05-19 07:23:31', '2020-05-31 00:00:00', 'sadasdasdsa', '0.00', '0.00', 1, 'NEISPUNJENO', 0),
 (1005, 'novi5', 29, 'Vozacki', '2020-06-01 15:39:15', '2020-06-26 00:00:00', 'Polozicu ispit iz voznje', '4.00', '19.74', 1, 'CEKA', 1),
 (1005, 'novi5', 31, '#Jon Jones- Nganu', '2020-06-01 15:59:09', '2020-06-30 00:00:00', 'Nece.', '0.00', '0.00', 0, 'CEKA', 0),
-(1005, 'novi5', 32, '#Ideja', '2020-06-01 16:13:11', '2020-06-30 00:00:00', 'lllll', '0.00', '0.00', 0, 'CEKA', 0),
+(1005, 'novi5', 32, 'IdejaP', '2020-06-01 16:13:11', '2020-06-30 00:00:00', 'lllll', '0.00', '0.00', 0, 'CEKA', 0),
 (10008, 'korisniknovi', 1000, 'Bezveze', '2020-06-02 19:41:44', '2020-06-07 19:41:44', 'OKOKOKOK', '0.00', '5.00', 0, 'CEKA', 0),
 (10008, 'korisniknovi', 781, 'Treci svetski rat', '2020-06-03 20:06:44', '2020-06-07 20:06:44', 'Predvidjam da ce svetski treci rat poceti za par dana', '10.00', '10.00', 0, 'CEKA', 0);
 
