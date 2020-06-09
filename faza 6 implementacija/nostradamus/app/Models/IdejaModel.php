@@ -2,8 +2,9 @@
 use CodeIgniter\Model;
 
 /**
+ * Model za rad sa tabelom idje
+ * @version 1.0
  * @author Dusan Vojinovic 2017/80
- * Model ideje
  */
 class IdejaModel extends Model
 {

@@ -5,6 +5,12 @@ use App\Models\Obican_ili_VeranModel;
 use App\Models\AdministratorModel;
 use App\Models\ModeratorModel;
 
+/**
+ * Model za rad sa tabelom korisnik 
+ * @version 1.0
+ * @author Katarina Svrkota 2015/648
+ * @author Dusan Vojinovic 2017/80
+ */
 class KorisnikModel extends Model
 {
     protected $table      = 'korisnik';
@@ -17,6 +23,14 @@ class KorisnikModel extends Model
 
     //protected $useTimestamps = false;
     
+    /**
+     * Novoregistrovani korisnik se dodaje u bazu. 
+     * @param string $korIme
+     * @param string $email
+     * @param string $password
+     * @param string $datumReg
+     * @return void 
+     */
     public function dodaj_korisnika($korIme,$email,$password,$datumReg){
         //ubacimo korisnika
         //skor i popularnost na 0
@@ -29,12 +43,17 @@ class KorisnikModel extends Model
             'Popularnost'=>0
         ]);
     }
+    /**
+     * Vraca korisnika sa datim id-em
+     * @param String $korIme
+     * @return Korisnik
+     */
     public function dohvati_korisnika($korIme){
         return $this->where('Username', $korIme)->first();
     }
     /**
-     * NETESTIRANO!
-     * @param Korisnik $korisnik (kompletan objekat, ne samo id, ili tako nesto), ok promeniti, ali voditi racuna
+     * Uvecava se skor korisnika (kada mu se ispuni predvidjanje)
+     * @param Korisnik $korisnik (kompletan objekat, ne samo id, ili tako nesto)
      * @param int $za_koliko inkrement skora
      * @return void 
      */
@@ -44,9 +63,9 @@ class KorisnikModel extends Model
         $this->save($korisnik);
     }
     /**
-     * NETESTIRANO! 
-     * Ista je funkcija, samo je semantika drukcija
-     * @param Korisnik $korisnik (kompletan objekat, ne samo id, ili tako nesto), ok promeniti, ali voditi racuna
+     * 
+     * Sankcionisanje korisnika za zadati broj poena. 
+     * @param Korisnik $korisnik (kompletan objekat, ne samo id, ili tako nesto)
      * @param int $za_koliko inkrement skora
      * @return void 
      */
@@ -55,9 +74,9 @@ class KorisnikModel extends Model
         $this->uvecaj_skor($korisnik,0-$za_koliko);
     }
     /**
-     * NETESTIRANO!
-     * @param type $korisnik
-     * @param String $stara_uloga (ovde cu smatrati "ADMIN", "MODERATOR","VERAN" (smatrati da ce se uvek verni korisnici birati za vise uloge), ako menjate, promenite ifove)
+     * Promovisanje korisnika u neku drugu ulogu (admin/moderator)
+     * @param Korisnik $korisnik
+     * @param String $stara_uloga (ovde su u opticaju "ADMIN", "MODERATOR","VERAN" (smatrati da ce se uvek verni korisnici birati za vise uloge)
      * @param String $nova_uloga 
      */
     public function promovisi($korisnik,$stara_uloga,$nova_uloga)

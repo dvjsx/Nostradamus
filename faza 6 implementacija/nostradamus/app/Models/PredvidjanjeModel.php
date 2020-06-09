@@ -3,7 +3,8 @@ use CodeIgniter\Model;
 use CodeIgniter\I18n\Time;
 
 /**
- * *@author Dusan Vojinovic 2017/80 
+ * @version 1.0
+ * @author Dusan Vojinovic 2017/80 
  * Model za rad sa predvidjanjima u bazi
  */
 class PredvidjanjeModel extends Model
@@ -89,12 +90,12 @@ class PredvidjanjeModel extends Model
      */
     public function dohvati_predvidjanja_po_korisnickom_imenu($username)
     {
-        //moza "%".$username."%" za deo imena, ali to nismo predvidjali u specifikaciji
+        
         return $this->where("Username",$username)->findAll();
     }
 
     /**
-     * Povecava popularnost predvidjanja, treba pozvati i metodu voli za VoliModel
+     * Povecava/smanjuje popularnost predvidjanja, kada je ono voljeno/nevoljeno
      * @param unique_id $idP identifikator predvidjanja koje je voljeno
      * @param bool $pozitivno da li je korisnik oznacio da mu se predvidjanje svidja (true) ili ne svidja (false)
      * @return Void 
@@ -108,7 +109,10 @@ class PredvidjanjeModel extends Model
     }
     /**
      * Izravunavanje tezine iz nominalne tezine
-     * @var 
+     * @param type $nominalna_tezina
+     * @param type $datum_nastanka
+     * @param type $datum_evaluacije
+     * @return double
      */
     private function izracunaj_tezinu($nominalna_tezina,$datum_nastanka,$datum_evaluacije)
     {
@@ -138,6 +142,7 @@ class PredvidjanjeModel extends Model
      * Poziva je korisnik nakon datuma evaluacije, ili admin koji zeli da promeni. 
      * Provera ima li dati korisnik pravo na poziv funkcije je na strani kontrolera.
      * Autorovo povecavanje skora, u slucaju ispunjenja takodje na strani kontrolera
+     * @param Predvidjanje $predvidjanje Predvidjanje kome se postavlja status
      * @param string $status status predvidjanja, moze biti ISPUNJENO,NEISPUNJENO, CEKA
      */
     public function postavi_status($predvidjanje,$status)

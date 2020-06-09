@@ -3,6 +3,7 @@ use CodeIgniter\Model;
 use App\Models\PredvidjanjeModel;
 
 /**
+ * @version 1.0
  * @author Dusan Vojinovic 2017/80
  *  Model za rad sa tabelom odgovor_na koja prati koja su predvidjanja odgovor na koju ideju
  */
@@ -16,7 +17,7 @@ class Odgovor_naModel extends Model
     protected $allowedFields=["IdP","IdI"];
     
     /**
-     * Isti preduslovi kao za ideju
+     * Isti preduslovi kao za ideju. Cuva da je odgovarajuce predvidjanje odgovor na datu ideju
      * @param int $idP
      * @param int $idI
      */
@@ -27,7 +28,7 @@ class Odgovor_naModel extends Model
         $this->insert($data);
     }
     /**
-     * 
+     * Vraca sva predvidjanja na datu ideju
      * @param type $idI Ideja cije odgovore trazimo
      * @return array $predvidjanja
      */

@@ -3,6 +3,7 @@ use CodeIgniter\Model;
 /**
  * Model za rad sa tabelom voli, koja prati koji je korisnik voleo (ili oznacio da ne voli) koje predvidjanje, 
  * kako niko ne bi mogao da voli isto predvidjanje vise puta
+ * @version 1.0
  * @author Dusan Vojinovic 2017/80
  */
 class VoliModel extends Model
