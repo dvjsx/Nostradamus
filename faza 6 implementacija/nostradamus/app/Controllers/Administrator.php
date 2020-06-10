@@ -487,12 +487,15 @@ class Administrator extends BaseController
       $korisnikModel=new KorisnikModel();
       $promovisani=$korisnikModel->dohvati_korisnika($promovisaniIme);
       $stara_uloga=$korisnikModel->pronadjiUlogu($promovisani);
+      if($stara_uloga=='OBICAN' || $stara_uloga=="ADMIN") { 
+          return redirect()->to( $_SERVER['HTTP_REFERER']);
+      }
       $uloga=$this->request->getVar('uloga');
       if($uloga=='admin') $nova_uloga='ADMIN';
       else if($uloga=='mod') $nova_uloga='MODERATOR';
       $korisnikModel->promovisi($promovisani, $stara_uloga, $nova_uloga);
       return redirect()->to( $_SERVER['HTTP_REFERER']);
-       
+      
   }
   
 }
