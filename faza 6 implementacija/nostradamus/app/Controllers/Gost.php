@@ -92,7 +92,7 @@ class Gost extends BaseController
         if($kor_tip=='korisnice'){
             $veranModel=new Obican_ili_VeranModel();
             $veranKor=$veranModel->dohvati($korisnik->IdK);
-            $treba_da_postane_veran=((strtotime(date("Y-m-d H:i:s"))- strtotime($korisnik->DatumReg))>'VERNOST');
+            $treba_da_postane_veran=((strtotime(date("Y-m-d H:i:s"))- strtotime($korisnik->DatumReg))>VERNOST);
             if ($treba_da_postane_veran)
             {
                 $veranKor->Veran=true;
