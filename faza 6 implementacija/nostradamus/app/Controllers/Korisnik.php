@@ -79,7 +79,7 @@ class Korisnik extends BaseController
       $username=$this->request->uri->getSegment(3);
       $korisnikModel=new KorisnikModel();
       $data['user']=$korisnikModel->dohvati_korisnika($username);
-      if(($data['user']->Username)==($this->session->get('korisnik')->Username)) {$data['user']=$this->session->get('korisnik');  $trenprikaz='profilkorisnikideja'; }
+      if(($data['user']->Username)==($this->session->get('korisnik')->Username)) {$data['user']=$this->session->get('korisnik');  $trenprikaz='profilkorisnikideje'; }
       $idejaModel=new IdejaModel();
       $ideje=$idejaModel->dohvati_ideje_po_korisnickom_imenu($data['user']->Username);
       $data['ideje']=$ideje;
