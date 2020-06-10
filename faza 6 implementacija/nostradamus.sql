@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jun 09, 2020 at 02:31 PM
--- Server version: 8.0.18
+-- Generation Time: Jun 10, 2020 at 04:06 AM
+-- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -82,12 +82,12 @@ INSERT INTO `daje_ocenu` (`IdK`, `IdP`, `Ocena`, `VestackiId`) VALUES
 DROP TABLE IF EXISTS `ideja`;
 CREATE TABLE IF NOT EXISTS `ideja` (
   `IdK` int(11) NOT NULL,
-  `Username` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `IdI` int(11) NOT NULL AUTO_INCREMENT,
-  `Naslov` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Naslov` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `DatumEvaluacije` datetime NOT NULL,
-  `Sadrzaj` varchar(5000) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Popularnost` int(11) NOT NULL DEFAULT '0',
+  `Sadrzaj` varchar(5000) COLLATE utf8_unicode_ci NOT NULL,
+  `Popularnost` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`IdI`),
   KEY `R_6` (`IdK`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -108,15 +108,15 @@ INSERT INTO `ideja` (`IdK`, `Username`, `IdI`, `Naslov`, `DatumEvaluacije`, `Sad
 DROP TABLE IF EXISTS `korisnik`;
 CREATE TABLE IF NOT EXISTS `korisnik` (
   `IdK` int(11) NOT NULL AUTO_INCREMENT,
-  `Username` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Password` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `Password` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `DatumReg` datetime NOT NULL,
-  `Email` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Email` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `Skor` decimal(10,2) NOT NULL,
-  `Popularnost` int(11) NOT NULL DEFAULT '0',
+  `Popularnost` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`IdK`),
   UNIQUE KEY `XAK1Korisnik` (`Username`)
-) ENGINE=MyISAM AUTO_INCREMENT=10009 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10013 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `korisnik`
@@ -135,7 +135,10 @@ INSERT INTO `korisnik` (`IdK`, `Username`, `Password`, `DatumReg`, `Email`, `Sko
 (1005, 'novi5', 'MaliCar5Ds', '2020-05-19 06:19:29', 'vrojinovic-dusan@hotmail.rs', '-3.00', 10),
 (1006, 'novi7', 'MaliCar5Ds', '2020-05-29 04:16:52', 'vorraxjinovic-dusan@hotmail.rs', '0.00', 1),
 (10008, 'korisniknovi', 'Novi123', '2020-06-08 11:55:15', 'korisniknovi@gmail.com', '0.00', 0),
-(1007, 'moderator', 'MaliCar5Ds', '2020-05-29 00:00:00', 'vojinosasasasd@hoxsasa.rs', '0.00', 0);
+(1007, 'moderator', 'MaliCar5Ds', '2020-05-29 00:00:00', 'vojinosasasasd@hoxsasa.rs', '0.00', 0),
+(10010, 'korVM', 'Sifra123', '2020-06-09 22:32:18', 'sdf@gmail.com', '0.00', 0),
+(10011, 'korVA', 'Sifra123', '2020-06-09 22:40:47', 'shdj@gmial.com', '0.00', 0),
+(10012, 'korMA', 'Sifra123', '2020-06-09 22:47:12', 'sdfg@gmail.com', '0.00', 0);
 
 -- --------------------------------------------------------
 
@@ -154,7 +157,8 @@ CREATE TABLE IF NOT EXISTS `moderator` (
 --
 
 INSERT INTO `moderator` (`IdM`) VALUES
-(1007);
+(1007),
+(10012);
 
 -- --------------------------------------------------------
 
@@ -181,7 +185,11 @@ INSERT INTO `obican_ili_veran` (`IdK`, `Veran`) VALUES
 (1003, 1),
 (1004, 1),
 (1006, 1),
-(10008, 0);
+(10008, 0),
+(1, 1),
+(2, 1),
+(10010, 1),
+(10011, 1);
 
 -- --------------------------------------------------------
 
@@ -213,20 +221,20 @@ INSERT INTO `odgovor_na` (`IdP`, `IdI`) VALUES
 DROP TABLE IF EXISTS `predvidjanje`;
 CREATE TABLE IF NOT EXISTS `predvidjanje` (
   `IdK` int(11) NOT NULL,
-  `Username` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `IdP` int(11) NOT NULL AUTO_INCREMENT,
-  `Naslov` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Naslov` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `DatumNastanka` datetime NOT NULL,
   `DatumEvaluacije` datetime NOT NULL,
-  `Sadrzaj` varchar(5000) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Sadrzaj` varchar(5000) COLLATE utf8_unicode_ci NOT NULL,
   `Nominalna_Tezina` decimal(10,2) NOT NULL,
   `Tezina` decimal(10,2) NOT NULL,
-  `Popularnost` int(11) NOT NULL DEFAULT '0',
-  `Status` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `BrOcena` int(11) NOT NULL DEFAULT '0',
+  `Popularnost` int(11) NOT NULL DEFAULT 0,
+  `Status` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `BrOcena` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`IdP`),
   KEY `R_5` (`IdK`)
-) ENGINE=MyISAM AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=1006 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `predvidjanje`
@@ -240,7 +248,10 @@ INSERT INTO `predvidjanje` (`IdK`, `Username`, `IdP`, `Naslov`, `DatumNastanka`,
 (1005, 'novi5', 31, '#Jon Jones- Nganu', '2020-06-01 15:59:09', '2020-06-30 00:00:00', 'Nece.', '0.00', '0.00', 0, 'CEKA', 0),
 (1005, 'novi5', 32, 'IdejaP', '2020-06-01 16:13:11', '2020-06-30 00:00:00', 'lllll', '0.00', '0.00', 0, 'CEKA', 0),
 (10008, 'korisniknovi', 1000, 'Bezveze', '2020-06-02 19:41:44', '2020-06-07 19:41:44', 'OKOKOKOK', '0.00', '5.00', 0, 'CEKA', 0),
-(10008, 'korisniknovi', 781, 'Treci svetski rat', '2020-06-03 20:06:44', '2020-06-07 20:06:44', 'Predvidjam da ce svetski treci rat poceti za par dana', '10.00', '10.00', 0, 'CEKA', 0);
+(10008, 'korisniknovi', 781, 'Treci svetski rat', '2020-06-03 20:06:44', '2020-06-07 20:06:44', 'Predvidjam da ce svetski treci rat poceti za par dana', '10.00', '10.00', 0, 'CEKA', 0),
+(10010, 'korVM', 1002, 'Promocija', '2020-06-09 22:35:58', '2020-07-03 00:00:00', 'Predvidjam da cu postati moderator', '0.00', '0.00', 0, 'CEKA', 0),
+(10011, 'korVA', 1004, 'Postacu admin', '2020-06-09 22:41:22', '2020-07-02 00:00:00', 'Predvidjam da cu da postanem admin', '0.00', '0.00', 0, 'CEKA', 0),
+(10012, 'korMA', 1005, 'Admin', '2020-06-09 22:50:35', '2020-07-01 00:00:00', 'Postacu admin', '0.00', '0.00', 0, 'CEKA', 0);
 
 -- --------------------------------------------------------
 
